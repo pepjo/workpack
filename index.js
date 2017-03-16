@@ -8,6 +8,14 @@ const app = express()
 
 const pass = 'smartlink'
 
+// Force https
+app.get('*',function(req,res,next){
+  if(req.headers['x-forwarded-proto']!='https')
+    res.redirect('https://workpack.click/'+req.url)
+  else
+    next()
+})
+
 app.engine('handlebars', exphbs({
   viewsDir: path.join(__dirname, '/views/'),
   layoutsDir: path.join(__dirname, '/views/layouts'),
