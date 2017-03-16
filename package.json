@@ -1,0 +1,19 @@
+{
+  "name": "workpacks-manager",
+  "version": "1.0.0",
+  "description": "Manage project workpacks, a word macro generates the tables",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "keywords": [
+    "some"
+  ],
+  "author": "Pep Rodeja",
+  "license": "MIT",
+  "dependencies": {
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "express-handlebars": "^3.0.0"
+  }
+}
