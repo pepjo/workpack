@@ -6,6 +6,52 @@ const express = require('express')
 const exphbs  = require('express-handlebars')
 const app = express()
 
+const knex = require('knex')({
+  client: 'pg',
+  connection: process.env.DATABASE_URL,
+})
+
+const bookshelf = require('bookshelf')(knex)
+bookshelf.plugin(require('bookshelf-schema')())
+
+const Fields = require('bookshelf-schema/lib/fields')
+const Relations = require('bookshelf-schema/lib/relations')
+
+const Group = bookshelf.Model.extend({
+  tableName: 'groups',
+}, {
+  schema: [
+    Fields.IntField('id'),
+    Fields.StringField('name'),
+  ]
+})
+
+const Workpack = bookshelf.Model.extend({
+  tableName: 'workpacks',
+}, {
+  schema: [
+    Fields.IntField('id'),
+    Fields.IntField('order'),
+    Relations.BelongsTo(Group),
+    Fields.StringField('wsb_id'),
+    Fields.StringField('activity'),
+    Fields.StringField('description_of_work'),
+    Fields.StringField('predecessors'),
+    Fields.StringField('relationship_p'),
+    Fields.StringField('lag_p'),
+    Fields.StringField('successor'),
+    Fields.StringField('relationship_s'),
+    Fields.StringField('lag_s'),
+    Fields.StringField('number_resources'),
+    Fields.StringField('skill_requirements'),
+    Fields.StringField('other_required_ressources'),
+    Fields.StringField('type_of_effort'),
+    Fields.StringField('location_performance'),
+    Fields.StringField('constrains'),
+    Fields.StringField('assumptions'),
+  ]
+})
+
 const pass = 'smartlink'
 
 // Force https
@@ -32,9 +78,9 @@ app.get('/list/work', function (req, res, next) {
     next()
   }
 })
-app.get('/list/types?pass=smartlink', function (req, res, next) {
+app.get('/list/groups?pass=smartlink', function (req, res, next) {
   if (req.query.pass === pass) {
-    res.render('types')
+    res.render('groups')
   } else {
     next()
   }
@@ -46,9 +92,9 @@ app.get('/add/work?pass=smartlink', function (req, res, next) {
     next()
   }
 })
-app.get('/add/type?pass=smartlink', function (req, res, next) {
+app.get('/add/group?pass=smartlink', function (req, res, next) {
   if (req.query.pass === pass) {
-    res.render('addList')
+    res.render('addGroup')
   } else {
     next()
   }

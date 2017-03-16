@@ -12,8 +12,12 @@
   "author": "Pep Rodeja",
   "license": "MIT",
   "dependencies": {
+    "bookshelf": "^0.10.3",
+    "bookshelf-schema": "^0.3.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
-    "express-handlebars": "^3.0.0"
+    "express-handlebars": "^3.0.0",
+    "knex": "^0.12.8",
+    "pg": "^6.1.4"
   }
 }
