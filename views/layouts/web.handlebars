@@ -45,12 +45,22 @@
     
     .dataList th {
       border-bottom: 1px solid #AAA;
+      white-space: nowrap;
+      border-right: 1px solid #AAA;
+      padding: 0 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
     }
     .dataList tr:nth-child(2n+3) {
       background: #DDD;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      max-width: 200px;
     }
     
-    .workForm input, .workForm textarea {
+    .workForm input, .workForm textarea, .workForm select,
+    .additionalTable input, .additionalTable textarea, .additionalTable select {
       display: block;
       width: 100%;
     }

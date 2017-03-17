@@ -16,43 +16,7 @@ const knex = require('knex')({
 const bookshelf = require('bookshelf')(knex)
 bookshelf.plugin(require('bookshelf-schema')())
 
-const Fields = require('bookshelf-schema/lib/fields')
-const Relations = require('bookshelf-schema/lib/relations')
-
-const Group = bookshelf.Model.extend({
-  tableName: 'groups',
-}, {
-  schema: [
-    Fields.IntField('id'),
-    Fields.StringField('name'),
-  ]
-})
-
-const Workpack = bookshelf.Model.extend({
-  tableName: 'workpacks',
-}, {
-  schema: [
-    Fields.IntField('id'),
-    Fields.IntField('order'),
-    Relations.BelongsTo(Group),
-    Fields.StringField('wsb_id'),
-    Fields.StringField('activity'),
-    Fields.StringField('description_of_work'),
-    Fields.StringField('predecessors'),
-    Fields.StringField('relationship_p'),
-    Fields.StringField('lag_p'),
-    Fields.StringField('successor'),
-    Fields.StringField('relationship_s'),
-    Fields.StringField('lag_s'),
-    Fields.StringField('number_resources'),
-    Fields.StringField('skill_requirements'),
-    Fields.StringField('other_required_ressources'),
-    Fields.StringField('type_of_effort'),
-    Fields.StringField('location_performance'),
-    Fields.StringField('constrains'),
-    Fields.StringField('assumptions'),
-  ]
-})
+const { Group, Workpack } = require('./server/models')(bookshelf)
 
 const pass = 'smartlink'
 

@@ -1,4 +1,5 @@
-<form action="/add/work?pass=smartlink" method="POST">
+<form action="/add/work?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;">
+  <h2>Basic information</h2>
   <table class="workForm">
     <tr>
       <td colspan="2">
@@ -99,6 +100,283 @@
       </td>
     </tr>
   </table>
+  
+  <hr/>
+  <h2>Time calculations</h2>
+  <label for="t_type"></label>
+  <select id="t_type" name="t_type">
+    <option value="t_p">Parametric</option>
+    <option value="t_a">Analogus</option>
+    <option value="t_3">Line of three points</option>
+  </select>
+  
+  <table class="additionalTable" id="t_p">
+    <tr>
+      <td>
+        <label for="t_p_effort_hours">Effort Hours</label>
+        <input id="t_p_effort_hours" name="t_p_effort_hours" />
+      </td>
+      <td>
+        <label for="t_p_resource_quantity">Resource Quantity</label>
+        <input id="t_p_resource_quantity" name="t_p_resource_quantity" />
+      </td>
+      <td>
+        <label for="t_p_percentage_avaiable">% Available</label>
+        <input id="t_p_percentage_avaiable" name="t_p_percentage_avaiable" />
+      </td>
+      <td>
+        <label for="t_p_performance_factor">Performance Factor</label>
+        <input id="t_p_performance_factor" name="t_p_performance_factor" />
+      </td>
+      <td>
+        <label for="t_duration_estimate">Duration Estimate</label>
+        <input id="t_duration_estimate" name="t_duration_estimate" />
+      </td>
+    </tr>
+  </table>
+  <table class="additionalTable" id="t_a">
+    <tr>
+      <td>
+        <label for="t_a_previous_activity">Previous activity num</label>
+        <input id="t_a_previous_activity" name="t_a_previous_activity" />
+        <label for="t_a_previous_activity_txt">Previous activity txt</label>
+        <input id="t_a_previous_activity_txt" name="t_a_previous_activity_txt" />
+      </td>
+      <td>
+        <label for="t_a_previous_duration">Previous duration num</label>
+        <input id="t_a_previous_duration" name="t_a_previous_duration" />
+        <label for="t_a_previous_duration_txt">Previous duration txt</label>
+        <input id="t_a_previous_duration_txt" name="t_a_previous_duration_txt" />
+      </td>
+      <td>
+        <label for="t_a_current_activity">Current activity num</label>
+        <input id="t_a_current_activity" name="t_a_current_activity" />
+        <label for="t_a_current_activity_txt">Current activity txt</label>
+        <input id="t_a_current_activity_txt" name="t_a_current_activity_txt" />
+      </td>
+      <td>
+        <label for="t_a_multiplier">Multiplier num</label>
+        <input id="t_a_multiplier" name="t_a_multiplier" />
+        <label for="t_a_multiplier_txt">Multiplier txt</label>
+        <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" />
+      </td>
+      <td>
+        <label for="t_duration_estimate">Duration Estimate</label>
+        <input id="t_duration_estimate" name="t_duration_estimate" />
+      </td>
+    </tr>
+  </table>
+  <table class="additionalTable" id="t_3">
+    <td>
+      <label for="t_3_optimistic_duration">Optimistic duration</label>
+      <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" />
+    </td>
+    <td>
+      <label for="t_3_mostlikely_duration">Most likely duration</label>
+      <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" />
+    </td>
+    <td>
+      <label for="t_3_pessimistic_duration">Pessimistic duration</label>
+      <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" />
+    </td>
+    <td>
+      <label for="t_3_wheighting_equation">Wheighting equation</label>
+      <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" />
+    </td>
+    <td>
+      <label for="t_duration_estimate">Duration Estimate</label>
+      <input id="t_duration_estimate" name="t_duration_estimate" />
+    </td>
+  </table>
+  
+  <hr/>
+  <h2>Cost calculations</h2>
+  <label for="c_type"></label>
+  <select id="c_type" name="c_type">
+    <option value="c_p">Parametric</option>
+    <option value="c_a">Analogus</option>
+    <option value="c_3">Line of three points</option>
+  </select>
+  
+  <table class="additionalTable" id="c_p">
+    <tr>
+      <td>
+        <label for="c_p_variable_cost">Variable cost</label>
+        <input id="c_p_variable_cost" name="c_p_variable_cost" />
+      </td>
+      <td>
+        <label for="c_p_cost_per_unit">Cost per unit</label>
+        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" />
+      </td>
+      <td>
+        <label for="c_p_number_of_units">Number of units</label>
+        <input id="c_p_number_of_units" name="c_p_number_of_units" />
+      </td>
+      <td>
+        <label for="c_cost_estimate">Cost estimate</label>
+        <input id="c_cost_estimate" name="c_cost_estimate" />
+      </td>
+    </tr>
+  </table>
+  <table class="additionalTable" id="c_a">
+    <tr>
+      <td>
+        <label for="c_a_previous_activity">Previous activity num</label>
+        <input id="c_a_previous_activity" name="c_a_previous_activity" />
+        <label for="c_a_previous_activity_txt">Previous activity txt</label>
+        <input id="c_a_previous_activity_txt" name="c_a_previous_activity_txt" />
+      </td>
+      <td>
+        <label for="c_a_previous_cost">Previous cost</label>
+        <input id="c_a_previous_cost" name="c_a_previous_cost" />
+      </td>
+      <td>
+        <label for="c_a_current_activity">Current activity num</label>
+        <input id="c_a_current_activity" name="c_a_current_activity" />
+        <label for="c_a_current_activity_txt">Current activity txt</label>
+        <input id="c_a_current_activity_txt" name="c_a_current_activity_txt" />
+      </td>
+      <td>
+        <label for="c_a_multiplier">Multiplier</label>
+        <input id="c_a_multiplier" name="c_a_multiplier" />
+      </td>
+      <td>
+        <label for="c_cost_estimate">Cost estimate</label>
+        <input id="c_cost_estimate" name="c_cost_estimate" />
+      </td>
+    </tr>
+  </table>
+  <table class="additionalTable" id="c_3">
+    <tr>
+      <td>
+        <label for="c_3_optimistic_cost">Optimistic cost</label>
+        <input id="c_3_optimistic_cost" name="c_3_optimistic_cost" />
+      </td>
+      <td>
+        <label for="c_3_mostlikely_cost">Most likely cost</label>
+        <input id="c_3_mostlikely_cost" name="c_3_mostlikely_cost" />
+      </td>
+      <td>
+        <label for="c_3_pessimistic_cost">Pessmistic cost</label>
+        <input id="c_3_pessimistic_cost" name="c_3_pessimistic_cost" />
+      </td>
+      <td>
+        <label for="c_3_wheighting_equation">Wheighting equations</label>
+        <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" />
+      </td>
+      <td>
+        <label for="c_cost_estimate">Cost estimate</label>
+        <input id="c_cost_estimate" name="c_cost_estimate" />
+      </td>
+    </tr>
+  </table>
 
   <input type="submit" value="Guardar" />
 </form>
+
+<script src="/jquery-3.2.0.min.js"></script>
+<script>
+  function cleanTP () {
+    $('#t_p_effort_hours').val('')
+    $('#t_p_resource_quantity').val('')
+    $('#t_p_percentage_avaiable').val('')
+    $('#t_p_performance_factor').val('')
+    $('#t_duration_estimate').val('')
+  }
+  function cleanTA () {
+    $('#t_a_previous_activity').val('')
+    $('#t_a_previous_activity_txt').val('')
+    $('#t_a_previous_duration').val('')
+    $('#t_a_previous_duration_txt').val('')
+    $('#t_a_current_activity').val('')
+    $('#t_a_current_activity_txt').val('')
+    $('#t_a_multiplier').val('')
+    $('#t_a_multiplier_txt').val('')
+    $('#t_duration_estimate').val('')
+  }
+  function cleanT3 () {
+    $('#t_3_optimistic_duration').val('')
+    $('#t_3_mostlikely_duration').val('')
+    $('#t_3_pessimistic_duration').val('')
+    $('#t_3_wheighting_equation').val('')
+    $('#t_duration_estimate').val('')
+  }
+  function cleanCP () {
+    $('#c_p_variable_cost').val('')
+    $('#c_p_cost_per_unit').val('')
+    $('#c_p_number_of_units').val('')
+    $('#c_cost_estimate').val('')
+  }
+  function cleanCA () {
+    $('#c_a_previous_activity').val('')
+    $('#c_a_previous_activity_txt').val('')
+    $('#c_a_previous_cost').val('')
+    $('#c_a_current_activity').val('')
+    $('#c_a_current_activity_txt').val('')
+    $('#c_a_multiplier').val('')
+    $('#c_cost_estimate').val('')
+  }
+  function cleanC3 () {
+    $('#c_3_optimistic_cost').val('')
+    $('#c_3_mostlikely_cost').val('')
+    $('#c_3_pessimistic_cost').val('')
+    $('#c_3_wheighting_equation').val('')
+    $('#c_cost_estimate').val('')
+  }
+  function setTType (type) {
+    if (type === 't_p') {
+      $('#t_p').show()
+      $('#t_a').hide()
+      $('#t_3').hide()
+      cleanTA()
+      cleanT3()
+    } else if (type === 't_a') {
+      $('#t_p').hide()
+      $('#t_a').show()
+      $('#t_3').hide()
+      cleanTP()
+      cleanT3()
+    } else if (type === 't_3') {
+      $('#t_p').hide()
+      $('#t_a').hide()
+      $('#t_3').show()
+      cleanTP()
+      cleanTA()
+    } else {
+      $('#t_type').val()
+      setTType('t_p')
+    }
+  }
+  function setCType (type) {
+    if (type === 'c_p') {
+      $('#c_p').show()
+      $('#c_a').hide()
+      $('#c_3').hide()
+      cleanCA()
+      cleanC3()
+    } else if (type === 'c_a') {
+      $('#c_p').hide()
+      $('#c_a').show()
+      $('#c_3').hide()
+      cleanCP()
+      cleanC3()
+    } else if (type === 'c_3') {
+      $('#c_p').hide()
+      $('#c_a').hide()
+      $('#c_3').show()
+      cleanCP()
+      cleanCA()
+    } else {
+      $('#c_type').val('c_p')
+      setCType('c_p')
+    }
+  }
+  
+  // Attach events
+  $('#t_type').on('change', (e) => { setTType(e.target.value) })
+  $('#c_type').on('change', (e) => { setCType(e.target.value) })
+  
+  // Select current values
+  setTType($('#t_type').val())
+  setCType($('#c_type').val())
+</script>

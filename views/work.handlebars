@@ -19,6 +19,39 @@
     <th>Location</th>
     <th>Constrains</th>
     <th>Assumptions</th>
+    <th>Time type</th>
+    <th>Time estimate</th>
+    <th>Cost type</th>
+    <th>Cost estimate</th>
+    <th>Time para. effort hours</th>
+    <th>Time para. resource quantity</th>
+    <th>Time para. percentage avaiable</th>
+    <th>Time para. performance factor</th>
+    <th>Time anal. previous activity</th>
+    <th>Time anal. previous duration</th>
+    <th>Time anal. current activity</th>
+    <th>Time anal. multiplier</th>
+    <th>Time anal. previous activity txt</th>
+    <th>Time anal. previous duration txt</th>
+    <th>Time anal. current activity txt</th>
+    <th>Time anal. multiplier txt</th>
+    <th>Time 3p. optimistic duration</th>
+    <th>Time 3p. mostlikely duration</th>
+    <th>Time 3p. pessimistic duration</th>
+    <th>Time 3p. wheighting equation</th>
+    <th>Cost para. variable cost</th>
+    <th>Cost para. cost per unit</th>
+    <th>Cost para. number of units</th>
+    <th>Cost anal. previous activity</th>
+    <th>Cost anal. previous activity txt</th>
+    <th>Cost anal. previous cost</th>
+    <th>Cost anal. current activity</th>
+    <th>Cost anal. current activity txt</th>
+    <th>Cost anal. multiplier</th>
+    <th>Cost 3p. optimistic cost</th>
+    <th>Cost 3p. mostlikely cost</th>
+    <th>Cost 3p. pessimistic cost</th>
+    <th>Cost 3p. wheighting equation</th>
   </tr>
   {{#each work}}
     <tr>
@@ -41,6 +74,39 @@
       <td>{{this.location_performance}}</td>
       <td>{{this.constrains}}</td>
       <td>{{this.assumptions}}</td>
+      <td>{{this.t_type}}</td>
+      <td>{{this.t_duration_estimate}}</td>
+      <td>{{this.t_p_effort_hours}}</td>
+      <td>{{this.t_p_resource_quantity}}</td>
+      <td>{{this.t_p_percentage_avaiable}}</td>
+      <td>{{this.t_p_performance_factor}}</td>
+      <td>{{this.t_a_previous_activity}}</td>
+      <td>{{this.t_a_previous_duration}}</td>
+      <td>{{this.t_a_current_activity}}</td>
+      <td>{{this.t_a_multiplier}}</td>
+      <td>{{this.t_a_previous_activity_txt}}</td>
+      <td>{{this.t_a_previous_duration_txt}}</td>
+      <td>{{this.t_a_current_activity_txt}}</td>
+      <td>{{this.t_a_multiplier_txt}}</td>
+      <td>{{this.t_3_optimistic_duration}}</td>
+      <td>{{this.t_3_mostlikely_duration}}</td>
+      <td>{{this.t_3_pessimistic_duration}}</td>
+      <td>{{this.t_3_wheighting_equation}}</td>
+      <td>{{this.c_type}}</td>
+      <td>{{this.c_cost_estimate}}</td>
+      <td>{{this.c_p_variable_cost}}</td>
+      <td>{{this.c_p_cost_per_unit}}</td>
+      <td>{{this.c_p_number_of_units}}</td>
+      <td>{{this.c_a_previous_activity}}</td>
+      <td>{{this.c_a_previous_activity_txt}}</td>
+      <td>{{this.c_a_previous_cost}}</td>
+      <td>{{this.c_a_current_activity}}</td>
+      <td>{{this.c_a_current_activity_txt}}</td>
+      <td>{{this.c_a_multiplier}}</td>
+      <td>{{this.c_3_optimistic_cost}}</td>
+      <td>{{this.c_3_mostlikely_cost}}</td>
+      <td>{{this.c_3_pessimistic_cost}}</td>
+      <td>{{this.c_3_wheighting_equation}}</td>
     </tr>
   {{/each}}
 </table>
