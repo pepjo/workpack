@@ -77,7 +77,9 @@ app.use(bodyParser.urlencoded({ extended: false }))
 
 app.get('/list/work', function (req, res, next) {
   if (req.query.pass === pass) {
-    res.render('work', { pass })
+    new Workpack().fetchAll().then(function(work) {
+      res.render('work', { pass, work: work.toJSON() })
+    }, () => (next()))
   } else {
     next()
   }
@@ -86,21 +88,30 @@ app.get('/list/groups', function (req, res, next) {
   if (req.query.pass === pass) {
     new Group().fetchAll().then(function(group) {
       res.render('groups', { pass, group: group.toJSON() })
-    }, () => (next()));
+    }, () => (next()))
   } else {
     next()
   }
 })
 app.get('/add/work', function (req, res, next) {
   if (req.query.pass === pass) {
-    res.render('addWork', { pass })
+    new Group().fetchAll().then(function(group) {
+      console.log('group', group.toJSON())
+      res.render('addWork', { pass, group: group.toJSON() })
+    }, () => (next()))
   } else {
     next()
   }
 })
 app.post('/add/work', function (req, res, next) {
   if (req.query.pass === pass) {
-    res.render('addWork', { pass })
+    new Group().fetchAll()
+    .then(function(group) {
+      new Workpack(req.body).save().then(function(model) {
+        console.log('group', group.toJSON())
+        res.render('addWork', { pass, group: group.toJSON() })
+      }, () => (next()))
+    }, () => (next()))
   } else {
     next()
   }

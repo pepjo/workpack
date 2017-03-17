@@ -1,0 +1,104 @@
+<form action="/add/work?pass=smartlink" method="POST">
+  <table class="workForm">
+    <tr>
+      <td colspan="2">
+        <label for="id">Id</label>
+        <input id="id" name="id" disabled/>
+      </td>
+      <td colspan="2">
+        <label for="order">Ordre</label>
+        <input value="1" id="order" name="order" />
+      </td>
+      <td colspan="2">
+        <label for="groups_id">Group</label>
+        <select id="groups_id" name="groups_id">
+          {{#each group}}
+          <option value="{{this.id}}">{{this.name}}</option>
+          {{/each}}
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <label for="wsb_id">WSB ID</label>
+        <textarea id="wsb_id" name="wsb_id" ></textarea>
+      </td>
+      <td colspan="4">
+        <label for="activity">Activity</label>
+        <textarea id="activity" name="activity" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <label for="description_of_work">Description</label>
+        <textarea id="description_of_work" name="description_of_work" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <label for="predecessors">Predecessors</label>
+        <textarea id="predecessors" name="predecessors" ></textarea>
+      </td>
+      <td>
+        <label for="relationship_p">Relationship</label>
+        <textarea id="relationship_p" name="relationship_p" ></textarea>
+      </td>
+      <td>
+        <label for="lag_p">Lag</label>
+        <textarea id="lag_p" name="lag_p" ></textarea>
+      </td>
+      <td>
+        <label for="successor">Successor</label>
+        <textarea id="successor" name="successor" ></textarea>
+      </td>
+      <td>
+        <label for="relationship_s">Relationship</label>
+        <textarea id="relationship_s" name="relationship_s" ></textarea>
+      </td>
+      <td>
+        <label for="lag_s">Lag</label>
+        <textarea id="lag_s" name="lag_s" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="2">
+        <label for="number_resources">Number Resources</label>
+        <textarea id="number_resources" name="number_resources" ></textarea>
+      </td>
+      <td colspan="2">
+        <label for="skill_requirements">Skills</label>
+        <textarea id="skill_requirements" name="skill_requirements" ></textarea>
+      </td>
+      <td colspan="2">
+        <label for="other_required_ressources">Other Ressources</label>
+        <textarea id="other_required_ressources" name="other_required_ressources" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <label for="type_of_effort">Effort</label>
+        <textarea id="type_of_effort" name="type_of_effort" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <label for="location_performance">Location</label>
+        <textarea id="location_performance" name="location_performance" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <label for="constrains">Constrains</label>
+        <textarea id="constrains" name="constrains" ></textarea>
+      </td>
+    </tr>
+    <tr>
+      <td colspan="6">
+        <label for="assumptions">Assumptions</label>
+        <textarea id="assumptions" name="assumptions" ></textarea>
+      </td>
+    </tr>
+  </table>
+
+  <input type="submit" value="Guardar" />
+</form>

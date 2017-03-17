@@ -1,0 +1,46 @@
+<table cellspacing="0" class="dataList">
+  <tr>
+    <th>Id</th>
+    <th>Ordre</th>
+    <th>Group</th>
+    <th>WSB ID</th>
+    <th>Activity</th>
+    <th>Description</th>
+    <th>Predecessors</th>
+    <th>Relationship</th>
+    <th>Lag</th>
+    <th>Successor</th>
+    <th>Relationship</th>
+    <th>Lag</th>
+    <th>Number Resources</th>
+    <th>Skills</th>
+    <th>Other Ressources</th>
+    <th>Effort</th>
+    <th>Location</th>
+    <th>Constrains</th>
+    <th>Assumptions</th>
+  </tr>
+  {{#each work}}
+    <tr>
+      <td>{{this.id}}</td>
+      <td>{{this.order}}</td>
+      <td>{{this.groups_id}}</td>
+      <td>{{this.wsb_id}}</td>
+      <td>{{this.activity}}</td>
+      <td>{{this.description_of_work}}</td>
+      <td>{{this.predecessors}}</td>
+      <td>{{this.relationship_p}}</td>
+      <td>{{this.lag_p}}</td>
+      <td>{{this.successor}}</td>
+      <td>{{this.relationship_s}}</td>
+      <td>{{this.lag_s}}</td>
+      <td>{{this.number_resources}}</td>
+      <td>{{this.skill_requirements}}</td>
+      <td>{{this.other_required_ressources}}</td>
+      <td>{{this.type_of_effort}}</td>
+      <td>{{this.location_performance}}</td>
+      <td>{{this.constrains}}</td>
+      <td>{{this.assumptions}}</td>
+    </tr>
+  {{/each}}
+</table>
