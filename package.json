@@ -4,7 +4,8 @@
   "description": "Manage project workpacks, a word macro generates the tables",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "knex": "knex"
   },
   "keywords": [
     "some"
@@ -12,6 +13,7 @@
   "author": "Pep Rodeja",
   "license": "MIT",
   "dependencies": {
+    "body-parser": "^1.17.1",
     "bookshelf": "^0.10.3",
     "bookshelf-schema": "^0.3.1",
     "dotenv": "^4.0.0",

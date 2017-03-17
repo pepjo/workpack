@@ -31,17 +31,23 @@
       color: black;
       text-decoration: underline;
     }
+    
+    main {
+      padding: 10px 0;
+    }
   </style>
 </head>
 <body>
   <nav>
     <ul class="navList">
-      <li><a href="/list/work?pass=hola">List workpacks</a></li>
-      <li><a href="/list/groups?pass=hola">List groups</a></li>
-      <li><a href="/add/work?pass=hola">Add workpack</a></li>
-      <li><a href="/add/group?pass=hola">Add group</a></li>
+      <li><a href="/list/work?pass={{pass}}">List workpacks</a></li>
+      <li><a href="/list/groups?pass={{pass}}">List groups</a></li>
+      <li><a href="/add/work?pass={{pass}}">Add workpack</a></li>
+      <li><a href="/add/group?pass={{pass}}">Add group</a></li>
     </ul>
   </nav>
-  {{{body}}}
+  <main>
+    {{{body}}}
+  </main>
 </body>
 </html>
