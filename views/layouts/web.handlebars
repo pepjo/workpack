@@ -4,15 +4,26 @@
   <meta charset="utf-8">
   <title>Workpacks manager</title>
   <style>
+    body, html {
+      padding: 0;
+      margin: 0;
+    }
+
     nav {
-      border-bottom: 1px solid black;
+      border-bottom: 1px solid #AAA;
     }
     .navList {
-      padding: 5px 10px;
+      padding: 0;
+      margin: 0;
       list-style: none;
     }
     .navList li {
+      padding: 10px;
+      margin: 0;
       display: inline-block;
+    }
+    .navList li:hover {
+      background-color: #EFEFEF;
     }
 
     a:link {
@@ -30,6 +41,13 @@
     a:active {
       color: black;
       text-decoration: underline;
+    }
+    
+    th {
+      border-bottom: 1px solid #AAA;
+    }
+    tr:nth-child(2n+3) {
+      background: #DDD;
     }
     
     main {
