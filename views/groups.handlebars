@@ -4,9 +4,15 @@
     <th>Nom</th>
   </tr>
   {{#each group}}
-    <tr>
+    <tr key="{{this.id}}" class="row">
       <td>{{this.id}}</td>
       <td>{{this.name}}</td>
     </tr>
   {{/each}}
 </table>
+
+<script>
+$('.row').each((key, item) => {
+  $(item).on('click', () => { location.href = `/add/group/${item.getAttribute('key')}${location.search}` })
+})
+</script>

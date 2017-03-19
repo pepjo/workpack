@@ -1,22 +1,24 @@
 <form action="/add/work?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
   <input type="submit" value="Guardar tot" style="position: absolute; left: -200px;" />
   
+  <h1 style="color: red;">{{error}}</h1>
+  
   <h2>Basic information</h2>
   <table class="workForm">
     <tr>
       <td colspan="2">
         <label for="id">Id</label>
-        <input id="id" name="id" disabled/>
+        <input id="id" name="id" value="{{work.id}}" readonly/>
       </td>
       <td colspan="2">
         <label for="order">Ordre</label>
-        <input value="1" id="order" name="order" />
+        <input value="1" id="order" name="order" value="{{work.order}}" />
       </td>
       <td colspan="2">
         <label for="groups_id">Group</label>
         <select id="groups_id" name="groups_id">
           {{#each group}}
-          <option value="{{this.id}}">{{this.name}}</option>
+          <option value="{{this.id}}" {{{this.selected}}}>{{this.name}}</option>
           {{/each}}
         </select>
       </td>
@@ -24,81 +26,81 @@
     <tr>
       <td colspan="2">
         <label for="wsb_id">WSB ID</label>
-        <textarea id="wsb_id" name="wsb_id" rows="5"></textarea>
+        <textarea id="wsb_id" name="wsb_id" rows="5">{{work.wsb_id}}</textarea>
       </td>
       <td colspan="4">
         <label for="activity">Activity</label>
-        <textarea id="activity" name="activity" rows="5"></textarea>
+        <textarea id="activity" name="activity" rows="5">{{work.activity}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="6">
         <label for="description_of_work">Description</label>
-        <textarea id="description_of_work" name="description_of_work" rows="5"></textarea>
+        <textarea id="description_of_work" name="description_of_work" rows="5">{{work.description_of_work}}</textarea>
       </td>
     </tr>
     <tr>
       <td>
         <label for="predecessors">Predecessors</label>
-        <textarea id="predecessors" name="predecessors" rows="17"></textarea>
+        <textarea id="predecessors" name="predecessors" rows="17">{{work.predecessors}}</textarea>
       </td>
       <td>
         <label for="relationship_p">Relationship</label>
-        <textarea id="relationship_p" name="relationship_p" rows="17"></textarea>
+        <textarea id="relationship_p" name="relationship_p" rows="17">{{work.relationship_p}}</textarea>
       </td>
       <td>
         <label for="lag_p">Lag</label>
-        <textarea id="lag_p" name="lag_p" rows="17"></textarea>
+        <textarea id="lag_p" name="lag_p" rows="17">{{work.lag_p}}</textarea>
       </td>
       <td>
         <label for="successor">Successor</label>
-        <textarea id="successor" name="successor" rows="17"></textarea>
+        <textarea id="successor" name="successor" rows="17">{{work.successor}}</textarea>
       </td>
       <td>
         <label for="relationship_s">Relationship</label>
-        <textarea id="relationship_s" name="relationship_s" rows="17"></textarea>
+        <textarea id="relationship_s" name="relationship_s" rows="17">{{work.relationship_s}}</textarea>
       </td>
       <td>
         <label for="lag_s">Lag</label>
-        <textarea id="lag_s" name="lag_s" rows="17"></textarea>
+        <textarea id="lag_s" name="lag_s" rows="17">{{work.lag_s}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="2">
         <label for="number_resources">Number Resources</label>
-        <textarea id="number_resources" name="number_resources" rows="5"></textarea>
+        <textarea id="number_resources" name="number_resources" rows="5">{{work.number_resources}}</textarea>
       </td>
       <td colspan="2">
         <label for="skill_requirements">Skills</label>
-        <textarea id="skill_requirements" name="skill_requirements" rows="5"></textarea>
+        <textarea id="skill_requirements" name="skill_requirements" rows="5">{{work.skill_requirements}}</textarea>
       </td>
       <td colspan="2">
         <label for="other_required_ressources">Other Ressources</label>
-        <textarea id="other_required_ressources" name="other_required_ressources" rows="5"></textarea>
+        <textarea id="other_required_ressources" name="other_required_ressources" rows="5">{{work.other_required_ressources}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="6">
         <label for="type_of_effort">Effort</label>
-        <textarea id="type_of_effort" name="type_of_effort" rows="5"></textarea>
+        <textarea id="type_of_effort" name="type_of_effort" rows="5">{{work.type_of_effort}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="6">
         <label for="location_performance">Location</label>
-        <textarea id="location_performance" name="location_performance" rows="5"></textarea>
+        <textarea id="location_performance" name="location_performance" rows="5">{{work.location_performance}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="6">
         <label for="constrains">Constrains</label>
-        <textarea id="constrains" name="constrains" rows="5"></textarea>
+        <textarea id="constrains" name="constrains" rows="5">{{work.constrains}}</textarea>
       </td>
     </tr>
     <tr>
       <td colspan="6">
         <label for="assumptions">Assumptions</label>
-        <textarea id="assumptions" name="assumptions" rows="5"></textarea>
+        <textarea id="assumptions" name="assumptions" rows="5">{{work.assumptions}}</textarea>
       </td>
     </tr>
   </table>
@@ -107,28 +109,28 @@
   <h2>Time calculations</h2>
   <label for="t_type"></label>
   <select id="t_type" name="t_type">
-    <option value="t_p">Parametric</option>
-    <option value="t_a">Analogus</option>
-    <option value="t_3">Line of three points</option>
+    <option value="t_p" {{{work.ttypep}}}>Parametric</option>
+    <option value="t_a" {{{work.ttypea}}}>Analogus</option>
+    <option value="t_3" {{{work.ttype3}}}>Line of three points</option>
   </select>
   
   <table class="additionalTable" id="t_p">
     <tr>
       <td>
         <label for="t_p_effort_hours">Effort Hours</label>
-        <input id="t_p_effort_hours" name="t_p_effort_hours" />
+        <input id="t_p_effort_hours" name="t_p_effort_hours" value="{{work.t_p_effort_hours}}" />
       </td>
       <td>
         <label for="t_p_resource_quantity">Resource Quantity</label>
-        <input id="t_p_resource_quantity" name="t_p_resource_quantity" />
+        <input id="t_p_resource_quantity" name="t_p_resource_quantity" value="{{work.t_p_resource_quantity}}" />
       </td>
       <td>
         <label for="t_p_percentage_avaiable">% Available</label>
-        <input id="t_p_percentage_avaiable" name="t_p_percentage_avaiable" />
+        <input id="t_p_percentage_avaiable" name="t_p_percentage_avaiable" value="{{work.t_p_percentage_avaiable}}" />
       </td>
       <td>
         <label for="t_p_performance_factor">Performance Factor</label>
-        <input id="t_p_performance_factor" name="t_p_performance_factor" />
+        <input id="t_p_performance_factor" name="t_p_performance_factor" value="{{work.t_p_performance_factor}}" />
       </td>
     </tr>
     <tr>
@@ -141,27 +143,27 @@
     <tr>
       <td>
         <label for="t_a_previous_activity">Previous activity num</label>
-        <input id="t_a_previous_activity" name="t_a_previous_activity" />
+        <input id="t_a_previous_activity" name="t_a_previous_activity" value="{{work.t_a_previous_activity}}" />
         <label for="t_a_previous_activity_txt">Previous activity txt</label>
-        <input id="t_a_previous_activity_txt" name="t_a_previous_activity_txt" />
+        <input id="t_a_previous_activity_txt" name="t_a_previous_activity_txt" value="{{work.t_a_previous_activity_txt}}" />
       </td>
       <td>
         <label for="t_a_previous_duration">Previous duration num</label>
-        <input id="t_a_previous_duration" name="t_a_previous_duration" />
+        <input id="t_a_previous_duration" name="t_a_previous_duration" value="{{work.t_a_previous_duration}}" />
         <label for="t_a_previous_duration_txt">Previous duration txt</label>
-        <input id="t_a_previous_duration_txt" name="t_a_previous_duration_txt" />
+        <input id="t_a_previous_duration_txt" name="t_a_previous_duration_txt" value="{{work.t_a_previous_duration_txt}}" />
       </td>
       <td>
         <label for="t_a_current_activity">Current activity num</label>
-        <input id="t_a_current_activity" name="t_a_current_activity" />
+        <input id="t_a_current_activity" name="t_a_current_activity" value="{{work.t_a_current_activity}}" />
         <label for="t_a_current_activity_txt">Current activity txt</label>
-        <input id="t_a_current_activity_txt" name="t_a_current_activity_txt" />
+        <input id="t_a_current_activity_txt" name="t_a_current_activity_txt" value="{{work.t_a_current_activity_txt}}" />
       </td>
       <td>
         <label for="t_a_multiplier">Multiplier num</label>
-        <input disabled id="t_a_multiplier" name="t_a_multiplier" />
+        <input readonly id="t_a_multiplier" name="t_a_multiplier" value="{{work.t_a_multiplier}}" />
         <label for="t_a_multiplier_txt">Multiplier txt</label>
-        <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" />
+        <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" value="{{work.t_a_multiplier_txt}}" />
       </td>
     </tr>
     <tr>
@@ -174,19 +176,19 @@
     <tr>
       <td>
         <label for="t_3_optimistic_duration">Optimistic duration</label>
-        <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" />
+        <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" value="{{work.t_3_optimistic_duration}}" />
       </td>
       <td>
         <label for="t_3_mostlikely_duration">Most likely duration</label>
-        <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" />
+        <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" value="{{work.t_3_mostlikely_duration}}" />
       </td>
       <td>
         <label for="t_3_pessimistic_duration">Pessimistic duration</label>
-        <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" />
+        <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" value="{{work.t_3_pessimistic_duration}}" />
       </td>
       <td>
         <label for="t_3_wheighting_equation">Wheighting equation</label>
-        <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" />
+        <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" value="{{work.t_3_wheighting_equation}}" />
       </td>
     </tr>
     <tr>
@@ -198,30 +200,30 @@
   </table>
   
   <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
-  <input class="inp_total" disabled id="t_duration_estimate" name="t_duration_estimate" />
+  <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
   
   <hr/>
   <h2>Cost calculations</h2>
   <label for="c_type"></label>
   <select id="c_type" name="c_type">
-    <option value="c_p">Parametric</option>
-    <option value="c_a">Analogus</option>
-    <option value="c_3">Line of three points</option>
+    <option value="c_p" {{{work.ctypep}}}>Parametric</option>
+    <option value="c_a" {{{work.ctypea}}}>Analogus</option>
+    <option value="c_3" {{{work.ctype3}}}>Line of three points</option>
   </select>
   
   <table class="additionalTable" id="c_p">
     <tr>
       <td>
         <label for="c_p_variable_cost">Variable cost</label>
-        <input id="c_p_variable_cost" name="c_p_variable_cost" />
+        <input id="c_p_variable_cost" name="c_p_variable_cost" value="{{work.c_p_variable_cost}}" />
       </td>
       <td>
         <label for="c_p_cost_per_unit">Cost per unit</label>
-        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" />
+        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" value="{{work.c_p_cost_per_unit}}" />
       </td>
       <td>
         <label for="c_p_number_of_units">Number of units</label>
-        <input id="c_p_number_of_units" name="c_p_number_of_units" />
+        <input id="c_p_number_of_units" name="c_p_number_of_units" value="{{work.c_p_number_of_units}}" />
       </td>
     </tr>
     <tr>
@@ -234,23 +236,23 @@
     <tr>
       <td>
         <label for="c_a_previous_activity">Previous activity num</label>
-        <input id="c_a_previous_activity" name="c_a_previous_activity" />
+        <input id="c_a_previous_activity" name="c_a_previous_activity" value="{{work.c_a_previous_activity}}" />
         <label for="c_a_previous_activity_txt">Previous activity txt</label>
-        <input id="c_a_previous_activity_txt" name="c_a_previous_activity_txt" />
+        <input id="c_a_previous_activity_txt" name="c_a_previous_activity_txt" value="{{work.c_a_previous_activity_txt}}" />
       </td>
       <td>
         <label for="c_a_previous_cost">Previous cost</label>
-        <input id="c_a_previous_cost" name="c_a_previous_cost" />
+        <input id="c_a_previous_cost" name="c_a_previous_cost" value="{{work.c_a_previous_cost}}" />
       </td>
       <td>
         <label for="c_a_current_activity">Current activity num</label>
-        <input id="c_a_current_activity" name="c_a_current_activity" />
+        <input id="c_a_current_activity" name="c_a_current_activity" value="{{work.c_a_current_activity}}" />
         <label for="c_a_current_activity_txt">Current activity txt</label>
-        <input id="c_a_current_activity_txt" name="c_a_current_activity_txt" />
+        <input id="c_a_current_activity_txt" name="c_a_current_activity_txt" value="{{work.c_a_current_activity_txt}}" />
       </td>
       <td>
         <label for="c_a_multiplier">Multiplier</label>
-        <input disabled id="c_a_multiplier" name="c_a_multiplier" />
+        <input readonly id="c_a_multiplier" name="c_a_multiplier" value="{{work.c_a_multiplier}}" />
       </td>
     </tr>
     <tr>
@@ -263,19 +265,19 @@
     <tr>
       <td>
         <label for="c_3_optimistic_cost">Optimistic cost</label>
-        <input id="c_3_optimistic_cost" name="c_3_optimistic_cost" />
+        <input id="c_3_optimistic_cost" name="c_3_optimistic_cost" value="{{work.c_3_optimistic_cost}}" />
       </td>
       <td>
         <label for="c_3_mostlikely_cost">Most likely cost</label>
-        <input id="c_3_mostlikely_cost" name="c_3_mostlikely_cost" />
+        <input id="c_3_mostlikely_cost" name="c_3_mostlikely_cost" value="{{work.c_3_mostlikely_cost}}" />
       </td>
       <td>
         <label for="c_3_pessimistic_cost">Pessmistic cost</label>
-        <input id="c_3_pessimistic_cost" name="c_3_pessimistic_cost" />
+        <input id="c_3_pessimistic_cost" name="c_3_pessimistic_cost" value="{{work.c_3_pessimistic_cost}}" />
       </td>
       <td>
         <label for="c_3_wheighting_equation">Wheighting equations</label>
-        <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" />
+        <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" value="{{work.c_3_wheighting_equation}}" />
       </td>
     </tr>
     <tr>
@@ -287,21 +289,20 @@
   </table>
   
   <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
-  <input class="inp_total" disabled id="c_cost_estimate" name="c_cost_estimate" />
+  <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
 
   <input type="submit" value="Guardar tot" />
 </form>
 
-<script src="/jquery-3.2.0.min.js"></script>
 <script>
-  function cleanTP () {
+  function cleanTP (first) {
     $('#t_p_effort_hours').val('')
     $('#t_p_resource_quantity').val('')
     $('#t_p_percentage_avaiable').val('')
     $('#t_p_performance_factor').val('')
-    $('#t_duration_estimate').val('')
+    if (!first) $('#t_duration_estimate').val('')
   }
-  function cleanTA () {
+  function cleanTA (first) {
     $('#t_a_previous_activity').val('')
     $('#t_a_previous_activity_txt').val('')
     $('#t_a_previous_duration').val('')
@@ -310,36 +311,36 @@
     $('#t_a_current_activity_txt').val('')
     $('#t_a_multiplier').val('')
     $('#t_a_multiplier_txt').val('')
-    $('#t_duration_estimate').val('')
+    if (!first) $('#t_duration_estimate').val('')
   }
-  function cleanT3 () {
+  function cleanT3 (first) {
     $('#t_3_optimistic_duration').val('')
     $('#t_3_mostlikely_duration').val('')
     $('#t_3_pessimistic_duration').val('')
     $('#t_3_wheighting_equation').val('')
-    $('#t_duration_estimate').val('')
+    if (!first) $('#t_duration_estimate').val('')
   }
-  function cleanCP () {
+  function cleanCP (first) {
     $('#c_p_variable_cost').val('')
     $('#c_p_cost_per_unit').val('')
     $('#c_p_number_of_units').val('')
-    $('#c_cost_estimate').val('')
+    if (!first) $('#c_cost_estimate').val('')
   }
-  function cleanCA () {
+  function cleanCA (first) {
     $('#c_a_previous_activity').val('')
     $('#c_a_previous_activity_txt').val('')
     $('#c_a_previous_cost').val('')
     $('#c_a_current_activity').val('')
     $('#c_a_current_activity_txt').val('')
     $('#c_a_multiplier').val('')
-    $('#c_cost_estimate').val('')
+    if (!first) $('#c_cost_estimate').val('')
   }
-  function cleanC3 () {
+  function cleanC3 (first) {
     $('#c_3_optimistic_cost').val('')
     $('#c_3_mostlikely_cost').val('')
     $('#c_3_pessimistic_cost').val('')
     $('#c_3_wheighting_equation').val('')
-    $('#c_cost_estimate').val('')
+    if (!first) $('#c_cost_estimate').val('')
   }
   function calculateTP () {
     const effort = parseFloat($('#t_p_effort_hours').val())
@@ -390,49 +391,49 @@
     const eq = $('#c_3_wheighting_equation').val()
     $('#c_cost_estimate').val(eval(eq))
   }
-  function setTType (type) {
+  function setTType (type, first) {
     if (type === 't_p') {
       $('#t_p').show()
       $('#t_a').hide()
       $('#t_3').hide()
-      cleanTA()
-      cleanT3()
+      cleanTA(first)
+      cleanT3(first)
     } else if (type === 't_a') {
       $('#t_p').hide()
       $('#t_a').show()
       $('#t_3').hide()
-      cleanTP()
-      cleanT3()
+      cleanTP(first)
+      cleanT3(first)
     } else if (type === 't_3') {
       $('#t_p').hide()
       $('#t_a').hide()
       $('#t_3').show()
-      cleanTP()
-      cleanTA()
+      cleanTP(first)
+      cleanTA(first)
     } else {
       $('#t_type').val()
       setTType('t_p')
     }
   }
-  function setCType (type) {
+  function setCType (type, first) {
     if (type === 'c_p') {
       $('#c_p').show()
       $('#c_a').hide()
       $('#c_3').hide()
-      cleanCA()
-      cleanC3()
+      cleanCA(first)
+      cleanC3(first)
     } else if (type === 'c_a') {
       $('#c_p').hide()
       $('#c_a').show()
       $('#c_3').hide()
-      cleanCP()
-      cleanC3()
+      cleanCP(first)
+      cleanC3(first)
     } else if (type === 'c_3') {
       $('#c_p').hide()
       $('#c_a').hide()
       $('#c_3').show()
-      cleanCP()
-      cleanCA()
+      cleanCP(first)
+      cleanCA(first)
     } else {
       $('#c_type').val('c_p')
       setCType('c_p')
@@ -444,8 +445,8 @@
   $('#c_type').on('change', (e) => { setCType(e.target.value) })
   
   // Select current values
-  setTType($('#t_type').val())
-  setCType($('#c_type').val())
+  setTType($('#t_type').val(), true)
+  setCType($('#c_type').val(), true)
   
   // Attach recaluclate events
   $('#t_p_effort_hours').on('change', () => { calculateTP() })

@@ -83,6 +83,13 @@
     main {
       padding: 10px 0;
     }
+    
+    .row {
+      cursor: pointer;
+    }
+    .row:hover {
+      background: #AAA !important;
+    }
   </style>
 </head>
 <body>
@@ -94,6 +101,9 @@
       <li><a href="/add/group?pass={{pass}}">Add group</a></li>
     </ul>
   </nav>
+
+  <script src="/jquery-3.2.0.min.js"></script>
+
   <main>
     {{{body}}}
   </main>

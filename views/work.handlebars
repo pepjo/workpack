@@ -54,7 +54,7 @@
     <th>Cost 3p. wheighting equation</th>
   </tr>
   {{#each work}}
-    <tr>
+    <tr key="{{this.id}}" class="row">
       <td>{{this.id}}</td>
       <td>{{this.order}}</td>
       <td>{{this.groups_id}}</td>
@@ -76,6 +76,8 @@
       <td>{{this.assumptions}}</td>
       <td>{{this.t_type}}</td>
       <td>{{this.t_duration_estimate}}</td>
+      <td>{{this.c_type}}</td>
+      <td>{{this.c_cost_estimate}}</td>
       <td>{{this.t_p_effort_hours}}</td>
       <td>{{this.t_p_resource_quantity}}</td>
       <td>{{this.t_p_percentage_avaiable}}</td>
@@ -92,8 +94,6 @@
       <td>{{this.t_3_mostlikely_duration}}</td>
       <td>{{this.t_3_pessimistic_duration}}</td>
       <td>{{this.t_3_wheighting_equation}}</td>
-      <td>{{this.c_type}}</td>
-      <td>{{this.c_cost_estimate}}</td>
       <td>{{this.c_p_variable_cost}}</td>
       <td>{{this.c_p_cost_per_unit}}</td>
       <td>{{this.c_p_number_of_units}}</td>
@@ -110,3 +110,9 @@
     </tr>
   {{/each}}
 </table>
+
+<script>
+$('.row').each((key, item) => {
+  $(item).on('click', () => { location.href = `/add/work/${item.getAttribute('key')}${location.search}` })
+})
+</script>

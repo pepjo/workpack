@@ -1,5 +1,9 @@
 <form action="/add/group?pass=smartlink" method="POST">
+  <label for="id">ID</label>
+  <input readonly name="id" id="id" value="{{group.id}}" />
+
   <label for="name">Nom</label>
-  <input name="name" id="name" />
+  <input name="name" id="name" value="{{group.name}}" />
+
   <input type="submit" value="Guardar" />
 </form>
