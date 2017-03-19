@@ -1,4 +1,6 @@
-<form action="/add/work?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;">
+<form action="/add/work?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
+  <input type="submit" value="Guardar tot" style="position: absolute; left: -200px;" />
+  
   <h2>Basic information</h2>
   <table class="workForm">
     <tr>
@@ -128,9 +130,10 @@
         <label for="t_p_performance_factor">Performance Factor</label>
         <input id="t_p_performance_factor" name="t_p_performance_factor" />
       </td>
-      <td>
-        <label for="t_duration_estimate">Duration Estimate</label>
-        <input id="t_duration_estimate" name="t_duration_estimate" />
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt
       </td>
     </tr>
   </table>
@@ -156,38 +159,46 @@
       </td>
       <td>
         <label for="t_a_multiplier">Multiplier num</label>
-        <input id="t_a_multiplier" name="t_a_multiplier" />
+        <input disabled id="t_a_multiplier" name="t_a_multiplier" />
         <label for="t_a_multiplier_txt">Multiplier txt</label>
         <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" />
       </td>
-      <td>
-        <label for="t_duration_estimate">Duration Estimate</label>
-        <input id="t_duration_estimate" name="t_duration_estimate" />
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt
       </td>
     </tr>
   </table>
   <table class="additionalTable" id="t_3">
-    <td>
-      <label for="t_3_optimistic_duration">Optimistic duration</label>
-      <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" />
-    </td>
-    <td>
-      <label for="t_3_mostlikely_duration">Most likely duration</label>
-      <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" />
-    </td>
-    <td>
-      <label for="t_3_pessimistic_duration">Pessimistic duration</label>
-      <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" />
-    </td>
-    <td>
-      <label for="t_3_wheighting_equation">Wheighting equation</label>
-      <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" />
-    </td>
-    <td>
-      <label for="t_duration_estimate">Duration Estimate</label>
-      <input id="t_duration_estimate" name="t_duration_estimate" />
-    </td>
+    <tr>
+      <td>
+        <label for="t_3_optimistic_duration">Optimistic duration</label>
+        <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" />
+      </td>
+      <td>
+        <label for="t_3_mostlikely_duration">Most likely duration</label>
+        <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" />
+      </td>
+      <td>
+        <label for="t_3_pessimistic_duration">Pessimistic duration</label>
+        <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" />
+      </td>
+      <td>
+        <label for="t_3_wheighting_equation">Wheighting equation</label>
+        <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" />
+      </td>
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt. </br>
+        Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
+      </td>
+    </tr>
   </table>
+  
+  <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
+  <input class="inp_total" disabled id="t_duration_estimate" name="t_duration_estimate" />
   
   <hr/>
   <h2>Cost calculations</h2>
@@ -212,9 +223,10 @@
         <label for="c_p_number_of_units">Number of units</label>
         <input id="c_p_number_of_units" name="c_p_number_of_units" />
       </td>
-      <td>
-        <label for="c_cost_estimate">Cost estimate</label>
-        <input id="c_cost_estimate" name="c_cost_estimate" />
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt
       </td>
     </tr>
   </table>
@@ -238,11 +250,12 @@
       </td>
       <td>
         <label for="c_a_multiplier">Multiplier</label>
-        <input id="c_a_multiplier" name="c_a_multiplier" />
+        <input disabled id="c_a_multiplier" name="c_a_multiplier" />
       </td>
-      <td>
-        <label for="c_cost_estimate">Cost estimate</label>
-        <input id="c_cost_estimate" name="c_cost_estimate" />
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt.
       </td>
     </tr>
   </table>
@@ -264,14 +277,19 @@
         <label for="c_3_wheighting_equation">Wheighting equations</label>
         <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" />
       </td>
-      <td>
-        <label for="c_cost_estimate">Cost estimate</label>
-        <input id="c_cost_estimate" name="c_cost_estimate" />
+    </tr>
+    <tr>
+      <td colspan="3">
+        El separador de decimals és 1 punt. </br>
+        Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
       </td>
     </tr>
   </table>
+  
+  <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
+  <input class="inp_total" disabled id="c_cost_estimate" name="c_cost_estimate" />
 
-  <input type="submit" value="Guardar" />
+  <input type="submit" value="Guardar tot" />
 </form>
 
 <script src="/jquery-3.2.0.min.js"></script>
@@ -322,6 +340,55 @@
     $('#c_3_pessimistic_cost').val('')
     $('#c_3_wheighting_equation').val('')
     $('#c_cost_estimate').val('')
+  }
+  function calculateTP () {
+    const effort = parseFloat($('#t_p_effort_hours').val())
+    const quantity = parseFloat($('#t_p_resource_quantity').val())
+    const percentage = parseFloat($('#t_p_percentage_avaiable').val())*0.01
+    const perf = parseFloat($('#t_p_performance_factor').val())
+    $('#t_duration_estimate').val(effort/quantity/percentage/perf)
+  }
+  function calculateTA () {
+    const prevAct = parseFloat($('#t_a_previous_activity').val())
+    // $('#t_a_previous_activity_txt').val()
+    const prevDur = parseFloat($('#t_a_previous_duration').val())
+    // $('#t_a_previous_duration_txt').val()
+    const curAct = parseFloat($('#t_a_current_activity').val())
+    // $('#t_a_current_activity_txt').val()
+    const multi = curAct/prevAct
+    // $('#t_a_multiplier_txt').val()
+    $('#t_a_multiplier').val(multi)
+    $('#t_duration_estimate').val(prevDur*multi)
+  }
+  function calculateT3 () {
+    const o = parseFloat($('#t_3_optimistic_duration').val())
+    const m = parseFloat($('#t_3_mostlikely_duration').val())
+    const p = parseFloat($('#t_3_pessimistic_duration').val())
+    const eq = $('#t_3_wheighting_equation').val()
+    $('#t_duration_estimate').val(eval(eq))
+  }
+  function calculateCP () {
+    const variable = $('#c_p_variable_cost').val()
+    const perUnit = parseFloat($('#c_p_cost_per_unit').val())
+    const numUnits = parseFloat($('#c_p_number_of_units').val())
+    $('#c_cost_estimate').val(perUnit*numUnits)
+  }
+  function calculateCA () {
+    const prevAct = parseFloat($('#c_a_previous_activity').val())
+    // $('#c_a_previous_activity_txt').val()
+    const prevCost = parseFloat($('#c_a_previous_cost').val())
+    const curAct = parseFloat($('#c_a_current_activity').val())
+    // $('#c_a_current_activity_txt').val()
+    const multi = curAct/prevAct
+    $('#c_a_multiplier').val(multi)
+    $('#c_cost_estimate').val(prevCost*multi)
+  }
+  function calculateC3 () {
+    const o = parseFloat($('#c_3_optimistic_cost').val())
+    const m = parseFloat($('#c_3_mostlikely_cost').val())
+    const p = parseFloat($('#c_3_pessimistic_cost').val())
+    const eq = $('#c_3_wheighting_equation').val()
+    $('#c_cost_estimate').val(eval(eq))
   }
   function setTType (type) {
     if (type === 't_p') {
@@ -379,4 +446,28 @@
   // Select current values
   setTType($('#t_type').val())
   setCType($('#c_type').val())
+  
+  // Attach recaluclate events
+  $('#t_p_effort_hours').on('change', () => { calculateTP() })
+  $('#t_p_resource_quantity').on('change', () => { calculateTP() })
+  $('#t_p_percentage_avaiable').on('change', () => { calculateTP() })
+  $('#t_p_performance_factor').on('change', () => { calculateTP() })
+  $('#t_a_previous_activity').on('change', () => { calculateTA() })
+  $('#t_a_previous_duration').on('change', () => { calculateTA() })
+  $('#t_a_current_activity').on('change', () => { calculateTA() })
+  $('#t_a_multiplier_txt').on('change', () => { calculateTA() })
+  $('#t_3_optimistic_duration').on('change', () => { calculateT3() })
+  $('#t_3_mostlikely_duration').on('change', () => { calculateT3() })
+  $('#t_3_pessimistic_duration').on('change', () => { calculateT3() })
+  $('#t_3_wheighting_equation').on('change', () => { calculateT3() })
+  $('#c_p_variable_cost').on('change', () => { calculateCP() })
+  $('#c_p_cost_per_unit').on('change', () => { calculateCP() })
+  $('#c_p_number_of_units').on('change', () => { calculateCP() })
+  $('#c_a_previous_activity').on('change', () => { calculateCA() })
+  $('#c_a_previous_cost').on('change', () => { calculateCA() })
+  $('#c_a_current_activity').on('change', () => { calculateCA() })
+  $('#c_3_optimistic_cost').on('change', () => { calculateC3() })
+  $('#c_3_mostlikely_cost').on('change', () => { calculateC3() })
+  $('#c_3_pessimistic_cost').on('change', () => { calculateC3() })
+  $('#c_3_wheighting_equation').on('change', () => { calculateC3() })
 </script>
