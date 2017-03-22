@@ -18,4 +18,4 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/workpacks
 
 Un cop tingis aixo configurat has executar `npm run knex -- migrate:latest`
 
-Ja pots fer `npm start` !! Per executar el server a localhost:5000 !! :) 
+Ja pots fer `npm start` !! Per executar el server a localhost:3000 !! :) 
