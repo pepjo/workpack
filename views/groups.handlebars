@@ -17,7 +17,12 @@
 $('.row').each((key, item) => {
   $(item).on('click', 'td.del', (event) => {
     event.stopPropagation()
-    location.href = `/del/group/${item.getAttribute('key')}${location.search}`
+    const res = confirm('Segur que te\'l vols carregar per sempre!?')
+    if (res) {
+      location.href = `/del/group/${item.getAttribute('key')}${location.search}`
+    } else {
+      alert('Ja deia jo...')
+    }
   })
   $(item).on('click', () => { location.href = `/add/group/${item.getAttribute('key')}${location.search}` })
 })
