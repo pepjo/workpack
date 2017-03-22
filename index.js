@@ -15,6 +15,7 @@ const knex = require('knex')({
 
 const bookshelf = require('bookshelf')(knex)
 bookshelf.plugin(require('bookshelf-schema')())
+bookshelf.plugin(require('bookshelf-cascade-delete'))
 
 const { Group, Workpack } = require('./server/models')(bookshelf)
 
@@ -102,6 +103,21 @@ app.get('/add/work/:id', function (req, res, next) {
     next()
   }
 })
+app.get('/del/work/:id', function (req, res, next) {
+  if (req.query.pass === pass) {
+    new Workpack({ id: req.params.id })
+    .destroy()
+    .then(function() {
+      console.log(`Work id: ${req.params.id} removed`)
+      res.redirect(`/list/work?pass=${req.query.pass}`)
+    }), (error) => {
+      console.log('500 - ERROR', error)
+      next()
+    }
+  } else {
+    next()
+  }
+})
 app.post('/add/work', function (req, res, next) {
   if (req.query.pass === pass) {
     const work = Object.assign({}, req.body)
@@ -147,7 +163,7 @@ app.post('/add/work', function (req, res, next) {
         work.ctypep = work.c_type === 'c_p' ? 'selected="selected"' : ''
         work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
         work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
-        
+
         console.log('work', work)
         res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT' })
         console.log('500 - ERROR', error)
@@ -173,6 +189,18 @@ app.get('/add/group/:id', function (req, res, next) {
     .fetch()
     .then(function(group) {
       res.render('addGroup', { pass, group: group.toJSON() })
+    })
+  } else {
+    next()
+  }
+})
+app.get('/del/group/:id', function (req, res, next) {
+  if (req.query.pass === pass) {
+    new Group({ id: req.params.id })
+    .destroy()
+    .then(function(group) {
+      console.log(`Group id: ${req.params.id} removed`)
+      res.redirect(`/list/groups?pass=${req.query.pass}`)
     })
   } else {
     next()

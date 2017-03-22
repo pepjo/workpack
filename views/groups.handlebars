@@ -1,10 +1,12 @@
 <table cellspacing="0" class="dataList">
   <tr>
+    <th>Borra</th>
     <th>Id</th>
     <th>Nom</th>
   </tr>
   {{#each group}}
     <tr key="{{this.id}}" class="row">
+      <td class="del">x</td>
       <td>{{this.id}}</td>
       <td>{{this.name}}</td>
     </tr>
@@ -13,6 +15,10 @@
 
 <script>
 $('.row').each((key, item) => {
+  $(item).on('click', 'td.del', (event) => {
+    event.stopPropagation()
+    location.href = `/del/group/${item.getAttribute('key')}${location.search}`
+  })
   $(item).on('click', () => { location.href = `/add/group/${item.getAttribute('key')}${location.search}` })
 })
 </script>
