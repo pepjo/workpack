@@ -21,5 +21,10 @@
     "express-handlebars": "^3.0.0",
     "knex": "^0.12.8",
     "pg": "^6.1.4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^6.1.2",
+    "eslint": "^3.18.0",
+    "eslint-config-default": "^0.2.1"
   }
 }

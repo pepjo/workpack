@@ -1,13 +1,12 @@
 
-
-module.exports = function (bookshelf) {
-  const Group = bookshelf.Model.extend({
+module.exports = function () {
+  const Group = global.bookshelf.Model.extend({
     tableName: 'groups',
   })
-  
-  const Workpack = bookshelf.Model.extend({
+
+  const Workpack = global.bookshelf.Model.extend({
     tableName: 'workpacks',
   })
-  
+
   return { Group, Workpack }
 }
