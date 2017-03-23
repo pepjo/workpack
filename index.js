@@ -14,7 +14,6 @@ const knex = require('knex')({
 })
 
 const bookshelf = require('bookshelf')(knex)
-bookshelf.plugin(require('bookshelf-schema')())
 bookshelf.plugin(require('bookshelf-cascade-delete'))
 
 const { Group, Workpack } = require('./server/models')(bookshelf)
