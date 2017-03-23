@@ -44,33 +44,36 @@
         <label for="predecessors">Predecessors</label>
         <select id="predecessors" name="predecessors">
           {{#each workpack}}
-          <option value="{{this.id}}" {{{this.selected}}}>{{this.name}}</option>
+          <!-- TODO: Agafar el titol o algo del workpack, no el nom -->
+          <option value="{{this.id}}">{{this.name}}</option>
           {{/each}}
         </select>
       </td>
       <td>
         <label for="relationship_p">Relationship</label>
         <select id="relationship_p" name="relationship_p">
-          <option value="FS" {{{relationship_p.FS}}}>Finish-to-Start</option>
-          <option value="FF" {{{relationship_p.FF}}}>Finish-to-Finish</option>
-          <option value="SS" {{{relationship_p.SS}}}>Start-to-Start</option>
-          <option value="SF" {{{relationship_p.SF}}}>Star-to-Finish</option>
+          <option value="FS" {{{relationship_p_FS}}}>Finish-to-Start</option>
+          <option value="FF" {{{relationship_p_FF}}}>Finish-to-Finish</option>
+          <option value="SS" {{{relationship_p_SS}}}>Start-to-Start</option>
+          <option value="SF" {{{relationship_p_SF}}}>Star-to-Finish</option>
         </select>
-        <textarea id="relationship_p" name="relationship_p" rows="17">{{work.relationship_p}}</textarea>
       </td>
       <td>
         <label for="lag_p">Lag</label>
         <textarea id="lag_p" name="lag_p" rows="17">{{work.lag_p}}</textarea>
       </td>
       <td>
+        <!-- TODO: Fer que es pilli el successor sol -->
         <label for="successor">Successor</label>
         <textarea id="successor" name="successor" rows="17" readonly>{{work.successor}}</textarea>
       </td>
       <td>
+        <!-- TODO: Fer que es pilli sol  -->
         <label for="relationship_s">Relationship</label>
         <textarea id="relationship_s" name="relationship_s" rows="17" readonly>{{work.relationship_s}}</textarea>
       </td>
       <td>
+        <!-- TODO: Fer que es pilli sol -->
         <label for="lag_s">Lag</label>
         <textarea id="lag_s" name="lag_s" rows="17" readonly>{{work.lag_s}}</textarea>
       </td>
