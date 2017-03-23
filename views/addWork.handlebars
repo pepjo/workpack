@@ -42,10 +42,20 @@
     <tr>
       <td>
         <label for="predecessors">Predecessors</label>
-        <textarea id="predecessors" name="predecessors" rows="17">{{work.predecessors}}</textarea>
+        <select id="predecessors" name="predecessors">
+          {{#each workpack}}
+          <option value="{{this.id}}" {{{this.selected}}}>{{this.name}}</option>
+          {{/each}}
+        </select>
       </td>
       <td>
         <label for="relationship_p">Relationship</label>
+        <select id="relationship_p" name="relationship_p">
+          <option value="FS" {{{relationship_p.FS}}}>Finish-to-Start</option>
+          <option value="FF" {{{relationship_p.FF}}}>Finish-to-Finish</option>
+          <option value="SS" {{{relationship_p.SS}}}>Start-to-Start</option>
+          <option value="SF" {{{relationship_p.SF}}}>Star-to-Finish</option>
+        </select>
         <textarea id="relationship_p" name="relationship_p" rows="17">{{work.relationship_p}}</textarea>
       </td>
       <td>
@@ -54,15 +64,15 @@
       </td>
       <td>
         <label for="successor">Successor</label>
-        <textarea id="successor" name="successor" rows="17">{{work.successor}}</textarea>
+        <textarea id="successor" name="successor" rows="17" readonly>{{work.successor}}</textarea>
       </td>
       <td>
         <label for="relationship_s">Relationship</label>
-        <textarea id="relationship_s" name="relationship_s" rows="17">{{work.relationship_s}}</textarea>
+        <textarea id="relationship_s" name="relationship_s" rows="17" readonly>{{work.relationship_s}}</textarea>
       </td>
       <td>
         <label for="lag_s">Lag</label>
-        <textarea id="lag_s" name="lag_s" rows="17">{{work.lag_s}}</textarea>
+        <textarea id="lag_s" name="lag_s" rows="17" readonly>{{work.lag_s}}</textarea>
       </td>
     </tr>
     <tr>
