@@ -1,4 +1,4 @@
-Hi sebas,
+Hi developers,
 
 després de fer `git clone` recorda fer `npm install`.
 
