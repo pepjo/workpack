@@ -8,10 +8,11 @@ module.exports = function (bookshelf) {
   }, {
     schema: [
       Fields.IntField('id'),
+      Fields.StringField('code'),
       Fields.StringField('name'),
     ]
   })
-  
+
   const Workpack = bookshelf.Model.extend({
     tableName: 'workpacks',
   }, {
@@ -70,6 +71,6 @@ module.exports = function (bookshelf) {
       Fields.StringField('c_3_wheighting_equation'),
     ]
   })
-  
+
   return { Group, Workpack }
 }
