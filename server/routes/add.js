@@ -4,6 +4,7 @@ const router = express.Router()
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup } = require('../utilities/addDbMethods')
+const { fetchWorkpackByIdPredecessors, fetchWorkpackByIdSuccessors } = require('../utilities/fetchRelations')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
@@ -32,8 +33,11 @@ router.get('/work/:id', function (req, res, next) {
       fetchAllGroups().then(bookshelfToJSON),
       fetchByWorkpackId(req.params.id).then(bookshelfToJSON),
       fetchAllWorkpacks().then(bookshelfToJSON),
+      fetchWorkpackByIdPredecessors(req.params.id).then(bookshelfToJSON),
+      fetchWorkpackByIdSuccessors(req.params.id).then(bookshelfToJSON),
     ])
-    .then(([group, work, works]) => {
+    .then(([group, work, works, predecessors, successors]) => {
+      console.log('data', predecessors, successors)
       const wrk = Object.assign({}, work)
       // Render this correctly
       const grp = group.map((item) => (Object.assign({}, item,
@@ -47,7 +51,7 @@ router.get('/work/:id', function (req, res, next) {
       wrk.ctypea = wrk.c_type === 'c_a' ? 'selected="selected"' : ''
       wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
 
-      res.render('addWork', { pass, group: grp, work: wrk, works })
+      res.render('addWork', { pass, group: grp, work: wrk, works, predecessors, successors })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
@@ -93,14 +97,17 @@ router.post('/work', function (req, res, next) {
   if (req.query.pass === pass) {
     const work = req.body
 
-    fetchAllGroups().then(bookshelfToJSON)
-    .then((group) => {
+    Promise.all([
+      fetchAllGroups().then(bookshelfToJSON),
+      fetchAllWorkpacks().then(bookshelfToJSON),
+    ])
+    .then(([group, works]) => {
       const grp = group.map((item) => (Object.assign({}, item,
         { selected: item.id === parseInt(work.groups_id, 10) ? 'selected="selected"' : '' }
       )))
 
       addWork(work).then((model) => {
-        res.render('addWork', { pass, group: grp })
+        res.render('addWork', { pass, group: grp, works })
       }, (error) => {
         // Render this correctly
         work.ttypep = work.t_type === 't_p' ? 'selected="selected"' : ''
@@ -111,7 +118,7 @@ router.post('/work', function (req, res, next) {
         work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
 
         console.log('work', work)
-        res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT' })
+        res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT', works })
         console.log('500 - ERROR', error)
       })
     }, (error) => {
