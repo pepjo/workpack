@@ -1,8 +1,8 @@
 <form action="/add/work?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
   <input type="submit" value="Guardar tot" style="position: absolute; left: -200px;" />
-  
+
   <h1 style="color: red;">{{error}}</h1>
-  
+
   <h2>Basic information</h2>
   <table class="workForm">
     <tr>
@@ -18,7 +18,7 @@
         <label for="groups_id">Group</label>
         <select id="groups_id" name="groups_id">
           {{#each group}}
-          <option value="{{this.id}}" {{{this.selected}}}>{{this.name}}</option>
+          <option value="{{this.id}}" {{{this.selected}}}>{{this.code}}: {{this.name}}</option>
           {{/each}}
         </select>
       </td>
@@ -117,7 +117,7 @@
       </td>
     </tr>
   </table>
-  
+
   <hr/>
   <h2>Time calculations</h2>
   <label for="t_type"></label>
@@ -126,7 +126,7 @@
     <option value="t_a" {{{work.ttypea}}}>Analogus</option>
     <option value="t_3" {{{work.ttype3}}}>Line of three points</option>
   </select>
-  
+
   <table class="additionalTable" id="t_p">
     <tr>
       <td>
@@ -211,10 +211,10 @@
       </td>
     </tr>
   </table>
-  
+
   <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
   <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
-  
+
   <hr/>
   <h2>Cost calculations</h2>
   <label for="c_type"></label>
@@ -223,7 +223,7 @@
     <option value="c_a" {{{work.ctypea}}}>Analogus</option>
     <option value="c_3" {{{work.ctype3}}}>Line of three points</option>
   </select>
-  
+
   <table class="additionalTable" id="c_p">
     <tr>
       <td>
@@ -300,7 +300,7 @@
       </td>
     </tr>
   </table>
-  
+
   <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
   <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
 
@@ -452,15 +452,15 @@
       setCType('c_p')
     }
   }
-  
+
   // Attach events
   $('#t_type').on('change', (e) => { setTType(e.target.value) })
   $('#c_type').on('change', (e) => { setCType(e.target.value) })
-  
+
   // Select current values
   setTType($('#t_type').val(), true)
   setCType($('#c_type').val(), true)
-  
+
   // Attach recaluclate events
   $('#t_p_effort_hours').on('change', () => { calculateTP() })
   $('#t_p_resource_quantity').on('change', () => { calculateTP() })
