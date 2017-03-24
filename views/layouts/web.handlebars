@@ -61,10 +61,21 @@
     .dataList tr:nth-child(2n+3) {
       background: #DDD;
     }
+    .del {
+      text-align: center;
+    }
 
+    .workForm {
+      border: 1px solid #AAA;
+      padding: 5px;
+    }
+    .workForm td {
+      vertical-align: top;
+    }
     .workForm input, .workForm textarea, .workForm select,
     .additionalTable input, .additionalTable textarea, .additionalTable select {
       display: block;
+      box-sizing: border-box;
       width: 100%;
     }
 
@@ -92,9 +103,6 @@
     }
     .row:hover {
       background: #AAA !important;
-    }
-    .del {
-      text-align: center;
     }
   </style>
 </head>

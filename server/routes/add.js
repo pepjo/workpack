@@ -37,7 +37,7 @@ router.get('/work/:id', function (req, res, next) {
       fetchWorkpackByIdSuccessors(req.params.id).then(bookshelfToJSON),
     ])
     .then(([group, work, works, predecessors, successors]) => {
-      console.log('data', predecessors, successors)
+      console.log('data', works, predecessors, successors)
       const wrk = Object.assign({}, work)
       // Render this correctly
       const grp = group.map((item) => (Object.assign({}, item,
@@ -51,7 +51,8 @@ router.get('/work/:id', function (req, res, next) {
       wrk.ctypea = wrk.c_type === 'c_a' ? 'selected="selected"' : ''
       wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
 
-      res.render('addWork', { pass, group: grp, work: wrk, works, predecessors, successors })
+      res.render('addWork', { pass, group: grp, work: wrk, workpacks: works,
+        predecessors, successors })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)

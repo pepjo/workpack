@@ -1,7 +1,6 @@
 <table cellspacing="0" class="dataList">
   <tr>
     <th>Borra</th>
-    <th>Id</th>
     <th>Ordre</th>
     <th>Group</th>
     <th>WSB ID</th>
@@ -57,7 +56,6 @@
   {{#each work}}
     <tr key="{{this.id}}" class="row">
       <td class="del">x</td>
-      <td>{{this.id}}</td>
       <td>{{this.order}}</td>
       <td>{{this.groups_id}}</td>
       <td>{{this.wsb_id}}</td>
@@ -66,7 +64,7 @@
       <td>{{this.predecessors}}</td>
       <td>{{this.relationship_p}}</td>
       <td>{{this.lag_p}}</td>
-      <td>{{this.successor}}</td>
+      <td>{{this.successors}}</td>
       <td>{{this.relationship_s}}</td>
       <td>{{this.lag_s}}</td>
       <td>{{this.number_resources}}</td>

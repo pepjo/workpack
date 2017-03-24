@@ -1,12 +1,12 @@
 
 module.exports = function () {
-  const Group = global.bookshelf.Model.extend({
+  const Group = bookshelf.Model.extend({
     tableName: 'groups',
     workpacks () {
       return this.hasMany(Workpack, 'group')
     }
   })
-  
+
   const Workpack = bookshelf.Model.extend({
     tableName: 'workpacks',
     group () {
