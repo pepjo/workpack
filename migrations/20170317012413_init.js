@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTable('groups', (table) => {
       table.increments('id').primary().index()
@@ -27,11 +27,11 @@ exports.up = function(knex, Promise) {
       table.text('assumptions')
     }),
   ])
-};
+}
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.raw('DROP TABLE IF EXISTS groups CASCADE'),
     knex.schema.raw('DROP TABLE IF EXISTS workpacks CASCADE'),
   ])
-};
+}
