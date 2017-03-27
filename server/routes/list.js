@@ -11,15 +11,16 @@ router.get('/work', function (req, res, next) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
     .then((works) => {
-      works.map((work) => {
+      var newWorks = works.map((work) => {
         work.group_code = "";
         if (work.groups_id) {
           fetchByGroupId(work.groups_id)
           .then(bookshelfToJSON)
           .then((group) => {work.group_code = group.code})
         }
+        return work
       })
-      return works
+      return newWorks
     })
     .then((wks) => {res.render('work', { pass, works: wks })})
     // .then((works) => works.map((work) => {return work}))
