@@ -37,7 +37,7 @@ router.get('/work/:id', function (req, res, next) {
       fetchWorkpackByIdSuccessor(req.params.id).then(bookshelfToJSON),
     ])
     .then(([group, work, works, predecessors, successor]) => {
-      console.log('data', works, predecessors, successor)
+      // console.log('data', works, predecessors, successor)
       const wrk = Object.assign({}, work)
       // Render this correctly
       const grp = group.map((item) => (Object.assign({}, item,

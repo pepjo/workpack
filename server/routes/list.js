@@ -10,9 +10,22 @@ router.get('/work', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((work) => {
-      res.render('work', { pass, work: work })
+    .then((works) => {
+      works.map((work) => {
+        work.group_code = "";
+        if (work.groups_id) {
+          fetchByGroupId(work.groups_id)
+          .then(bookshelfToJSON)
+          .then((group) => {work.group_code = group.code})
+        }
+      })
+      return works
     })
+    .then((wks) => {res.render('work', { pass, works: wks })})
+    // .then((works) => works.map((work) => {return work}))
+    // .then((work) => fetchByGroupId(work.groups_id))
+    // .then(bookshelfToJSON)
+    // .then((group) => {work.group_code = group.code})
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()
