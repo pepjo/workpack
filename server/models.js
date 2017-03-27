@@ -21,7 +21,7 @@ module.exports = function () {
     predecessors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
     },
-    successors () {
+    successor () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
     }
   })

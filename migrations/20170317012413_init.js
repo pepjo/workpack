@@ -15,7 +15,7 @@ exports.up = function (knex, Promise) {
       table.text('predecessors')
       table.text('relationship_p')
       table.text('lag_p')
-      table.text('successors')
+      table.text('successor')
       table.text('relationship_s')
       table.text('lag_s')
       table.text('number_resources')

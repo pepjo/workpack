@@ -4,7 +4,7 @@ const router = express.Router()
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup } = require('../utilities/addDbMethods')
-const { fetchWorkpackByIdPredecessors, fetchWorkpackByIdSuccessors } = require('../utilities/fetchRelations')
+const { fetchWorkpackByIdPredecessors, fetchWorkpackByIdSuccessor } = require('../utilities/fetchRelations')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
@@ -34,10 +34,10 @@ router.get('/work/:id', function (req, res, next) {
       fetchByWorkpackId(req.params.id).then(bookshelfToJSON),
       fetchAllWorkpacks().then(bookshelfToJSON),
       fetchWorkpackByIdPredecessors(req.params.id).then(bookshelfToJSON),
-      fetchWorkpackByIdSuccessors(req.params.id).then(bookshelfToJSON),
+      fetchWorkpackByIdSuccessor(req.params.id).then(bookshelfToJSON),
     ])
-    .then(([group, work, works, predecessors, successors]) => {
-      console.log('data', works, predecessors, successors)
+    .then(([group, work, works, predecessors, successor]) => {
+      console.log('data', works, predecessors, successor)
       const wrk = Object.assign({}, work)
       // Render this correctly
       const grp = group.map((item) => (Object.assign({}, item,
@@ -52,7 +52,7 @@ router.get('/work/:id', function (req, res, next) {
       wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
 
       res.render('addWork', { pass, group: grp, work: wrk, workpacks: works,
-        predecessors, successors })
+        predecessors, successor })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)

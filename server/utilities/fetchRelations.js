@@ -5,11 +5,11 @@ function fetchWorkpackByIdPredecessors (id) {
   return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').predecessors().fetch()
 }
 
-function fetchWorkpackByIdSuccessors (id) {
-  return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').successors().fetch()
+function fetchWorkpackByIdSuccessor (id) {
+  return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').successor().fetch()
 }
 
 module.exports = {
   fetchWorkpackByIdPredecessors,
-  fetchWorkpackByIdSuccessors,
+  fetchWorkpackByIdSuccessor,
 }
