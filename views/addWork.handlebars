@@ -64,7 +64,7 @@
       <td>
         <!-- TODO: Fer que es pilli el successor sol -->
         <label for="successor">Successor</label>
-        <select multiple id="successor" name="successor" size="8">
+        <select disabled multiple id="successor" name="successor" size="8">
           {{#each successors}}
           <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
