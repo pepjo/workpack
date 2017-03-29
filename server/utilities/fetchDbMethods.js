@@ -6,7 +6,7 @@ function fetchAllGroups () {
 function fetchAllWorkpacks () {
   return new models.Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
-    withRelated: ['group'],
+    withRelated: ['group', 'parent', 'predecessors', 'successors'],
   })
 }
 
@@ -17,7 +17,7 @@ function fetchByGroupId (id) {
 function fetchByWorkpackId (id) {
   return new models.Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetch({
-    withRelated: ['group']
+    withRelated: ['group', 'parent', 'predecessors', 'successors']
   })
 }
 

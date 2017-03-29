@@ -21,7 +21,7 @@ module.exports = function (bookshelf) {
     predecessors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
     },
-    successor () {
+    successors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
     }
   })

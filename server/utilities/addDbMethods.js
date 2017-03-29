@@ -37,6 +37,9 @@ function addWork (data) {
   console.log('data', data)
 
   return new models.Workpack(work).save()
+  .then((work) => (
+    work.predecessors().attach(data.predecessors)
+  ))
 }
 
 module.exports = {

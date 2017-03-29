@@ -4,7 +4,6 @@ const router = express.Router()
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup } = require('../utilities/addDbMethods')
-const { fetchWorkpackByIdPredecessors, fetchWorkpackByIdSuccessor } = require('../utilities/fetchRelations')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
@@ -33,10 +32,8 @@ router.get('/work/:id', function (req, res, next) {
       fetchAllGroups().then(bookshelfToJSON),
       fetchByWorkpackId(req.params.id).then(bookshelfToJSON),
       fetchAllWorkpacks().then(bookshelfToJSON),
-      fetchWorkpackByIdPredecessors(req.params.id).then(bookshelfToJSON),
-      fetchWorkpackByIdSuccessor(req.params.id).then(bookshelfToJSON),
     ])
-    .then(([group, work, works, predecessors, successor]) => {
+    .then(([group, work, works]) => {
       // console.log('data', works, predecessors, successor)
       const wrk = Object.assign({}, work)
       // Render this correctly
@@ -51,8 +48,27 @@ router.get('/work/:id', function (req, res, next) {
       wrk.ctypea = wrk.c_type === 'c_a' ? 'selected="selected"' : ''
       wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
 
-      res.render('addWork', { pass, group: grp, work: wrk, workpacks: works,
-        predecessors, successor })
+      console.log('loaded data:', work)
+
+      res.render('addWork', {
+        pass, group: grp, work: wrk, workpacks: works,
+        predecessors: works.map((item) => {
+          const isPred = (work.predecessors || []).find((pred) => (item.id === pred.id))
+          if (isPred) {
+            return Object.assign({ selected: ' selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+        successors: works.map((item) => {
+          const isSucc = (work.successors || []).find((succ) => (item.id === succ.id))
+          if (isSucc) {
+            return Object.assign({ selected: ' selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+      })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
@@ -119,7 +135,11 @@ router.post('/work', function (req, res, next) {
         work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
 
         console.log('work', work)
-        res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works })
+        res.render('addWork', {
+          pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works,
+          predecessors: works,
+          successors: works,
+        })
         console.log('500 - ERROR', error)
       })
     }, (error) => {

@@ -43,9 +43,8 @@
       <td>
         <label for="predecessors">Predecessors</label>
         <select multiple id="predecessors" name="predecessors" size="8">
-          {{#each workpacks}}
-          <!-- TODO: Agafar el titol o algo del workpack, no el nom -->
-          <option value="{{this.id}}">{{this.wsb_id}}</option>
+          {{#each predecessors}}
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>
@@ -66,8 +65,8 @@
         <!-- TODO: Fer que es pilli el successor sol -->
         <label for="successor">Successor</label>
         <select multiple id="successor" name="successor" size="8">
-          {{#each workpacks}}
-          <option value="{{this.id}}">{{this.wsb_id}}</option>
+          {{#each successors}}
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>
