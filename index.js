@@ -21,6 +21,7 @@ require('./server/models')(bookshelf)
 const addRouter = require('./server/routes/add')
 const delRouter = require('./server/routes/del')
 const listRouter = require('./server/routes/list')
+const skeletonRouter = require('./server/routes/skeleton')
 
 // Define the pass on all routers
 app.use((req, res, next) => {
@@ -50,6 +51,7 @@ app.use(bodyParser.urlencoded({ extended: false }))
 app.use('/add', addRouter)
 app.use('/del', delRouter)
 app.use('/list', listRouter)
+app.use('/skeleton', skeletonRouter)
 
 app.use(express.static('public'))
 

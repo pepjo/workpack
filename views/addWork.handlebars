@@ -17,6 +17,7 @@
       <td>
         <label for="parent">Parent</label>
         <select id="parent" name="parent">
+          <option value="null">NONE</option>
           {{#each parents}}
           <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
