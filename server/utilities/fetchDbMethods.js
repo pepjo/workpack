@@ -6,7 +6,10 @@ function fetchAllGroups () {
 }
 
 function fetchAllWorkpacks () {
-  return new Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC').fetchAll()
+  return new Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC')
+  .fetchAll({
+    withRelated: ['group'],
+  })
 }
 
 function fetchByGroupId (id) {
@@ -14,7 +17,7 @@ function fetchByGroupId (id) {
 }
 
 function fetchByWorkpackId (id) {
-  return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').fetch()
+  return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').fetch({ withRelated: ['Group'] })
 }
 
 module.exports = {

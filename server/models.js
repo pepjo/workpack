@@ -3,14 +3,14 @@ module.exports = function () {
   const Group = bookshelf.Model.extend({
     tableName: 'groups',
     workpacks () {
-      return this.hasMany(Workpack, 'group')
+      return this.hasMany(Workpack, 'groups_id')
     }
   })
 
   const Workpack = bookshelf.Model.extend({
     tableName: 'workpacks',
     group () {
-      return this.belongsTo(Group, 'group')
+      return this.belongsTo(Group, 'groups_id')
     },
     parent () {
       return this.belongsTo(Workpack, 'parent')
