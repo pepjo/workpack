@@ -14,7 +14,7 @@ router.get('/work', function (req, res, next) {
       fetchAllWorkpacks().then(bookshelfToJSON),
     ])
     .then(([group, works]) => {
-      res.render('addWork', { pass, group, workpacks: works })
+      res.render('addWork', { pass, group, workpacks: works, parents: works, predecessors: works, successors: works })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
@@ -57,7 +57,7 @@ router.get('/work/:id', function (req, res, next) {
       wrk.relationship_s_SS = wrk.relationship_s === 'SS' ? 'selected="selected"' : ''
       wrk.relationship_s_SF = wrk.relationship_s === 'SF' ? 'selected="selected"' : ''
 
-      console.log('wrk.relationship_p, wrk.relationship_s', wrk.relationship_s === 'SF', wrk.relationship_p, wrk.relationship_s)
+      console.log('parent', work.parent.id, work.parent.wsb_id)
 
       res.render('addWork', {
         pass, group: grp, work: wrk, workpacks: works,
@@ -73,6 +73,13 @@ router.get('/work/:id', function (req, res, next) {
           const isSucc = (work.successors || []).find((succ) => (item.id === succ.id))
           if (isSucc) {
             return Object.assign({ selected: ' selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+        parents: works.map((item) => {
+          if (item.id === work.parent.id) {
+            return Object.assign({ selected: 'selected="selected"' }, item)
           } else {
             return item
           }
@@ -145,8 +152,29 @@ router.post('/work', function (req, res, next) {
 
         res.render('addWork', {
           pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works,
-          predecessors: works,
-          successors: works,
+          predecessors: works.map((item) => {
+            const isPred = (work.predecessors || []).find((pred) => (item.id === pred.id))
+            if (isPred) {
+              return Object.assign({ selected: ' selected="selected"' }, item)
+            } else {
+              return item
+            }
+          }),
+          successors: works.map((item) => {
+            const isSucc = (work.successors || []).find((succ) => (item.id === succ.id))
+            if (isSucc) {
+              return Object.assign({ selected: ' selected="selected"' }, item)
+            } else {
+              return item
+            }
+          }),
+          parents: works.map((item) => {
+            if (item.id === work.parent.id) {
+              return Object.assign({ selected: 'selected="selected"' }, item)
+            } else {
+              return item
+            }
+          }),
         })
         console.log('500 - ERROR', error)
       })

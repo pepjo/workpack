@@ -34,8 +34,6 @@ function addWork (data) {
   work.c_3_mostlikely_cost = isNaN(parseFloat(work.c_3_mostlikely_cost)) ? undefined : parseFloat(work.c_3_mostlikely_cost)
   work.c_3_pessimistic_cost = isNaN(parseFloat(work.c_3_pessimistic_cost)) ? undefined : parseFloat(work.c_3_pessimistic_cost)
 
-  console.log('data', data)
-
   return new models.Workpack(work).save()
   .then((work) => (
     work.predecessors().attach(data.predecessors)

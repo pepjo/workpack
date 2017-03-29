@@ -14,11 +14,19 @@
         <label for="order">Ordre</label>
         <input value="1" id="order" name="order" value="{{work.order}}" />
       </td>
+      <td>
+        <label for="parent">Parent</label>
+        <select id="parent" name="parent">
+          {{#each parents}}
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
+          {{/each}}
+        </select>
+      </td>
       <td colspan="2">
         <label for="groups_id">Group</label>
         <select id="groups_id" name="groups_id">
           {{#each group}}
-          <option value="{{this.id}}" {{{this.selected}}}>{{this.code}}: {{this.name}}</option>
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.code}}: {{this.name}}</option>
           {{/each}}
         </select>
       </td>
