@@ -15,7 +15,7 @@ router.get('/work', function (req, res, next) {
       fetchAllWorkpacks().then(bookshelfToJSON),
     ])
     .then(([group, works]) => {
-      res.render('addWork', { pass, group, works })
+      res.render('addWork', { pass, group, workpacks: works })
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
@@ -119,7 +119,7 @@ router.post('/work', function (req, res, next) {
         work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
 
         console.log('work', work)
-        res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT', works })
+        res.render('addWork', { pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works })
         console.log('500 - ERROR', error)
       })
     }, (error) => {
