@@ -48,7 +48,16 @@ router.get('/work/:id', function (req, res, next) {
       wrk.ctypea = wrk.c_type === 'c_a' ? 'selected="selected"' : ''
       wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
 
-      console.log('loaded data:', work)
+      wrk.relationship_p_FS = wrk.relationship_p === 'FS' ? 'selected="selected"' : ''
+      wrk.relationship_p_FF = wrk.relationship_p === 'FF' ? 'selected="selected"' : ''
+      wrk.relationship_p_SS = wrk.relationship_p === 'SS' ? 'selected="selected"' : ''
+      wrk.relationship_p_SF = wrk.relationship_p === 'SF' ? 'selected="selected"' : ''
+      wrk.relationship_s_FS = wrk.relationship_s === 'FS' ? 'selected="selected"' : ''
+      wrk.relationship_s_FF = wrk.relationship_s === 'FF' ? 'selected="selected"' : ''
+      wrk.relationship_s_SS = wrk.relationship_s === 'SS' ? 'selected="selected"' : ''
+      wrk.relationship_s_SF = wrk.relationship_s === 'SF' ? 'selected="selected"' : ''
+
+      console.log('wrk.relationship_p, wrk.relationship_s', wrk.relationship_s === 'SF', wrk.relationship_p, wrk.relationship_s)
 
       res.render('addWork', {
         pass, group: grp, work: wrk, workpacks: works,
@@ -134,7 +143,6 @@ router.post('/work', function (req, res, next) {
         work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
         work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
 
-        console.log('work', work)
         res.render('addWork', {
           pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works,
           predecessors: works,
