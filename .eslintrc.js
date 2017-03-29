@@ -23,5 +23,9 @@ module.exports = {
     browser: true,
     node: true,
     mocha: true
+  },
+  
+  globals: {
+    models: true,
   }
 }

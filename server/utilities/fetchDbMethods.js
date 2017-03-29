@@ -1,23 +1,24 @@
 
-const { Group, Workpack } = require('../models')()
-
 function fetchAllGroups () {
-  return new Group().orderBy('id', 'ASC').fetchAll()
+  return new models.Group().orderBy('id', 'ASC').fetchAll()
 }
 
 function fetchAllWorkpacks () {
-  return new Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC')
+  return new models.Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
     withRelated: ['group'],
   })
 }
 
 function fetchByGroupId (id) {
-  return new Group({ id }).orderBy('id', 'ASC').fetch()
+  return new models.Group({ id }).orderBy('id', 'ASC').fetch()
 }
 
 function fetchByWorkpackId (id) {
-  return new Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC').fetch({ withRelated: ['Group'] })
+  return new models.Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC')
+  .fetch({
+    withRelated: ['group']
+  })
 }
 
 module.exports = {

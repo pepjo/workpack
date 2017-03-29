@@ -1,12 +1,10 @@
 
-const { Group, Workpack } = require('../models')()
-
 function deleteByGroupId (id) {
-  return new Group({ id }).destroy()
+  return new models.Group({ id }).destroy()
 }
 
 function deleteByWorkpackId (id) {
-  return new Workpack({ id }).destroy()
+  return new models.Workpack({ id }).destroy()
 }
 
 module.exports = {

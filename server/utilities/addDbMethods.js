@@ -1,11 +1,9 @@
 
-const { Group, Workpack } = require('../models')()
-
 function addGroup (data) {
   const group = Object.assign({}, data)
   group.id = isNaN(parseInt(group.id, 10)) ? undefined : parseInt(group.id, 10)
 
-  return new Group(group).save()
+  return new models.Group(group).save()
 }
 
 function addWork (data) {
@@ -36,7 +34,7 @@ function addWork (data) {
   work.c_3_mostlikely_cost = isNaN(parseFloat(work.c_3_mostlikely_cost)) ? undefined : parseFloat(work.c_3_mostlikely_cost)
   work.c_3_pessimistic_cost = isNaN(parseFloat(work.c_3_pessimistic_cost)) ? undefined : parseFloat(work.c_3_pessimistic_cost)
 
-  return new Workpack(work).save()
+  return new models.Workpack(work).save()
 }
 
 module.exports = {
