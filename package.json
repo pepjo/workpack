@@ -4,6 +4,7 @@
   "description": "Manage project workpacks, a word macro generates the tables",
   "main": "index.js",
   "scripts": {
+    "prestart": "knex migrate:latest",
     "start": "node index.js",
     "knex": "knex"
   },
