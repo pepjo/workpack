@@ -115,11 +115,9 @@
 $('.row').each((key, item) => {
   $(item).on('click', 'td.del', (event) => {
     event.stopPropagation()
-    const res = confirm('Segur que te\'l vols carregar per sempre!?')
+    const res = confirm('This action will delete this object AND ALL IT\'S DEPENDENTS')
     if (res) {
       location.href = `/del/work/${item.getAttribute('key')}${location.search}`
-    } else {
-      alert('Ja deia jo...')
     }
   })
   $(item).on('click', () => { location.href = `/add/work/${item.getAttribute('key')}${location.search}` })
