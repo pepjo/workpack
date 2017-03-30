@@ -53,7 +53,7 @@
         <label for="predecessors">Predecessors</label>
         <select multiple id="predecessors" name="predecessors" size="8">
           {{#each predecessors}}
-          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.group.code}}-{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>

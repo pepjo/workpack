@@ -18,10 +18,10 @@ function parseChilds (obj) {
 
 function getChilds (workpacks, id) {
   return workpacks
-  .filter((wrk) => (wrk.parent === id))
+  .filter((wrk) => ((wrk.parent || {}).id === id))
   .map((wrk) => {
     const wchilds = getChilds(workpacks, wrk.id)
-    if (length > 0) {
+    if (wchilds.length > 0) {
       return Object.assign({}, wrk, { childs: wchilds })
     } else {
       return wrk
@@ -37,18 +37,21 @@ router.get('/', function (req, res, next) {
       fetchAllWorkpacks().then(bookshelfToJSON),
     ])
     .then(([groups, workpacks]) => {
+      // console.log('workpacks', workpacks)
       const data = groups.map((group) => {
         const childs = group.childs || []
         const newChilds = workpacks
-        .filter((wrk) => (wrk.groups_id === group.id && wrk.parent === null))
+        .filter((wrk) => (wrk.groups_id === group.id && ((wrk.parent || {}).id === null || typeof((wrk.parent || {}).id) === 'undefined')))
         .map((wrk) => {
           const wchilds = getChilds(workpacks, wrk.id)
-          if (length > 0) {
+          if (wchilds.length > 0) {
             return Object.assign({}, wrk, { childs: wchilds })
           } else {
             return wrk
           }
         })
+
+        // console.log('childs of ', group.id, newChilds)
         return Object.assign({}, group, { childs: [...childs, ...newChilds] })
       })
 
