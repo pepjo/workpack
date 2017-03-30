@@ -1,6 +1,7 @@
 
 const express = require('express')
 const router = express.Router()
+const _ = require('lodash')
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup } = require('../utilities/addDbMethods')
@@ -126,7 +127,7 @@ router.get('/group/:id', function (req, res, next) {
 router.post('/work', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    const work = req.body
+    const work = Object.assign({}, req.body)
 
     Promise.all([
       fetchAllGroups().then(bookshelfToJSON),
@@ -136,6 +137,11 @@ router.post('/work', function (req, res, next) {
       const grp = group.map((item) => (Object.assign({}, item,
         { selected: item.id === parseInt(work.groups_id, 10) ? 'selected="selected"' : '' }
       )))
+
+      work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
+        [work.predecessors] : work.predecessors
+      work.successors = work.successors && !_.isArray(work.successors) ?
+        [work.successors] : work.successors
 
       addWork(work).then((model) => {
         res.render('addWork', { pass, group: grp, works })
@@ -151,7 +157,9 @@ router.post('/work', function (req, res, next) {
         res.render('addWork', {
           pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works,
           predecessors: works.map((item) => {
-            const isPred = (work.predecessors || []).find((pred) => (item.id === pred.id))
+            const predecessors = req.body.predecessors && !_.isArray(req.body.predecessors) ?
+              [req.body.predecessors] : req.body.predecessors
+            const isPred = (predecessors || []).find((pred) => (item.id === pred.id))
             if (isPred) {
               return Object.assign({ selected: ' selected="selected"' }, item)
             } else {
@@ -159,7 +167,9 @@ router.post('/work', function (req, res, next) {
             }
           }),
           successors: works.map((item) => {
-            const isSucc = (work.successors || []).find((succ) => (item.id === succ.id))
+            const successors = req.body.successors && !_.isArray(req.body.successors) ?
+              [req.body.successors] : req.body.successors
+            const isSucc = (successors || []).find((succ) => (item.id === succ.id))
             if (isSucc) {
               return Object.assign({ selected: ' selected="selected"' }, item)
             } else {
