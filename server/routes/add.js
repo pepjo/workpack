@@ -124,10 +124,56 @@ router.get('/group/:id', function (req, res, next) {
  *
 **/
 
-router.post('/work', function (req, res, next) {
+router.post('/work(/:id)', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
     const work = Object.assign({}, req.body)
+    work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
+      [work.predecessors] : work.predecessors
+    work.successors = work.successors && !_.isArray(work.successors) ?
+      [work.successors] : work.successors
+
+    const render = (error) => {
+      // Render this correctly
+      work.ttypep = work.t_type === 't_p' ? 'selected="selected"' : ''
+      work.ttypea = work.t_type === 't_a' ? 'selected="selected"' : ''
+      work.ttype3 = work.t_type === 't_3' ? 'selected="selected"' : ''
+      work.ctypep = work.c_type === 'c_p' ? 'selected="selected"' : ''
+      work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
+      work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
+
+      res.render('addWork', {
+        pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,
+        predecessors: works.map((item) => {
+          const predecessors = req.body.predecessors && !_.isArray(req.body.predecessors) ?
+            [req.body.predecessors] : req.body.predecessors
+          const isPred = (predecessors || []).find((pred) => (item.id === pred.id))
+          if (isPred) {
+            return Object.assign({ selected: ' selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+        successors: works.map((item) => {
+          const successors = req.body.successors && !_.isArray(req.body.successors) ?
+            [req.body.successors] : req.body.successors
+          const isSucc = (successors || []).find((succ) => (item.id === succ.id))
+          if (isSucc) {
+            return Object.assign({ selected: ' selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+        parents: works.map((item) => {
+          if (item.id === (work.parent || {}).id) {
+            return Object.assign({ selected: 'selected="selected"' }, item)
+          } else {
+            return item
+          }
+        }),
+      })
+      if (error) console.log('500 - ERROR', error)
+    }
 
     Promise.all([
       fetchAllGroups().then(bookshelfToJSON),
@@ -138,53 +184,10 @@ router.post('/work', function (req, res, next) {
         { selected: item.id === parseInt(work.groups_id, 10) ? 'selected="selected"' : '' }
       )))
 
-      work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
-        [work.predecessors] : work.predecessors
-      work.successors = work.successors && !_.isArray(work.successors) ?
-        [work.successors] : work.successors
-
       addWork(work).then((model) => {
-        res.render('addWork', { pass, group: grp, works })
+        render(false)
       }, (error) => {
-        // Render this correctly
-        work.ttypep = work.t_type === 't_p' ? 'selected="selected"' : ''
-        work.ttypea = work.t_type === 't_a' ? 'selected="selected"' : ''
-        work.ttype3 = work.t_type === 't_3' ? 'selected="selected"' : ''
-        work.ctypep = work.c_type === 'c_p' ? 'selected="selected"' : ''
-        work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
-        work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
-
-        res.render('addWork', {
-          pass, group: grp, work: work, error: 'ERROR GUARDANT', workpacks: works,
-          predecessors: works.map((item) => {
-            const predecessors = req.body.predecessors && !_.isArray(req.body.predecessors) ?
-              [req.body.predecessors] : req.body.predecessors
-            const isPred = (predecessors || []).find((pred) => (item.id === pred.id))
-            if (isPred) {
-              return Object.assign({ selected: ' selected="selected"' }, item)
-            } else {
-              return item
-            }
-          }),
-          successors: works.map((item) => {
-            const successors = req.body.successors && !_.isArray(req.body.successors) ?
-              [req.body.successors] : req.body.successors
-            const isSucc = (successors || []).find((succ) => (item.id === succ.id))
-            if (isSucc) {
-              return Object.assign({ selected: ' selected="selected"' }, item)
-            } else {
-              return item
-            }
-          }),
-          parents: works.map((item) => {
-            if (item.id === (work.parent || {}).id) {
-              return Object.assign({ selected: 'selected="selected"' }, item)
-            } else {
-              return item
-            }
-          }),
-        })
-        console.log('500 - ERROR', error)
+        render(true)
       })
     }, (error) => {
       console.log('500 - ERROR', error)
