@@ -124,7 +124,7 @@ router.get('/group/:id', function (req, res, next) {
  *
 **/
 
-router.post('/work(/:id)', function (req, res, next) {
+router.post('/work(*)', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
     const work = Object.assign({}, req.body)
