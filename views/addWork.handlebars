@@ -7,9 +7,13 @@
   <table class="workForm">
     <tr>
       <td colspan="2">
-        <label for="id">Id</label>
-        <input id="id" name="id" value="{{work.id}}" readonly/>
-      </td>
+        <label for="wsb_type">Task type</label>
+        <select id="wsb_type" name="wsb_type">
+          <option value="Task">Task</option>
+          <option value="WP with tasks">WP with tasks</option>
+          <option value="WP higher level">WP higher level</option>
+        </select>
+    </td>
       <td colspan="2">
         <label for="order">Ordre</label>
         <input value="1" id="order" name="order" value="{{work.order}}" />
@@ -34,7 +38,7 @@
     </tr>
     <tr>
       <td colspan="2">
-        <label for="wsb_id">WSB ID</label>
+        <label for="wsb_id">WBS ID</label>
         <textarea id="wsb_id" name="wsb_id" rows="5">{{work.wsb_id}}</textarea>
       </td>
       <td colspan="4">
@@ -320,6 +324,21 @@
 
   <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
   <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
+
+  <h2>Activity cost estimation</h2>
+  <label for="a_e"></label>
+  <table class="additionalTable" id="a_e">
+    <tr>
+      <td>
+        <label for="a_e_confidence_level">Confidence level</label>
+        <input id="a_e_confidence_level" name="a_e_confidence_level" value="{{work.a_e_confidence_level}}" />
+      </td>
+      <td>
+        <label for="a_e_indirect_costs">Indirect costs</label>
+        <input id="a_e_indirect_costs" name="a_e_indirect_costs" value="{{work.a_e_indirect_costs}}" />
+      </td>
+    </tr>
+  </table>
 
   <input type="submit" value="Guardar tot" />
 </form>
