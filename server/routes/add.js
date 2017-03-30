@@ -133,7 +133,7 @@ router.post('/work(/:id)', function (req, res, next) {
     work.successors = work.successors && !_.isArray(work.successors) ?
       [work.successors] : work.successors
 
-    const render = (error) => {
+    const render = (grp, works, error) => {
       // Render this correctly
       work.ttypep = work.t_type === 't_p' ? 'selected="selected"' : ''
       work.ttypea = work.t_type === 't_a' ? 'selected="selected"' : ''
@@ -142,12 +142,23 @@ router.post('/work(/:id)', function (req, res, next) {
       work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
       work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
 
+      work.relationship_p_FS = work.relationship_p === 'FS' ? 'selected="selected"' : ''
+      work.relationship_p_FF = work.relationship_p === 'FF' ? 'selected="selected"' : ''
+      work.relationship_p_SS = work.relationship_p === 'SS' ? 'selected="selected"' : ''
+      work.relationship_p_SF = work.relationship_p === 'SF' ? 'selected="selected"' : ''
+      work.relationship_s_FS = work.relationship_s === 'FS' ? 'selected="selected"' : ''
+      work.relationship_s_FF = work.relationship_s === 'FF' ? 'selected="selected"' : ''
+      work.relationship_s_SS = work.relationship_s === 'SS' ? 'selected="selected"' : ''
+      work.relationship_s_SF = work.relationship_s === 'SF' ? 'selected="selected"' : ''
+
       res.render('addWork', {
         pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,
         predecessors: works.map((item) => {
+          req.body.predecessors = req.body.predecessors && !_.isArray(req.body.predecessors) ?
+            [req.body.predecessors] : req.body.predecessors
           const predecessors = req.body.predecessors && !_.isArray(req.body.predecessors) ?
             [req.body.predecessors] : req.body.predecessors
-          const isPred = (predecessors || []).find((pred) => (item.id === pred.id))
+          const isPred = (predecessors || []).find((pred) => (item.id === parseInt(pred, 10)))
           if (isPred) {
             return Object.assign({ selected: ' selected="selected"' }, item)
           } else {
@@ -155,9 +166,11 @@ router.post('/work(/:id)', function (req, res, next) {
           }
         }),
         successors: works.map((item) => {
+          req.body.successors = req.body.successors && !_.isArray(req.body.successors) ?
+            [req.body.successors] : req.body.successors
           const successors = req.body.successors && !_.isArray(req.body.successors) ?
             [req.body.successors] : req.body.successors
-          const isSucc = (successors || []).find((succ) => (item.id === succ.id))
+          const isSucc = (successors || []).find((succ) => (item.id === parseInt(succ, 10)))
           if (isSucc) {
             return Object.assign({ selected: ' selected="selected"' }, item)
           } else {
@@ -185,9 +198,9 @@ router.post('/work(/:id)', function (req, res, next) {
       )))
 
       addWork(work).then((model) => {
-        render(false)
+        render(grp, works, false)
       }, (error) => {
-        render(true)
+        render(grp, works, true)
       })
     }, (error) => {
       console.log('500 - ERROR', error)
