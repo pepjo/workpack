@@ -1,3 +1,14 @@
 <ul>
   {{{content}}}
 </ul>
+
+<script>
+
+$('[key]').each((key, item) => {
+  $(item).click(() => {
+    var workId = $(item).attr('key')
+    location.href = `/add/work/${workId}${location.search}`
+  })
+})
+
+</script>

@@ -8,7 +8,7 @@ const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 function parseChilds (obj) {
   if (obj.childs) {
     return '<li style="list-style-type:none"><ul>' + (obj.childs.map((child) => {
-      return `<li>${child.wsb_id}</li>${parseChilds(child)}`
+      return `<li key=${child.id}>${child.wsb_id}</li>${parseChilds(child)}`
     })
     .join('')) + '</ul></li>'
   } else {
