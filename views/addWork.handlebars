@@ -19,7 +19,7 @@
         <select id="parent" name="parent">
           <option value="null">NONE</option>
           {{#each parents}}
-          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.group.code}}-{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>
