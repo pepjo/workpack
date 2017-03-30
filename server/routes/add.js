@@ -57,8 +57,6 @@ router.get('/work/:id', function (req, res, next) {
       wrk.relationship_s_SS = wrk.relationship_s === 'SS' ? 'selected="selected"' : ''
       wrk.relationship_s_SF = wrk.relationship_s === 'SF' ? 'selected="selected"' : ''
 
-      console.log('parent', work.parent.id, work.parent.wsb_id)
-
       res.render('addWork', {
         pass, group: grp, work: wrk, workpacks: works,
         predecessors: works.map((item) => {
@@ -78,7 +76,7 @@ router.get('/work/:id', function (req, res, next) {
           }
         }),
         parents: works.map((item) => {
-          if (item.id === work.parent.id) {
+          if (item.id === (work.parent || {}).id) {
             return Object.assign({ selected: 'selected="selected"' }, item)
           } else {
             return item
@@ -169,7 +167,7 @@ router.post('/work', function (req, res, next) {
             }
           }),
           parents: works.map((item) => {
-            if (item.id === work.parent.id) {
+            if (item.id === (work.parent || {}).id) {
               return Object.assign({ selected: 'selected="selected"' }, item)
             } else {
               return item
