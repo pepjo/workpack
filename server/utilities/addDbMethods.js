@@ -7,6 +7,11 @@ function addGroup (data) {
 }
 
 function addWork (data) {
+  const predecessors = data.predecessors
+
+  delete data.predecessors
+  delete data.successors
+
   const work = Object.assign({}, data)
   work.id = isNaN(parseInt(work.id, 10)) ? undefined : parseInt(work.id, 10)
   work.order = isNaN(parseInt(work.order, 10)) ? undefined : parseInt(work.order, 10)
@@ -36,7 +41,10 @@ function addWork (data) {
 
   return new models.Workpack(work).save()
   .then((work) => (
-    work.predecessors().attach(data.predecessors)
+    work.predecessors().detach().then(() => (work))
+  ))
+  .then((work) => (
+    work.predecessors().attach(predecessors)
   ))
 }
 
