@@ -1,0 +1,33 @@
+<table cellspacing="0" class="dataList">
+  <tr>
+    <th>Borra</th>
+    <th>Resource ID</th>
+    <th>Name</th>
+    <th>Type</th>
+    <th>Grade competency</th>
+  </tr>
+  {{#each resource}}
+    <tr key="{{this.id}}" class="row">
+      <td class="del">x</td>
+      <td>{{this.r_id}}</td>
+      <td>{{this.name}}</td>
+      <td>{{this.type}}</td>
+      <td>{{this.comp}}</td>
+    </tr>
+  {{/each}}
+</table>
+
+<script>
+$('.row').each((key, item) => {
+  $(item).on('click', 'td.del', (event) => {
+    event.stopPropagation()
+    const res = confirm('Segur que te\'l vols carregar per sempre!?')
+    if (res) {
+      location.href = `/del/resource/${item.getAttribute('key')}${location.search}`
+    } else {
+      alert('Ja deia jo...')
+    }
+  })
+  $(item).on('click', () => { location.href = `/add/resource/${item.getAttribute('key')}${location.search}` })
+})
+</script>

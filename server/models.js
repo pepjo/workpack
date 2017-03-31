@@ -7,6 +7,10 @@ module.exports = function (bookshelf) {
     }
   })
 
+  const Resource = bookshelf.Model.extend({
+    tableName: 'resources'
+  })
+
   const Workpack = bookshelf.Model.extend({
     tableName: 'workpacks',
     group () {
@@ -26,5 +30,5 @@ module.exports = function (bookshelf) {
     }
   })
 
-  global.models = { Group, Workpack }
+  global.models = { Group, Resource, Workpack }
 }

@@ -4,7 +4,7 @@ const router = express.Router()
 const _ = require('lodash')
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
-const  { addWork, addGroup } = require('../utilities/addDbMethods')
+const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
@@ -109,8 +109,29 @@ router.get('/group/:id', function (req, res, next) {
     fetchByGroupId(req.params.id)
     .then(bookshelfToJSON)
     .then((group) => {
-      console.log('group', group)
       res.render('addGroup', { pass, group: group })
+    })
+  } else {
+    next()
+  }
+})
+
+router.get('/resource', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    res.render('addResource', { pass })
+  } else {
+    next()
+  }
+})
+
+router.get('/resource/:id', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    fetchByResourceId(req.params.id)
+    .then(bookshelfToJSON)
+    .then((resource) => {
+      res.render('addResource', { pass, resource: resource })
     })
   } else {
     next()
@@ -226,6 +247,23 @@ router.post('/group', function (req, res, next) {
     .catch((error) => {
       console.log('500 - ERROR', error)
       res.render('addGroup', { pass })
+    })
+  } else {
+    next()
+  }
+})
+
+router.post('/resource', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    const resource = req.body
+
+    addResource(resource).then(() => {
+      res.render('addResource', { pass })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.render('addResource', { pass })
     })
   } else {
     next()
