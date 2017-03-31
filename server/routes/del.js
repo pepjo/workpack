@@ -13,10 +13,11 @@ router.get('/work/:id', function (req, res, next) {
     .then(() => {
       console.log(`Work id: ${req.params.id} removed`)
       res.redirect(`/list/work?pass=${req.query.pass}`)
-    }), (error) => {
+    })
+    .catch((error) => {
       console.log('500 - ERROR', error)
-      next()
-    }
+      res.render('error')
+    })
   } else {
     next()
   }
@@ -29,6 +30,10 @@ router.get('/group/:id', function (req, res, next) {
     .then((group) => {
       console.log(`Group id: ${req.params.id} removed`)
       res.redirect(`/list/groups?pass=${req.query.pass}`)
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.render('error')
     })
   } else {
     next()
