@@ -27,6 +27,32 @@ router.get('/work', function (req, res, next) {
   }
 })
 
+router.get('/work/subid/:group/:parent/:order', function (req, res, next) {
+  const pass = req.pass
+  const group = parseInt(req.params.group, 10)
+  const parent = parseInt(req.params.parent, 10)
+  const order = parseInt(req.params.order, 10)
+
+  if (req.query.pass === pass) {
+    (new models.Workpack({ parent: parent }).orderBy('order', 'ASC').orderBy('id', 'ASC')).fetchAll()
+    .then(bookshelfToJSON)
+    .then((workpacks) => {
+      console.log('workpacks', workpacks)
+      let subid = 1
+      for (let i = 0; workpacks[i].order < order && i < workpacks.length ; i++) {
+        subid++
+      }
+      res.json({ subid })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      next()
+    })
+  } else {
+    next()
+  }
+})
+
 router.get('/work/:id', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {

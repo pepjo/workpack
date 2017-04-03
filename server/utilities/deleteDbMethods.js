@@ -8,7 +8,15 @@ function deleteByResourceId (id) {
 }
 
 function deleteByWorkpackId (id) {
-  return new models.Workpack({ id }).destroy()
+  const workpack = new models.Workpack({ id }).fetch()
+
+  return workpack.then((work) => {
+    return work.predecessors().detach().then(() => (work))
+  }).then((work) => {
+    return work.successors().detach().then(() => (work))
+  }).then((work) => {
+    return work.destroy()
+  })
 }
 
 module.exports = {
