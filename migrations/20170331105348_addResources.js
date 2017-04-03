@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.createTable('resources', (table) => {
       table.increments('id').primary().index()
@@ -9,10 +9,10 @@ exports.up = function(knex, Promise) {
       table.text('comp')
     })
   ])
-};
+}
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.raw('DROP TABLE IF EXISTS resources CASCADE')
   ])
-};
+}

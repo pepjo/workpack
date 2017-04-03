@@ -5,6 +5,7 @@ const _ = require('lodash')
 
 const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
+const generateSelectRenderProperties = require('../utilities/generateSelectRenderProperties')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
@@ -36,27 +37,14 @@ router.get('/work/:id', function (req, res, next) {
     ])
     .then(([group, work, works]) => {
       // console.log('data', works, predecessors, successor)
-      const wrk = Object.assign({}, work)
+      let wrk = Object.assign({}, work)
       // Render this correctly
       const grp = group.map((item) => (Object.assign({}, item,
         { selected: item.id === wrk.groups_id ? 'selected' : '' }
       )))
 
-      wrk.ttypep = wrk.t_type === 't_p' ? 'selected="selected"' : ''
-      wrk.ttypea = wrk.t_type === 't_a' ? 'selected="selected"' : ''
-      wrk.ttype3 = wrk.t_type === 't_3' ? 'selected="selected"' : ''
-      wrk.ctypep = wrk.c_type === 'c_p' ? 'selected="selected"' : ''
-      wrk.ctypea = wrk.c_type === 'c_a' ? 'selected="selected"' : ''
-      wrk.ctype3 = wrk.c_type === 'c_3' ? 'selected="selected"' : ''
-
-      wrk.relationship_p_FS = wrk.relationship_p === 'FS' ? 'selected="selected"' : ''
-      wrk.relationship_p_FF = wrk.relationship_p === 'FF' ? 'selected="selected"' : ''
-      wrk.relationship_p_SS = wrk.relationship_p === 'SS' ? 'selected="selected"' : ''
-      wrk.relationship_p_SF = wrk.relationship_p === 'SF' ? 'selected="selected"' : ''
-      wrk.relationship_s_FS = wrk.relationship_s === 'FS' ? 'selected="selected"' : ''
-      wrk.relationship_s_FF = wrk.relationship_s === 'FF' ? 'selected="selected"' : ''
-      wrk.relationship_s_SS = wrk.relationship_s === 'SS' ? 'selected="selected"' : ''
-      wrk.relationship_s_SF = wrk.relationship_s === 'SF' ? 'selected="selected"' : ''
+      // Render this correctly
+      wrk = generateSelectRenderProperties(wrk)
 
       res.render('addWork', {
         pass, group: grp, work: wrk, workpacks: works,
@@ -148,7 +136,7 @@ router.get('/resource/:id', function (req, res, next) {
 router.post('/work(*)', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    const work = Object.assign({}, req.body)
+    let work = Object.assign({}, req.body)
     work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
       [work.predecessors] : work.predecessors
     work.successors = work.successors && !_.isArray(work.successors) ?
@@ -156,21 +144,7 @@ router.post('/work(*)', function (req, res, next) {
 
     const render = (grp, works, error) => {
       // Render this correctly
-      work.ttypep = work.t_type === 't_p' ? 'selected="selected"' : ''
-      work.ttypea = work.t_type === 't_a' ? 'selected="selected"' : ''
-      work.ttype3 = work.t_type === 't_3' ? 'selected="selected"' : ''
-      work.ctypep = work.c_type === 'c_p' ? 'selected="selected"' : ''
-      work.ctypea = work.c_type === 'c_a' ? 'selected="selected"' : ''
-      work.ctype3 = work.c_type === 'c_3' ? 'selected="selected"' : ''
-
-      work.relationship_p_FS = work.relationship_p === 'FS' ? 'selected="selected"' : ''
-      work.relationship_p_FF = work.relationship_p === 'FF' ? 'selected="selected"' : ''
-      work.relationship_p_SS = work.relationship_p === 'SS' ? 'selected="selected"' : ''
-      work.relationship_p_SF = work.relationship_p === 'SF' ? 'selected="selected"' : ''
-      work.relationship_s_FS = work.relationship_s === 'FS' ? 'selected="selected"' : ''
-      work.relationship_s_FF = work.relationship_s === 'FF' ? 'selected="selected"' : ''
-      work.relationship_s_SS = work.relationship_s === 'SS' ? 'selected="selected"' : ''
-      work.relationship_s_SF = work.relationship_s === 'SF' ? 'selected="selected"' : ''
+      work = generateSelectRenderProperties(work)
 
       res.render('addWork', {
         pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,

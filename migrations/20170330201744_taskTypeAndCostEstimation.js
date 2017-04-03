@@ -1,5 +1,5 @@
 
-exports.up = function(knex, Promise) {
+exports.up = function (knex, Promise) {
   return Promise.all([
     knex.schema.table('workpacks', function (table) {
       table.string('wsb_type', 32)
@@ -7,9 +7,9 @@ exports.up = function(knex, Promise) {
       table.float('a_e_indirect_costs')
     })
   ])
-};
+}
 
-exports.down = function(knex, Promise) {
+exports.down = function (knex, Promise) {
   return Promise.all([
     knex.schema.table('workpacks', function (table) {
       table.dropColumn('wsb_type')
@@ -17,4 +17,4 @@ exports.down = function(knex, Promise) {
       table.dropColumn('a_e_indirect_costs')
     })
   ])
-};
+}

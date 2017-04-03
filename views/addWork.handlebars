@@ -4,14 +4,15 @@
   <h1 style="color: red;">{{error}}</h1>
 
   <h2>Basic information</h2>
+  <input type="hidden" name="id" value="{{work.id}}">
   <table class="workForm">
     <tr>
       <td colspan="2">
         <label for="wsb_type">Task type</label>
         <select id="wsb_type" name="wsb_type">
-          <option value="Task">Task</option>
-          <option value="WP with tasks">WP with tasks</option>
-          <option value="WP higher level">WP higher level</option>
+          <option value="Task"{{{work.type_task}}}>Task</option>
+          <option value="WP with tasks"{{{work.type_WPt}}}>WP with tasks</option>
+          <option value="WP higher level"{{{work.type_WPh}}}>WP higher level</option>
         </select>
     </td>
       <td colspan="2">
