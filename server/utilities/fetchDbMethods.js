@@ -3,6 +3,10 @@ function fetchAllGroups () {
   return new models.Group().orderBy('id', 'ASC').fetchAll()
 }
 
+function fetchAllResources () {
+  return new models.Resource().orderBy('id', 'ASC').fetchAll()
+}
+
 function fetchAllWorkpacks () {
   return new models.Workpack().orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
@@ -23,6 +27,7 @@ function fetchByWorkpackId (id) {
 
 module.exports = {
   fetchAllGroups,
+  fetchAllResources,
   fetchAllWorkpacks,
   fetchByGroupId,
   fetchByWorkpackId,

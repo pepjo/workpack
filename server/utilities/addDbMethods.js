@@ -6,6 +6,13 @@ function addGroup (data) {
   return new models.Group(group).save()
 }
 
+function addResource (data) {
+  const resource = Object.assign({}, data)
+  resource.id = isNaN(parseInt(resource.id, 10)) ? undefined : parseInt(resource.id, 10)
+
+  return new models.Resource(resource).save()
+}
+
 function addWork (data) {
   const predecessors = data.predecessors
 
@@ -50,5 +57,6 @@ function addWork (data) {
 
 module.exports = {
   addGroup,
+  addResource,
   addWork,
 }

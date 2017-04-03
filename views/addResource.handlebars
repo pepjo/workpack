@@ -1,0 +1,16 @@
+<form action="/add/resource?pass=smartlink" method="POST">
+
+  <label for="r_id">Resource ID</label>
+  <input name="r_id" id="r_id" value="{{resource.r_id}}" />
+
+  <label for="name">Name</label>
+  <input name="name" id="name" value="{{resource.name}}" />
+
+  <label for="type">Type</label>
+  <input name="type" id="type" value="{{resource.type}}" />
+
+  <label for="comp">Grade competency</label>
+  <input name="comp" id="comp" value="{{resource.comp}}" />
+
+  <input type="submit" value="Guardar" />
+</form>
