@@ -1,5 +1,7 @@
 <form action="/add/resource?pass=smartlink" method="POST">
 
+  <input type="hidden" name="id" value="{{resource.id}}">
+
   <label for="r_id">Resource ID</label>
   <input name="r_id" id="r_id" value="{{resource.r_id}}" />
 

@@ -1,5 +1,7 @@
 <form action="/add/group?pass=smartlink" method="POST">
 
+  <input type="hidden" name="id" value="{{group.id}}">
+
   <label for="code">Codi</label>
   <input name="code" id="code" value="{{group.code}}" />
 
