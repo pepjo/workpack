@@ -3,7 +3,8 @@ const express = require('express')
 const router = express.Router()
 const _ = require('lodash')
 
-const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
+const  { fetchAllGroups, fetchAllWorkpacks,
+  fetchByGroupId, fetchByResourceId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
 const generateSelectRenderProperties = require('../utilities/generateSelectRenderProperties')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')

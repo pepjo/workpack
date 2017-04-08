@@ -18,6 +18,10 @@ function fetchByGroupId (id) {
   return new models.Group({ id }).orderBy('id', 'ASC').fetch()
 }
 
+function fetchByResourceId (id) {
+  return new models.Resource({ id }).orderBy('id', 'ASC').fetch()
+}
+
 function fetchByWorkpackId (id) {
   return new models.Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetch({
@@ -30,5 +34,6 @@ module.exports = {
   fetchAllResources,
   fetchAllWorkpacks,
   fetchByGroupId,
+  fetchByResourceId,
   fetchByWorkpackId,
 }
