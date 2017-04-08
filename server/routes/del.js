@@ -14,7 +14,7 @@ router.get('/work/:id', function (req, res, next) {
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
-      res.render('error')
+      res.render('error', { pass })
     })
   } else {
     next()
@@ -31,7 +31,7 @@ router.get('/group/:id', function (req, res, next) {
     })
     .catch((error) => {
       console.log('500 - ERROR', error)
-      res.render('error')
+      res.render('error', { pass })
     })
   } else {
     next()

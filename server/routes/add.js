@@ -7,6 +7,7 @@ const  { fetchAllGroups, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } 
 const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
 const generateSelectRenderProperties = require('../utilities/generateSelectRenderProperties')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
+const recaluclateWBSids = require('../utilities/recalculateWBSids')
 
 router.get('/work', function (req, res, next) {
   const pass = req.pass
@@ -27,19 +28,34 @@ router.get('/work', function (req, res, next) {
   }
 })
 
+// Calculem la nova id per fer una previsualitzacó
 router.get('/work/subid/:group/:parent/:order', function (req, res, next) {
   const pass = req.pass
   const group = parseInt(req.params.group, 10)
   const parent = parseInt(req.params.parent, 10)
   const order = parseInt(req.params.order, 10)
+  let workpacks
 
   if (req.query.pass === pass) {
-    (new models.Workpack({ parent: parent }).orderBy('order', 'ASC').orderBy('id', 'ASC')).fetchAll()
+    if (isNaN(parent)) {
+      workpacks = new models.Workpack()
+      .query((qb) => {
+        qb.whereNull('parent').andWhere('groups_id', '=', group)
+      })
+      .orderBy('order', 'ASC').orderBy('id', 'ASC')
+      .fetchAll()
+    } else {
+      workpacks = new models.Workpack()
+      .query('where', 'parent', '=', parent)
+      .orderBy('order', 'ASC').orderBy('id', 'ASC')
+      .fetchAll()
+    }
+
+    workpacks
     .then(bookshelfToJSON)
     .then((workpacks) => {
-      console.log('workpacks', workpacks)
       let subid = 1
-      for (let i = 0; workpacks[i].order < order && i < workpacks.length ; i++) {
+      for (let i = 0;  i < workpacks.length && workpacks[i].order < order; i++) {
         subid++
       }
       res.json({ subid })
@@ -161,6 +177,9 @@ router.get('/resource/:id', function (req, res, next) {
 
 router.post('/work(*)', function (req, res, next) {
   const pass = req.pass
+  const oldparent = req.body.oldparent
+  const oldgroup = req.body.oldgroup
+
   if (req.query.pass === pass) {
     let work = Object.assign({}, req.body)
     work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
@@ -222,9 +241,18 @@ router.post('/work(*)', function (req, res, next) {
         work.parent = null
       }
 
-      addWork(work).then((model) => {
+      addWork(work)
+      .then(() => {
+        return recaluclateWBSids({ parent: oldparent, group: oldgroup })
+      })
+      .then(() => {
+        return recaluclateWBSids({ parent: work.parent, group: work.groups_id })
+      })
+      .then(() => {
         render(grp, works, false)
-      }, (error) => {
+      })
+      .catch((error) => {
+        console.error(error)
         render(grp, works, true)
       })
     }, (error) => {

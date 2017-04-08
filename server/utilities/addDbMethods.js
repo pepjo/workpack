@@ -20,7 +20,11 @@ function addWork (data) {
   delete data.successors
 
   const work = Object.assign({}, data)
+  delete work.oldparent
+  delete work.oldgroup
+
   work.id = isNaN(parseInt(work.id, 10)) ? undefined : parseInt(work.id, 10)
+  work.subid = isNaN(parseInt(work.subid, 10)) ? undefined : parseInt(work.subid, 10)
   work.order = isNaN(parseInt(work.order, 10)) ? undefined : parseInt(work.order, 10)
   work.groups_id = isNaN(parseInt(work.groups_id, 10)) ? undefined : parseInt(work.groups_id, 10)
   work.t_duration_estimate = isNaN(parseFloat(work.t_duration_estimate)) ? undefined : parseFloat(work.t_duration_estimate)

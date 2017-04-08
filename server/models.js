@@ -30,5 +30,9 @@ module.exports = function (bookshelf) {
     }
   })
 
-  global.models = { Group, Resource, Workpack }
+  const Workpacks = bookshelf.Collection.extend({
+    model: Workpack
+  })
+
+  global.models = { Group, Resource, Workpack, Workpacks }
 }
