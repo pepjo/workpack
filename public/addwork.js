@@ -1,4 +1,30 @@
 
+function recalculateEstimate () {
+  const cl = $('#a_e_confidence_level').val()
+  const ic = parseFloat($('#a_e_indirect_costs').val())
+  const dc = parseFloat($('#c_cost_estimate').val())
+  let re
+
+  switch (cl) {
+    case 'A':
+      re = 5
+      break
+    case 'B':
+      re = 10
+      break
+    case 'C':
+      re = 15
+      break
+    default:
+      re = 0
+  }
+
+  const es = (ic + dc) * (1 + re*0.01)
+  console.log((ic + dc) * (1 + re*0.01), ic, dc, re)
+
+  $('#a_e_reserve').val(re)
+  $('#a_e_estimate').val(es)
+}
 function getNewWBSid () {
   let group = $('#groups_id').val()
   let parent = $('#parent').val()
@@ -105,6 +131,7 @@ function calculateCP () {
   const perUnit = parseFloat($('#c_p_cost_per_unit').val())
   const numUnits = parseFloat($('#c_p_number_of_units').val())
   $('#c_cost_estimate').val(perUnit*numUnits)
+  recalculateEstimate()
 }
 function calculateCA () {
   const prevAct = parseFloat($('#c_a_previous_activity').val())
@@ -115,6 +142,7 @@ function calculateCA () {
   const multi = curAct/prevAct
   $('#c_a_multiplier').val(multi)
   $('#c_cost_estimate').val(prevCost*multi)
+  recalculateEstimate()
 }
 function calculateC3 () {
   const o = parseFloat($('#c_3_optimistic_cost').val())
@@ -122,6 +150,7 @@ function calculateC3 () {
   const p = parseFloat($('#c_3_pessimistic_cost').val())
   const eq = $('#c_3_wheighting_equation').val()
   $('#c_cost_estimate').val(eval(eq))
+  recalculateEstimate()
 }
 function setTType (type, first) {
   if (type === 't_p') {
@@ -207,3 +236,6 @@ $('#c_3_wheighting_equation').on('change', () => { calculateC3() })
 $('#order').on('change', () => { getNewWBSid() })
 $('#parent').on('change', () => { getNewWBSid() })
 $('#groups_id').on('change', () => { getNewWBSid() })
+
+$('#a_e_confidence_level').on('change', () => { recalculateEstimate() })
+$('#a_e_indirect_costs').on('change', () => { recalculateEstimate() })
