@@ -15,13 +15,29 @@ function addResource (data) {
 
 function addWork (data) {
   const predecessors = data.predecessors
-
-  delete data.predecessors
-  delete data.successors
+  const resources = data.resources
+  const resourcesData = []
 
   const work = Object.assign({}, data)
   delete work.oldparent
   delete work.oldgroup
+  delete work.predecessors
+  delete work.successors
+  delete work.resources
+
+  Object.keys(work).forEach((key) => {
+    const regex = /^resources_amount_([0-9]+)$/
+    if (regex.test(key)) {
+      const id = parseInt(regex.exec(key)[1], 10)
+
+      resourcesData.push({
+        id,
+        amount: parseFloat(work[key])
+      })
+
+      delete work[key]
+    }
+  })
 
   work.id = isNaN(parseInt(work.id, 10)) ? undefined : parseInt(work.id, 10)
   work.subid = isNaN(parseInt(work.subid, 10)) ? undefined : parseInt(work.subid, 10)
@@ -52,10 +68,27 @@ function addWork (data) {
 
   return new models.Workpack(work).save()
   .then((work) => (
-    work.predecessors().detach().then(() => (work))
+    Promise.all([
+      work.predecessors().detach(),
+      work.resources().detach(),
+    ])
+    .then(() => (work))
   ))
   .then((work) => (
-    work.predecessors().attach(predecessors)
+    Promise.all([
+      work.predecessors().attach(predecessors),
+      work.resources().attach(resources),
+    ])
+    .then(() => (work))
+  ))
+  .then((work) => (
+    Promise.all(resourcesData.map((res) => (
+      work.resources().updatePivot(
+        { amount: res.amount },
+        { query: (qb) => { qb.where({ 'workpack_id': work.id, 'resource_id': res.id }) } }
+      )
+    )))
+    .then(() => (work))
   ))
 }
 

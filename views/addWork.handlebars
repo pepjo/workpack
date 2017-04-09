@@ -87,7 +87,6 @@
         <textarea id="lag_p" name="lag_p">{{work.lag_p}}</textarea>
       </td>
       <td>
-        <!-- TODO: Fer que es pilli el successor sol -->
         <label for="successor">Successor</label>
         <select multiple id="successor" name="successor" size="8">
           {{#each successors}}
@@ -96,7 +95,6 @@
         </select>
       </td>
       <td>
-        <!-- TODO: Fer que es pilli sol  -->
         <label for="relationship_s">Relationship</label>
         <select id="relationship_s" name="relationship_s">
           <option value="FS"{{{isSelected work.relationship_s 'FS'}}}>Finish-to-Start</option>
@@ -106,15 +104,28 @@
         </select>
       </td>
       <td>
-        <!-- TODO: Fer que es pilli sol -->
         <label for="lag_s">Lag</label>
         <textarea id="lag_s" name="lag_s" readonly>{{work.lag_s}}</textarea>
       </td>
     </tr>
     <tr>
-      <td colspan="2">
-        <label for="number_resources">Number Resources</label>
-        <textarea id="number_resources" name="number_resources" rows="5">{{work.number_resources}}</textarea>
+      <td colspan="1">
+        <label for="resources">Resources</label>
+        <select multiple id="resources" name="resources" size="6">
+          {{#each resources}}
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.name}}</option>
+          {{/each}}
+        </select>
+      </td>
+      <td colspan="1">
+        <ul class="no_list" id="resources_amount_container">
+          {{#each work.resources}}
+          <li>
+            <label for="resources_amount_{{this.id}}">Number {{this.name}}</label>
+            <input id="resources_amount_{{this.id}}" name="resources_amount_{{this.id}}" value="{{this._pivot_amount}}" />
+          </li>
+          {{/each}}
+        <ul>
       </td>
       <td colspan="2">
         <label for="skill_requirements">Skills</label>

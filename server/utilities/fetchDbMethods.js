@@ -25,7 +25,7 @@ function fetchByResourceId (id) {
 function fetchByWorkpackId (id) {
   return new models.Workpack({ id }).orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetch({
-    withRelated: ['group', 'parent', 'predecessors', 'successors']
+    withRelated: ['group', 'parent', 'predecessors', 'successors', 'resources']
   })
 }
 

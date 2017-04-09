@@ -1,4 +1,47 @@
 
+function renderResourcesUI () {
+  const current = $('#resources_amount_container li input')
+  .toArray()
+  .map((element) => {
+    const jqe = $(element)
+
+    return {
+      id: parseInt(jqe.attr('id').substr(17, 10000), 10),
+      title: jqe.prev().text(),
+      value: jqe.val()
+    }
+  })
+
+  const newV = $('#resources option:selected')
+  .toArray()
+  .map((element) => {
+    const jqe = $(element)
+    const id = parseInt(jqe.val(), 10)
+    const cur = current.find((item) => (item.id === id))
+
+    if (cur) {
+      return cur
+    } else {
+      return { id, title: `Number ${jqe.text()}`, value: '' }
+    }
+  })
+  .map((item) => (
+    $('<li>')
+    .append(
+      $(`<label for="resources_amount_${item.id}">`)
+      .text(
+        item.title
+      )
+    )
+    .append(
+      $(`<input id="resources_amount_${item.id}" name="resources_amount_${item.id}" value="${item.value}" />`)
+    )
+  ))
+
+  $('#resources_amount_container')
+  .html('')
+  .append(newV)
+}
 function recalculateEstimate () {
   const cl = $('#a_e_confidence_level').val()
   const ic = parseFloat($('#a_e_indirect_costs').val())
@@ -239,3 +282,5 @@ $('#groups_id').on('change', () => { getNewWBSid() })
 
 $('#a_e_confidence_level').on('change', () => { recalculateEstimate() })
 $('#a_e_indirect_costs').on('change', () => { recalculateEstimate() })
+
+$('#resources').on('change', () => { renderResourcesUI() })

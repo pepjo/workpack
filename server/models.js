@@ -8,7 +8,10 @@ module.exports = function (bookshelf) {
   })
 
   const Resource = bookshelf.Model.extend({
-    tableName: 'resources'
+    tableName: 'resources',
+    workpacks () {
+      return this.belongsToMany(Workpack, 'workpacks_resources', 'resource_id', 'workpack_id').withPivot(['amount'])
+    },
   })
 
   const Workpack = bookshelf.Model.extend({
@@ -27,7 +30,10 @@ module.exports = function (bookshelf) {
     },
     successors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
-    }
+    },
+    resources () {
+      return this.belongsToMany(Resource, 'workpacks_resources', 'workpack_id', 'resource_id').withPivot(['amount'])
+    },
   })
 
   const Workpacks = bookshelf.Collection.extend({
