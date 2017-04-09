@@ -43,6 +43,9 @@ app.engine('handlebars', exphbs({
   defaultLayout: 'web',
   extension: 'handlebars',
   cache: process.env.NODE_ENV !== 'development',
+  helpers: {
+    isSelected: function (value1, value2) { return value1 === value2 ? ' selected="selected"' : '' }
+  },
 }))
 app.set('view engine', 'handlebars')
 

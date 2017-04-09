@@ -15,9 +15,9 @@
       <td colspan="2">
         <label for="wsb_type">Task type</label>
         <select id="wsb_type" name="wsb_type">
-          <option value="Task"{{{work.type_task}}}>Task</option>
-          <option value="WP with tasks"{{{work.type_WPt}}}>WP with tasks</option>
-          <option value="WP higher level"{{{work.type_WPh}}}>WP higher level</option>
+          <option value="Task"{{{isSelected work.wsb_type 'Task'}}}>Task</option>
+          <option value="WP with tasks"{{{isSelected work.wsb_type 'WP with tasks'}}}>WP with tasks</option>
+          <option value="WP higher level"{{{isSelected work.wsb_type 'WP higher level'}}}>WP higher level</option>
         </select>
     </td>
       <td colspan="2">
@@ -70,10 +70,10 @@
       <td>
         <label for="relationship_p">Relationship</label>
         <select id="relationship_p" name="relationship_p">
-          <option value="FS"{{{work.relationship_p_FS}}}>Finish-to-Start</option>
-          <option value="FF"{{{work.relationship_p_FF}}}>Finish-to-Finish</option>
-          <option value="SS"{{{work.relationship_p_SS}}}>Start-to-Start</option>
-          <option value="SF"{{{work.relationship_p_SF}}}>Star-to-Finish</option>
+          <option value="FS"{{{isSelected work.relationship_p 'FS'}}}>Finish-to-Start</option>
+          <option value="FF"{{{isSelected work.relationship_p 'FF'}}}>Finish-to-Finish</option>
+          <option value="SS"{{{isSelected work.relationship_p 'SS'}}}>Start-to-Start</option>
+          <option value="SF"{{{isSelected work.relationship_p 'SF'}}}>Star-to-Finish</option>
         </select>
       </td>
       <td>
@@ -93,10 +93,10 @@
         <!-- TODO: Fer que es pilli sol  -->
         <label for="relationship_s">Relationship</label>
         <select id="relationship_s" name="relationship_s">
-          <option value="FS"{{{work.relationship_s_FS}}}>Finish-to-Start</option>
-          <option value="FF"{{{work.relationship_s_FF}}}>Finish-to-Finish</option>
-          <option value="SS"{{{work.relationship_s_SS}}}>Start-to-Start</option>
-          <option value="SF"{{{work.relationship_s_SF}}}>Star-to-Finish</option>
+          <option value="FS"{{{isSelected work.relationship_s 'FS'}}}>Finish-to-Start</option>
+          <option value="FF"{{{isSelected work.relationship_s 'FF'}}}>Finish-to-Finish</option>
+          <option value="SS"{{{isSelected work.relationship_s 'SS'}}}>Start-to-Start</option>
+          <option value="SF"{{{isSelected work.relationship_s 'SF'}}}>Star-to-Finish</option>
         </select>
       </td>
       <td>
@@ -149,9 +149,9 @@
   <h2>Time calculations</h2>
   <label for="t_type"></label>
   <select id="t_type" name="t_type">
-    <option value="t_p" {{{work.ttypep}}}>Parametric</option>
-    <option value="t_a" {{{work.ttypea}}}>Analogus</option>
-    <option value="t_3" {{{work.ttype3}}}>Line of three points</option>
+    <option value="t_p" {{{isSelected work.t_type 't_p'}}}>Parametric</option>
+    <option value="t_a" {{{isSelected work.t_type 't_a'}}}>Analogus</option>
+    <option value="t_3" {{{isSelected work.t_type 't_3'}}}>Line of three points</option>
   </select>
 
   <table class="additionalTable" id="t_p">
@@ -246,9 +246,9 @@
   <h2>Cost calculations</h2>
   <label for="c_type"></label>
   <select id="c_type" name="c_type">
-    <option value="c_p" {{{work.ctypep}}}>Parametric</option>
-    <option value="c_a" {{{work.ctypea}}}>Analogus</option>
-    <option value="c_3" {{{work.ctype3}}}>Line of three points</option>
+    <option value="c_p" {{{isSelected work.c_type 'c_p'}}}>Parametric</option>
+    <option value="c_a" {{{isSelected work.c_type 'c_a'}}}>Analogus</option>
+    <option value="c_3" {{{isSelected work.c_type 'c_3'}}}>Line of three points</option>
   </select>
 
   <table class="additionalTable" id="c_p">
@@ -337,7 +337,11 @@
     <tr>
       <td>
         <label for="a_e_confidence_level">Confidence level</label>
-        <input id="a_e_confidence_level" name="a_e_confidence_level" value="{{work.a_e_confidence_level}}" />
+        <select id="a_e_confidence_level" name="a_e_confidence_level">
+          <option value="A"{{{isSelected work.a_e_confidence_level 'A'}}}>A</option>
+          <option value="B"{{{isSelected work.a_e_confidence_level 'B'}}}>B</option>
+          <option value="C"{{{isSelected work.a_e_confidence_level 'C'}}}>C</option>
+        </select>
       </td>
       <td>
         <label for="a_e_indirect_costs">Indirect costs</label>

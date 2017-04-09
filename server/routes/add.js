@@ -6,7 +6,6 @@ const _ = require('lodash')
 const  { fetchAllGroups, fetchAllWorkpacks,
   fetchByGroupId, fetchByResourceId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
-const generateSelectRenderProperties = require('../utilities/generateSelectRenderProperties')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 const recaluclateWBSids = require('../utilities/recalculateWBSids')
 
@@ -85,9 +84,6 @@ router.get('/work/:id', function (req, res, next) {
       const grp = group.map((item) => (Object.assign({}, item,
         { selected: item.id === wrk.groups_id ? 'selected' : '' }
       )))
-
-      // Render this correctly
-      wrk = generateSelectRenderProperties(wrk)
 
       res.render('addWork', {
         pass, group: grp, work: wrk, workpacks: works,
@@ -189,9 +185,6 @@ router.post('/work(*)', function (req, res, next) {
       [work.successors] : work.successors
 
     const render = (grp, works, error) => {
-      // Render this correctly
-      work = generateSelectRenderProperties(work)
-
       res.render('addWork', {
         pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,
         predecessors: works.map((item) => {
