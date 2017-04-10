@@ -189,28 +189,44 @@ router.get('/resource/:id', function (req, res, next) {
 
 router.post('/work(*)', function (req, res, next) {
   const pass = req.pass
-  const oldparent = req.body.oldparent
+  const oldparent = req.body.oldparent === 'null' ? null : (req.body.oldparent === '' ? undefined : req.body.oldparent)
   const oldgroup = req.body.oldgroup
 
   if (req.query.pass === pass) {
     let work = Object.assign({}, req.body)
-    const selPredecessors = work.predecessors = work.predecessors && !_.isArray(work.predecessors) ?
-      [work.predecessors] : work.predecessors
-    const selSuccessors = work.successors = work.successors && !_.isArray(work.successors) ?
-      [work.successors] : work.successors
-    const selResources = work.resources = work.resources && !_.isArray(work.resources) ?
-      [work.resources] : work.resources
+    const selPredecessors = work.predecessors = (work.predecessors && !_.isArray(work.predecessors) ?
+      [work.predecessors] : work.predecessors) || []
+    const selSuccessors = work.successors = (work.successors && !_.isArray(work.successors) ?
+      [work.successors] : work.successors) || []
+    const selResources = work.resources = (work.resources && !_.isArray(work.resources) ?
+      [work.resources] : work.resources) || []
 
     const render = (grp, works, resources, error) => {
-      work.resources = work.resources.map((id) => {
+      work.resources = selResources.map((id) => {
         const reso = resources.find((item) => (item.id === parseInt(id, 10)))
 
-        return Object.assign({}, reso, { _pivot_amount: req.body[`resources_amount_${reso.id}`] })
+        return Object.assign({}, reso, { _pivot_amount: req.body[`resources_amount_${id}`] })
+      })
+      work.predecessors = selPredecessors.map((id) => {
+        const pred = works.find((item) => (item.id === parseInt(id, 10)))
+
+        return Object.assign({}, pred, {
+          _pivot_relation: req.body[`predecessors_relation_${id}`],
+          _pivot_lag: req.body[`predecessors_lag_${id}`],
+        })
+      })
+      work.successors = selSuccessors.map((id) => {
+        const succ = works.find((item) => (item.id === parseInt(id, 10)))
+
+        return Object.assign({}, succ, {
+          _pivot_relation: req.body[`successors_relation_${id}`],
+          _pivot_lag: req.body[`successors_lag_${id}`],
+        })
       })
       res.render('addWork', {
         pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,
         predecessors: works.map((item) => {
-          const isPred = (selPredecessors || []).find((pred) => (item.id === parseInt(pred, 10)))
+          const isPred = selPredecessors.find((pred) => (item.id === parseInt(pred, 10)))
           if (isPred) {
             return Object.assign({ selected: ' selected="selected"' }, item)
           } else {
@@ -218,7 +234,7 @@ router.post('/work(*)', function (req, res, next) {
           }
         }),
         successors: works.map((item) => {
-          const isSucc = (selSuccessors || []).find((succ) => (item.id === parseInt(succ, 10)))
+          const isSucc = selSuccessors.find((succ) => (item.id === parseInt(succ, 10)))
           if (isSucc) {
             return Object.assign({ selected: ' selected="selected"' }, item)
           } else {
@@ -233,7 +249,7 @@ router.post('/work(*)', function (req, res, next) {
           }
         }),
         resources: resources.map((item) => {
-          const isRes = (selResources || []).find((subitem) => (parseInt(subitem, 10) === item.id))
+          const isRes = selResources.find((subitem) => (parseInt(subitem, 10) === item.id))
           if (isRes) {
             return Object.assign({ selected: 'selected="selected"' }, item)
           } else {
@@ -260,7 +276,10 @@ router.post('/work(*)', function (req, res, next) {
 
       addWork(work)
       .then(() => {
-        return recaluclateWBSids({ parent: oldparent, group: oldgroup })
+        if (oldparent || oldgroup !== '') {
+          return recaluclateWBSids({ parent: oldparent, group: oldgroup })
+        }
+        return false
       })
       .then(() => {
         return recaluclateWBSids({ parent: work.parent, group: work.groups_id })

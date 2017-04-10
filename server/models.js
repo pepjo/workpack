@@ -27,9 +27,11 @@ module.exports = function (bookshelf) {
     },
     predecessors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
+      .withPivot(['relation', 'lag'])
     },
     successors () {
       return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
+      .withPivot(['relation', 'lag'])
     },
     resources () {
       return this.belongsToMany(Resource, 'workpacks_resources', 'workpack_id', 'resource_id').withPivot(['amount'])

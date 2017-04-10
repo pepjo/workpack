@@ -17,6 +17,7 @@ function addWork (data) {
   const predecessors = data.predecessors
   const resources = data.resources
   const resourcesData = []
+  const predecessorsData = []
 
   const work = Object.assign({}, data)
   delete work.oldparent
@@ -26,15 +27,41 @@ function addWork (data) {
   delete work.resources
 
   Object.keys(work).forEach((key) => {
-    const regex = /^resources_amount_([0-9]+)$/
-    if (regex.test(key)) {
-      const id = parseInt(regex.exec(key)[1], 10)
+    const regexRe = /^resources_amount_([0-9]+)$/
+    const regexPreR = /^predecessors_relation_([0-9]+)$/
+    const regexPreL = /^predecessors_lag_([0-9]+)$/
+    const regexSucR = /^successors_relation_([0-9]+)$/
+    const regexSucL = /^successors_lag_([0-9]+)$/
 
-      resourcesData.push({
-        id,
-        amount: parseFloat(work[key])
-      })
+    if (regexRe.test(key)) {
+      const id = parseInt(regexRe.exec(key)[1], 10)
 
+      resourcesData.push({ id, amount: parseFloat(work[key]) || 0 })
+
+      delete work[key]
+    } else if (regexPreR.test(key)) {
+      const id = parseInt(regexPreR.exec(key)[1], 10)
+      const ind = predecessorsData.findIndex((item) => (item.id === id))
+
+      if (ind === -1) {
+        predecessorsData.push({ id, relation: work[key] })
+      } else {
+        predecessorsData[ind].relation = work[key]
+      }
+
+      delete work[key]
+    } else if (regexPreL.test(key)) {
+      const id = parseInt(regexPreL.exec(key)[1], 10)
+      const ind = predecessorsData.findIndex((item) => (item.id === id))
+
+      if (ind === -1) {
+        predecessorsData.push({ id, lag: parseFloat(work[key]) || 0 })
+      } else {
+        predecessorsData[ind].lag = parseFloat(work[key]) || 0
+      }
+
+      delete work[key]
+    } else if (regexSucR.test(key) || regexSucL.test(key)) {
       delete work[key]
     }
   })
@@ -65,6 +92,8 @@ function addWork (data) {
   work.c_3_optimistic_cost = isNaN(parseFloat(work.c_3_optimistic_cost)) ? undefined : parseFloat(work.c_3_optimistic_cost)
   work.c_3_mostlikely_cost = isNaN(parseFloat(work.c_3_mostlikely_cost)) ? undefined : parseFloat(work.c_3_mostlikely_cost)
   work.c_3_pessimistic_cost = isNaN(parseFloat(work.c_3_pessimistic_cost)) ? undefined : parseFloat(work.c_3_pessimistic_cost)
+  work.a_e_reserve = isNaN(parseFloat(work.a_e_reserve)) ? undefined : parseFloat(work.a_e_reserve) || 0
+  work.a_e_estimate = isNaN(parseFloat(work.a_e_estimate)) ? undefined : parseFloat(work.a_e_estimate) || 0
 
   return new models.Workpack(work).save()
   .then((work) => (
@@ -86,6 +115,15 @@ function addWork (data) {
       work.resources().updatePivot(
         { amount: res.amount },
         { query: (qb) => { qb.where({ 'workpack_id': work.id, 'resource_id': res.id }) } }
+      )
+    )))
+    .then(() => (work))
+  ))
+  .then((work) => (
+    Promise.all(predecessorsData.map((pre) => (
+      work.predecessors().updatePivot(
+        { relation: pre.relation, lag: pre.lag },
+        { query: (qb) => { qb.where({ 'owner_id': work.id, 'predecessor_id': pre.id }) } }
       )
     )))
     .then(() => (work))

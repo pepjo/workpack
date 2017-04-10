@@ -69,43 +69,71 @@
         <label for="predecessors">Predecessors</label>
         <select multiple id="predecessors" name="predecessors" size="8">
           {{#each predecessors}}
-          <option value="{{this.id}}"{{{this.selected}}}>{{this.group.code}}-{{this.wsb_id}}</option>
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>
       <td>
-        <label for="relationship_p">Relationship</label>
-        <select id="relationship_p" name="relationship_p">
-          <option value="FS"{{{isSelected work.relationship_p 'FS'}}}>Finish-to-Start</option>
-          <option value="FF"{{{isSelected work.relationship_p 'FF'}}}>Finish-to-Finish</option>
-          <option value="SS"{{{isSelected work.relationship_p 'SS'}}}>Start-to-Start</option>
-          <option value="SF"{{{isSelected work.relationship_p 'SF'}}}>Star-to-Finish</option>
-        </select>
+        <ul class="no_list" id="predecessors_relation_container">
+          {{#each work.predecessors}}
+          <li>
+            <label for="predecessors_relation_{{this.id}}">Relation {{this.wsb_id}}</label>
+            <select id="predecessors_relation_{{this.id}}" name="predecessors_relation_{{this.id}}">
+              <option value="FS"{{{isSelected this._pivot_relation 'FS'}}}>Finish-to-Start</option>
+              <option value="FF"{{{isSelected this._pivot_relation 'FF'}}}>Finish-to-Finish</option>
+              <option value="SS"{{{isSelected this._pivot_relation 'SS'}}}>Start-to-Start</option>
+              <option value="SF"{{{isSelected this._pivot_relation 'SF'}}}>Star-to-Finish</option>
+            </select>
+          </li>
+          {{/each}}
+        <ul>
       </td>
       <td>
-        <label for="lag_p">Lag</label>
-        <textarea id="lag_p" name="lag_p">{{work.lag_p}}</textarea>
+        <ul class="no_list" id="predecessors_lag_container">
+          {{#each work.predecessors}}
+          <li>
+            <label for="predecessors_lag_{{this.id}}">Lag {{this.wsb_id}}</label>
+            <input id="predecessors_lag_{{this.id}}" name="predecessors_lag_{{this.id}}" value="{{this._pivot_lag}}" />
+          </li>
+          {{/each}}
+        <ul>
       </td>
       <td>
         <label for="successor">Successor</label>
-        <select multiple id="successor" name="successor" size="8">
+        <select disabled multiple id="successor" size="8">
           {{#each successors}}
-          <option disabled value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
+          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
           {{/each}}
         </select>
+        {{#each work.successors}}
+        <input type="hidden" name="successors" value="{{this.id}}" />
+        {{/each}}
       </td>
       <td>
-        <label for="relationship_s">Relationship</label>
-        <select id="relationship_s" name="relationship_s">
-          <option value="FS"{{{isSelected work.relationship_s 'FS'}}}>Finish-to-Start</option>
-          <option value="FF"{{{isSelected work.relationship_s 'FF'}}}>Finish-to-Finish</option>
-          <option value="SS"{{{isSelected work.relationship_s 'SS'}}}>Start-to-Start</option>
-          <option value="SF"{{{isSelected work.relationship_s 'SF'}}}>Star-to-Finish</option>
-        </select>
+        <ul class="no_list" id="successors_relation_container">
+          {{#each work.successors}}
+          <li>
+            <input type="hidden" name="successors_relation_{{this.id}}" value="{{this._pivot_relation}}" />
+            <label for="successors_relation_{{this.id}}">Relation {{this.wsb_id}}</label>
+            <select disabled id="successors_relation_{{this.id}}">
+              <option value="FS"{{{isSelected this._pivot_relation 'FS'}}}>Finish-to-Start</option>
+              <option value="FF"{{{isSelected this._pivot_relation 'FF'}}}>Finish-to-Finish</option>
+              <option value="SS"{{{isSelected this._pivot_relation 'SS'}}}>Start-to-Start</option>
+              <option value="SF"{{{isSelected this._pivot_relation 'SF'}}}>Star-to-Finish</option>
+            </select>
+          </li>
+          {{/each}}
+        <ul>
       </td>
       <td>
-        <label for="lag_s">Lag</label>
-        <textarea id="lag_s" name="lag_s" readonly>{{work.lag_s}}</textarea>
+        <ul class="no_list" id="successors_lag_container">
+          {{#each work.successors}}
+          <li>
+            <label for="successors_lag_{{this.id}}">Lag {{this.wsb_id}}</label>
+            <input readonly id="successors_lag_{{this.id}}" name="successors_lag_{{this.id}}" value="{{this._pivot_lag}}" />
+          </li>
+          {{/each}}
+        <ul>
       </td>
     </tr>
     <tr>

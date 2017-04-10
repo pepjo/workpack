@@ -1,4 +1,89 @@
 
+function renderPredecesorsUI () {
+  const current = $('#predecessors_relation_container li select')
+  .toArray()
+  .map((element) => {
+    const rel = $(element)
+    const id = parseInt(rel.attr('id').substr(22, 10000), 10)
+    const lag = $('#predecessors_lag_container li input#predecessors_lag_' + id)
+
+    return {
+      id,
+      titleR: rel.prev().text(),
+      relation: rel.val(),
+      titleL: lag.prev().text(),
+      lag: lag.val(),
+    }
+  })
+
+  const newopt = $('#predecessors option:selected')
+  .toArray()
+  .map((element) => {
+    const jqe = $(element)
+    const id = parseInt(jqe.val(), 10)
+    const cur = current.find((item) => (item.id === id))
+
+    if (cur) {
+      return cur
+    } else {
+      return {
+        id,
+        titleR: `Relation ${jqe.text()}`,
+        relation: '',
+        titleL: `Lag ${jqe.text()}`,
+        lag: '',
+      }
+    }
+  })
+
+  const newR = newopt
+  .map((item) => (
+    $('<li>')
+    .append(
+      $(`<label for="predecessors_relation_${item.id}">`)
+      .text(
+        item.titleR
+      )
+    )
+    .append(
+      $(`<select id="predecessors_relation_${item.id}" name="predecessors_relation_${item.id}">`)
+      .append(
+        $(`<option value="FS"${item.relation === 'FS' ? ' selected="selected"' : ''}>Finish-to-Start</option>`)
+      )
+      .append(
+        $(`<option value="FF"${item.relation === 'FF' ? ' selected="selected"' : ''}>Finish-to-Finish</option>`)
+      )
+      .append(
+        $(`<option value="SS"${item.relation === 'SS' ? ' selected="selected"' : ''}>Start-to-Start</option>`)
+      )
+      .append(
+        $(`<option value="SF"${item.relation === 'SF' ? ' selected="selected"' : ''}>Star-to-Finish</option>`)
+      )
+    )
+  ))
+
+  const newL = newopt
+  .map((item) => (
+    $('<li>')
+    .append(
+      $(`<label for="predecessors_lag_${item.id}">`)
+      .text(
+        item.titleL
+      )
+    )
+    .append(
+      $(`<input id="predecessors_lag_${item.id}" name="predecessors_lag_${item.id}" value="${item.lag}" />`)
+    )
+  ))
+
+  $('#predecessors_relation_container')
+  .html('')
+  .append(newR)
+
+  $('#predecessors_lag_container')
+  .html('')
+  .append(newL)
+}
 function renderResourcesUI () {
   const current = $('#resources_amount_container li input')
   .toArray()
@@ -284,3 +369,4 @@ $('#a_e_confidence_level').on('change', () => { recalculateEstimate() })
 $('#a_e_indirect_costs').on('change', () => { recalculateEstimate() })
 
 $('#resources').on('change', () => { renderResourcesUI() })
+$('#predecessors').on('change', () => { renderPredecesorsUI() })
