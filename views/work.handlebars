@@ -74,6 +74,13 @@ $('.row').each((key, item) => {
       location.href = `/del/work/${item.getAttribute('key')}${location.search}`
     }
   })
-  $(item).on('click', () => { location.href = `/add/work/${item.getAttribute('key')}${location.search}` })
+  $(item).on('click', (event) => {
+    const target = $(event.target)
+    if (target.is('.list__tooltip') || target.parents('.list__tooltip').length > 0) {
+      // Do nothing
+    } else {
+      location.href = `/add/work/${item.getAttribute('key')}${location.search}`
+    }
+  })
 })
 </script>
