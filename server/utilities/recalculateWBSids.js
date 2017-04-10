@@ -28,18 +28,19 @@ module.exports = function reccalc (opts) {
   .then((workpks) => {
     return workpks.map((item, i) => {
       item.subid = i + 1
+      const subid = item.subid.pad(2)
 
       if (opts.parent) {
-        if (item.wsb_id !== item.parent.wsb_id + '.' + item.subid) {
+        if (item.wsb_id !== item.parent.wsb_id + '.' + subid) {
           recalculate.push(item)
         }
-        item.wsb_id = item.parent.wsb_id + '.' + item.subid
+        item.wsb_id = item.parent.wsb_id + '.' + subid
         item.parent = item.parent.ids
       } else if (opts.group) {
-        if (item.wsb_id !== item.group.code + '-' + item.subid) {
+        if (item.wsb_id !== item.group.code + '-' + subid) {
           recalculate.push(item)
         }
-        item.wsb_id = item.group.code + '-' + item.subid
+        item.wsb_id = item.group.code + '-' + subid
         item.parent = null
       }
 

@@ -7,6 +7,12 @@ const exphbs  = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
 
+Number.prototype.pad = function (size) {
+  let s = String(this)
+  while (s.length < (size || 2)) {s = '0' + s}
+  return s
+}
+
 const knex = require('knex')({
   client: 'pg',
   connection: process.env.DATABASE_URL,
@@ -22,6 +28,7 @@ const addRouter = require('./server/routes/add')
 const delRouter = require('./server/routes/del')
 const listRouter = require('./server/routes/list')
 const skeletonRouter = require('./server/routes/skeleton')
+const tableRouter = require('./server/routes/table')
 
 // Define the pass on all routers
 app.use((req, res, next) => {
@@ -55,6 +62,7 @@ app.use('/add', addRouter)
 app.use('/del', delRouter)
 app.use('/list', listRouter)
 app.use('/skeleton', skeletonRouter)
+app.use('/table', tableRouter)
 
 app.use(express.static('public'))
 

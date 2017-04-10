@@ -2,7 +2,9 @@
 const express = require('express')
 const router = express.Router()
 
-const  { fetchAllGroups, fetchAllResources, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId } = require('../utilities/fetchDbMethods')
+const  {
+  fetchAllGroups, fetchAllResources, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId
+} = require('../utilities/fetchDbMethods')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
 
 router.get('/work', function (req, res, next) {
