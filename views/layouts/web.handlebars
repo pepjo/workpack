@@ -53,10 +53,15 @@
       max-width: 200px;
     }
     .dataList td {
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
+      position: relative;
       max-width: 280px;
+    }
+    .dataList .list__content {
+      max-width: 100%;
+      white-space: nowrap;
+      overflow-x: hidden;
+      overflow-y: visible;
+      text-overflow: ellipsis;
     }
     .dataList tr:nth-child(2n+3) {
       background: #DDD;
@@ -113,6 +118,26 @@
     .no_list li {
       padding: 0;
       margin: 0;
+      display: block;
+    }
+    
+    .list__tooltip {
+      position: absolute;
+      padding: 10px;
+      display: none;
+      background-color: rgb(240, 235, 213);
+      border: 1px solid rgb(214, 211, 149);
+      border-radius: 2px;
+      max-width: 100%;
+      white-space: normal;
+      text-overflow: initial;
+      z-index: 100;
+    }
+    .list__tooltip ul {
+      padding: 0 0 0 10px;
+      margin: 0;
+    }
+    td:hover .list__tooltip {
       display: block;
     }
   </style>
