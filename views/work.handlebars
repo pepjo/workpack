@@ -7,11 +7,7 @@
     <th>Activity</th>
     <th>Description</th>
     <th>Predecessors</th>
-    <th>Relationship</th>
-    <th>Lag</th>
     <th>Successor</th>
-    <th>Relationship</th>
-    <th>Lag</th>
     <th>Number Resources</th>
     <th>Skills</th>
     <th>Other Ressources</th>
@@ -61,12 +57,8 @@
       <td>{{this.wsb_id}}</td>
       <td>{{this.activity}}</td>
       <td>{{this.description_of_work}}</td>
-      <td>{{this.predecessors}}</td>
-      <td>{{this.relationship_p}}</td>
-      <td>{{this.lag_p}}</td>
-      <td>{{this.successor}}</td>
-      <td>{{this.relationship_s}}</td>
-      <td>{{this.lag_s}}</td>
+      <td>{{#each this.predecessors}}{{this.wsb_id}}{{/each}}</td>
+      <td>{{#each this.successor}}{{this.wsb_id}}{{/each}}</td>
       <td>{{this.number_resources}}</td>
       <td>{{this.skill_requirements}}</td>
       <td>{{this.other_required_ressources}}</td>
