@@ -26,12 +26,24 @@ module.exports = function (bookshelf) {
       return this.hasMany(Workpack, 'parent')
     },
     predecessors () {
-      return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
-      .withPivot(['relation', 'lag'])
+      if ((this.attributes || {}).wsb_type !== 'Task') {
+        return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
+        .through(Workpack, null, 'parent')
+        .withPivot(['relation', 'lag'])
+      } else {
+        return this.belongsToMany(Workpack, 'workpacks_workpacks', 'owner_id', 'predecessor_id')
+        .withPivot(['relation', 'lag'])
+      }
     },
     successors () {
-      return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
-      .withPivot(['relation', 'lag'])
+      if ((this.attributes || {}).wsb_type !== 'Task') {
+        return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
+        .through(Workpack, null, 'parent')
+        .withPivot(['relation', 'lag'])
+      } else {
+        return this.belongsToMany(Workpack, 'workpacks_workpacks', 'predecessor_id', 'owner_id')
+        .withPivot(['relation', 'lag'])
+      }
     },
     resources () {
       return this.belongsToMany(Resource, 'workpacks_resources', 'workpack_id', 'resource_id').withPivot(['amount'])
