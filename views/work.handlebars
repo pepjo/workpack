@@ -1,14 +1,12 @@
 <table cellspacing="0" class="dataList">
   <tr>
     <th>Borra</th>
-    <th>Ordre</th>
-    <th>Group</th>
     <th>WBS ID</th>
     <th>Activity</th>
     <th>Description</th>
     <th>Predecessors</th>
     <th>Successor</th>
-    <th>Number Resources</th>
+    <th>Resources</th>
     <th>Skills</th>
     <th>Other Ressources</th>
     <th>Effort</th>
@@ -19,86 +17,50 @@
     <th>Time estimate</th>
     <th>Cost type</th>
     <th>Cost estimate</th>
-    <th>Time para. effort hours</th>
-    <th>Time para. resource quantity</th>
-    <th>Time para. percentage avaiable</th>
-    <th>Time para. performance factor</th>
-    <th>Time anal. previous activity</th>
-    <th>Time anal. previous duration</th>
-    <th>Time anal. current activity</th>
-    <th>Time anal. multiplier</th>
-    <th>Time anal. previous activity txt</th>
-    <th>Time anal. previous duration txt</th>
-    <th>Time anal. current activity txt</th>
-    <th>Time anal. multiplier txt</th>
-    <th>Time 3p. optimistic duration</th>
-    <th>Time 3p. mostlikely duration</th>
-    <th>Time 3p. pessimistic duration</th>
-    <th>Time 3p. wheighting equation</th>
-    <th>Cost para. variable cost</th>
-    <th>Cost para. cost per unit</th>
-    <th>Cost para. number of units</th>
-    <th>Cost anal. previous activity</th>
-    <th>Cost anal. previous activity txt</th>
-    <th>Cost anal. previous cost</th>
-    <th>Cost anal. current activity</th>
-    <th>Cost anal. current activity txt</th>
-    <th>Cost anal. multiplier</th>
-    <th>Cost 3p. optimistic cost</th>
-    <th>Cost 3p. mostlikely cost</th>
-    <th>Cost 3p. pessimistic cost</th>
-    <th>Cost 3p. wheighting equation</th>
   </tr>
   {{#each works}}
     <tr key="{{this.id}}" class="row">
       <td class="del">x</td>
-      <td>{{this.order}}</td>
-      <td>{{this.groups_id}}</td>
-      <td>{{this.wsb_id}}</td>
-      <td>{{this.activity}}</td>
-      <td>{{this.description_of_work}}</td>
-      <td>{{#each this.predecessors}}{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}}); {{/each}}</td>
-      <td>{{#each this.successors}}{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}}); {{/each}}</td>
-      <td>{{this.number_resources}}</td>
-      <td>{{this.skill_requirements}}</td>
-      <td>{{this.other_required_ressources}}</td>
-      <td>{{this.type_of_effort}}</td>
-      <td>{{this.location_performance}}</td>
-      <td>{{this.constrains}}</td>
-      <td>{{this.assumptions}}</td>
-      <td>{{this.t_type}}</td>
-      <td>{{this.t_duration_estimate}}</td>
-      <td>{{this.c_type}}</td>
-      <td>{{this.c_cost_estimate}}</td>
-      <td>{{this.t_p_effort_hours}}</td>
-      <td>{{this.t_p_resource_quantity}}</td>
-      <td>{{this.t_p_percentage_avaiable}}</td>
-      <td>{{this.t_p_performance_factor}}</td>
-      <td>{{this.t_a_previous_activity}}</td>
-      <td>{{this.t_a_previous_duration}}</td>
-      <td>{{this.t_a_current_activity}}</td>
-      <td>{{this.t_a_multiplier}}</td>
-      <td>{{this.t_a_previous_activity_txt}}</td>
-      <td>{{this.t_a_previous_duration_txt}}</td>
-      <td>{{this.t_a_current_activity_txt}}</td>
-      <td>{{this.t_a_multiplier_txt}}</td>
-      <td>{{this.t_3_optimistic_duration}}</td>
-      <td>{{this.t_3_mostlikely_duration}}</td>
-      <td>{{this.t_3_pessimistic_duration}}</td>
-      <td>{{this.t_3_wheighting_equation}}</td>
-      <td>{{this.c_p_variable_cost}}</td>
-      <td>{{this.c_p_cost_per_unit}}</td>
-      <td>{{this.c_p_number_of_units}}</td>
-      <td>{{this.c_a_previous_activity}}</td>
-      <td>{{this.c_a_previous_activity_txt}}</td>
-      <td>{{this.c_a_previous_cost}}</td>
-      <td>{{this.c_a_current_activity}}</td>
-      <td>{{this.c_a_current_activity_txt}}</td>
-      <td>{{this.c_a_multiplier}}</td>
-      <td>{{this.c_3_optimistic_cost}}</td>
-      <td>{{this.c_3_mostlikely_cost}}</td>
-      <td>{{this.c_3_pessimistic_cost}}</td>
-      <td>{{this.c_3_wheighting_equation}}</td>
+      <td><div class="list__content">{{this.wsb_id}}</div></td>
+      <td><div class="list__content">{{this.activity}}</div></td>
+      <td>
+        <div class="list__tooltip">{{this.description_of_work}}</div>
+        <div class="list__content">{{this.description_of_work}}</div>
+      </td>
+      <td>
+        <div class="list__tooltip">
+          <ul>
+            {{#each this.predecessors}}<li>{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}})</li>{{/each}}
+          </ul>
+        </div>
+        <div class="list__content">{{#each this.predecessors}}{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}}); {{/each}}</div>
+      </td>
+      <td>
+        <div class="list__tooltip">
+          <ul>
+            {{#each this.successors}}<li>{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}})</li>{{/each}}
+          </ul>
+        </div>
+        <div class="list__content">{{#each this.successors}}{{this.wsb_id}}({{this._pivot_relation}} {{this._pivot_lag}}); {{/each}}</div>
+      </td>
+      <td>
+        <div class="list__tooltip">
+          <ul>
+            {{#each this.resources}}<li>{{this.name}}({{this._pivot_amount}})</li>{{/each}}
+          </ul>
+        </div>
+        <div class="list__content">{{#each this.resources}}{{this.name}}({{this._pivot_amount}}); {{/each}}</div>
+      </td>
+      <td><div class="list__content">{{this.skill_requirements}}</div></td>
+      <td><div class="list__content">{{this.other_required_ressources}}</div></td>
+      <td><div class="list__content">{{this.type_of_effort}}</div></td>
+      <td><div class="list__content">{{this.location_performance}}</div></td>
+      <td><div class="list__content">{{this.constrains}}</div></td>
+      <td><div class="list__content">{{this.assumptions}}</div></td>
+      <td><div class="list__content">{{this.t_type}}</div></td>
+      <td><div class="list__content">{{this.t_duration_estimate}}</div></td>
+      <td><div class="list__content">{{this.c_type}}</div></td>
+      <td><div class="list__content">{{this.c_cost_estimate}}</div></td>
     </tr>
   {{/each}}
 </table>
