@@ -190,219 +190,226 @@
     </tr>
   </table>
 
-  <hr/>
-  <h2>Time calculations</h2>
-  <label for="t_type"></label>
-  <select id="t_type" name="t_type">
-    <option value="t_p" {{{isSelected work.t_type 't_p'}}}>Parametric</option>
-    <option value="t_a" {{{isSelected work.t_type 't_a'}}}>Analogus</option>
-    <option value="t_3" {{{isSelected work.t_type 't_3'}}}>Line of three points</option>
-  </select>
+  <div id="time_container">
+    <hr/>
+    <h2>Time calculations</h2>
+    <label for="t_type"></label>
+    <select id="t_type" name="t_type">
+      <option value="t_p" {{{isSelected work.t_type 't_p'}}}>Parametric</option>
+      <option value="t_a" {{{isSelected work.t_type 't_a'}}}>Analogus</option>
+      <option value="t_3" {{{isSelected work.t_type 't_3'}}}>Line of three points</option>
+    </select>
 
-  <table class="additionalTable" id="t_p">
-    <tr>
-      <td>
-        <label for="t_p_effort_hours">Effort Hours</label>
-        <input id="t_p_effort_hours" name="t_p_effort_hours" value="{{work.t_p_effort_hours}}" />
-      </td>
-      <td>
-        <label for="t_p_resource_quantity">Resource Quantity</label>
-        <input id="t_p_resource_quantity" name="t_p_resource_quantity" value="{{work.t_p_resource_quantity}}" />
-      </td>
-      <td>
-        <label for="t_p_percentage_avaiable">% Available</label>
-        <input id="t_p_percentage_avaiable" name="t_p_percentage_avaiable" value="{{work.t_p_percentage_avaiable}}" />
-      </td>
-      <td>
-        <label for="t_p_performance_factor">Performance Factor</label>
-        <input id="t_p_performance_factor" name="t_p_performance_factor" value="{{work.t_p_performance_factor}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt
-      </td>
-    </tr>
-  </table>
-  <table class="additionalTable" id="t_a">
-    <tr>
-      <td>
-        <label for="t_a_previous_activity">Previous activity num</label>
-        <input id="t_a_previous_activity" name="t_a_previous_activity" value="{{work.t_a_previous_activity}}" />
-        <label for="t_a_previous_activity_txt">Previous activity txt</label>
-        <input id="t_a_previous_activity_txt" name="t_a_previous_activity_txt" value="{{work.t_a_previous_activity_txt}}" />
-      </td>
-      <td>
-        <label for="t_a_previous_duration">Previous duration num</label>
-        <input id="t_a_previous_duration" name="t_a_previous_duration" value="{{work.t_a_previous_duration}}" />
-        <label for="t_a_previous_duration_txt">Previous duration txt</label>
-        <input id="t_a_previous_duration_txt" name="t_a_previous_duration_txt" value="{{work.t_a_previous_duration_txt}}" />
-      </td>
-      <td>
-        <label for="t_a_current_activity">Current activity num</label>
-        <input id="t_a_current_activity" name="t_a_current_activity" value="{{work.t_a_current_activity}}" />
-        <label for="t_a_current_activity_txt">Current activity txt</label>
-        <input id="t_a_current_activity_txt" name="t_a_current_activity_txt" value="{{work.t_a_current_activity_txt}}" />
-      </td>
-      <td>
-        <label for="t_a_multiplier">Multiplier num</label>
-        <input readonly id="t_a_multiplier" name="t_a_multiplier" value="{{work.t_a_multiplier}}" />
-        <label for="t_a_multiplier_txt">Multiplier txt</label>
-        <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" value="{{work.t_a_multiplier_txt}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt
-      </td>
-    </tr>
-  </table>
-  <table class="additionalTable" id="t_3">
-    <tr>
-      <td>
-        <label for="t_3_optimistic_duration">Optimistic duration</label>
-        <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" value="{{work.t_3_optimistic_duration}}" />
-      </td>
-      <td>
-        <label for="t_3_mostlikely_duration">Most likely duration</label>
-        <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" value="{{work.t_3_mostlikely_duration}}" />
-      </td>
-      <td>
-        <label for="t_3_pessimistic_duration">Pessimistic duration</label>
-        <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" value="{{work.t_3_pessimistic_duration}}" />
-      </td>
-      <td>
-        <label for="t_3_wheighting_equation">Wheighting equation</label>
-        <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" value="{{work.t_3_wheighting_equation}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt. </br>
-        Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
-      </td>
-    </tr>
-  </table>
+    <table class="additionalTable" id="t_p">
+      <tr>
+        <td>
+          <label for="t_p_effort_hours">Effort Hours</label>
+          <input id="t_p_effort_hours" name="t_p_effort_hours" value="{{work.t_p_effort_hours}}" />
+        </td>
+        <td>
+          <label for="t_p_resource_quantity">Resource Quantity</label>
+          <input id="t_p_resource_quantity" name="t_p_resource_quantity" value="{{work.t_p_resource_quantity}}" />
+        </td>
+        <td>
+          <label for="t_p_percentage_avaiable">% Available</label>
+          <input id="t_p_percentage_avaiable" name="t_p_percentage_avaiable" value="{{work.t_p_percentage_avaiable}}" />
+        </td>
+        <td>
+          <label for="t_p_performance_factor">Performance Factor</label>
+          <input id="t_p_performance_factor" name="t_p_performance_factor" value="{{work.t_p_performance_factor}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt
+        </td>
+      </tr>
+    </table>
+    <table class="additionalTable" id="t_a">
+      <tr>
+        <td>
+          <label for="t_a_previous_activity">Previous activity num</label>
+          <input id="t_a_previous_activity" name="t_a_previous_activity" value="{{work.t_a_previous_activity}}" />
+          <label for="t_a_previous_activity_txt">Previous activity txt</label>
+          <input id="t_a_previous_activity_txt" name="t_a_previous_activity_txt" value="{{work.t_a_previous_activity_txt}}" />
+        </td>
+        <td>
+          <label for="t_a_previous_duration">Previous duration num</label>
+          <input id="t_a_previous_duration" name="t_a_previous_duration" value="{{work.t_a_previous_duration}}" />
+          <label for="t_a_previous_duration_txt">Previous duration txt</label>
+          <input id="t_a_previous_duration_txt" name="t_a_previous_duration_txt" value="{{work.t_a_previous_duration_txt}}" />
+        </td>
+        <td>
+          <label for="t_a_current_activity">Current activity num</label>
+          <input id="t_a_current_activity" name="t_a_current_activity" value="{{work.t_a_current_activity}}" />
+          <label for="t_a_current_activity_txt">Current activity txt</label>
+          <input id="t_a_current_activity_txt" name="t_a_current_activity_txt" value="{{work.t_a_current_activity_txt}}" />
+        </td>
+        <td>
+          <label for="t_a_multiplier">Multiplier num</label>
+          <input readonly id="t_a_multiplier" name="t_a_multiplier" value="{{work.t_a_multiplier}}" />
+          <label for="t_a_multiplier_txt">Multiplier txt</label>
+          <input id="t_a_multiplier_txt" name="t_a_multiplier_txt" value="{{work.t_a_multiplier_txt}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt
+        </td>
+      </tr>
+    </table>
+    <table class="additionalTable" id="t_3">
+      <tr>
+        <td>
+          <label for="t_3_optimistic_duration">Optimistic duration</label>
+          <input id="t_3_optimistic_duration" name="t_3_optimistic_duration" value="{{work.t_3_optimistic_duration}}" />
+        </td>
+        <td>
+          <label for="t_3_mostlikely_duration">Most likely duration</label>
+          <input id="t_3_mostlikely_duration" name="t_3_mostlikely_duration" value="{{work.t_3_mostlikely_duration}}" />
+        </td>
+        <td>
+          <label for="t_3_pessimistic_duration">Pessimistic duration</label>
+          <input id="t_3_pessimistic_duration" name="t_3_pessimistic_duration" value="{{work.t_3_pessimistic_duration}}" />
+        </td>
+        <td>
+          <label for="t_3_wheighting_equation">Wheighting equation</label>
+          <input id="t_3_wheighting_equation" name="t_3_wheighting_equation" value="{{work.t_3_wheighting_equation}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt. </br>
+          Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
+        </td>
+      </tr>
+    </table>
 
-  <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
-  <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
+    <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
+    <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
+  </div>
 
-  <hr/>
-  <h2>Cost calculations</h2>
-  <label for="c_type"></label>
-  <select id="c_type" name="c_type">
-    <option value="c_p" {{{isSelected work.c_type 'c_p'}}}>Parametric</option>
-    <option value="c_a" {{{isSelected work.c_type 'c_a'}}}>Analogus</option>
-    <option value="c_3" {{{isSelected work.c_type 'c_3'}}}>Line of three points</option>
-  </select>
+  <div id="cost_container">
+    <hr/>
+    <h2>Cost calculations</h2>
+    <label for="c_type"></label>
+    <select id="c_type" name="c_type">
+      <option value="c_p" {{{isSelected work.c_type 'c_p'}}}>Parametric</option>
+      <option value="c_a" {{{isSelected work.c_type 'c_a'}}}>Analogus</option>
+      <option value="c_3" {{{isSelected work.c_type 'c_3'}}}>Line of three points</option>
+    </select>
 
-  <table class="additionalTable" id="c_p">
-    <tr>
-      <td>
-        <label for="c_p_variable_cost">Variable cost</label>
-        <input id="c_p_variable_cost" name="c_p_variable_cost" value="{{work.c_p_variable_cost}}" />
-      </td>
-      <td>
-        <label for="c_p_cost_per_unit">Cost per unit</label>
-        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" value="{{work.c_p_cost_per_unit}}" />
-      </td>
-      <td>
-        <label for="c_p_number_of_units">Number of units</label>
-        <input id="c_p_number_of_units" name="c_p_number_of_units" value="{{work.c_p_number_of_units}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt
-      </td>
-    </tr>
-  </table>
-  <table class="additionalTable" id="c_a">
-    <tr>
-      <td>
-        <label for="c_a_previous_activity">Previous activity num</label>
-        <input id="c_a_previous_activity" name="c_a_previous_activity" value="{{work.c_a_previous_activity}}" />
-        <label for="c_a_previous_activity_txt">Previous activity txt</label>
-        <input id="c_a_previous_activity_txt" name="c_a_previous_activity_txt" value="{{work.c_a_previous_activity_txt}}" />
-      </td>
-      <td>
-        <label for="c_a_previous_cost">Previous cost</label>
-        <input id="c_a_previous_cost" name="c_a_previous_cost" value="{{work.c_a_previous_cost}}" />
-      </td>
-      <td>
-        <label for="c_a_current_activity">Current activity num</label>
-        <input id="c_a_current_activity" name="c_a_current_activity" value="{{work.c_a_current_activity}}" />
-        <label for="c_a_current_activity_txt">Current activity txt</label>
-        <input id="c_a_current_activity_txt" name="c_a_current_activity_txt" value="{{work.c_a_current_activity_txt}}" />
-      </td>
-      <td>
-        <label for="c_a_multiplier">Multiplier</label>
-        <input readonly id="c_a_multiplier" name="c_a_multiplier" value="{{work.c_a_multiplier}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt.
-      </td>
-    </tr>
-  </table>
-  <table class="additionalTable" id="c_3">
-    <tr>
-      <td>
-        <label for="c_3_optimistic_cost">Optimistic cost</label>
-        <input id="c_3_optimistic_cost" name="c_3_optimistic_cost" value="{{work.c_3_optimistic_cost}}" />
-      </td>
-      <td>
-        <label for="c_3_mostlikely_cost">Most likely cost</label>
-        <input id="c_3_mostlikely_cost" name="c_3_mostlikely_cost" value="{{work.c_3_mostlikely_cost}}" />
-      </td>
-      <td>
-        <label for="c_3_pessimistic_cost">Pessimistic cost</label>
-        <input id="c_3_pessimistic_cost" name="c_3_pessimistic_cost" value="{{work.c_3_pessimistic_cost}}" />
-      </td>
-      <td>
-        <label for="c_3_wheighting_equation">Wheighting equations</label>
-        <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" value="{{work.c_3_wheighting_equation}}" />
-      </td>
-    </tr>
-    <tr>
-      <td colspan="3">
-        El separador de decimals és 1 punt. </br>
-        Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
-      </td>
-    </tr>
-  </table>
+    <table class="additionalTable" id="c_p">
+      <tr>
+        <td>
+          <label for="c_p_variable_cost">Variable cost</label>
+          <input id="c_p_variable_cost" name="c_p_variable_cost" value="{{work.c_p_variable_cost}}" />
+        </td>
+        <td>
+          <label for="c_p_cost_per_unit">Cost per unit</label>
+          <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" value="{{work.c_p_cost_per_unit}}" />
+        </td>
+        <td>
+          <label for="c_p_number_of_units">Number of units</label>
+          <input id="c_p_number_of_units" name="c_p_number_of_units" value="{{work.c_p_number_of_units}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt
+        </td>
+      </tr>
+    </table>
+    <table class="additionalTable" id="c_a">
+      <tr>
+        <td>
+          <label for="c_a_previous_activity">Previous activity num</label>
+          <input id="c_a_previous_activity" name="c_a_previous_activity" value="{{work.c_a_previous_activity}}" />
+          <label for="c_a_previous_activity_txt">Previous activity txt</label>
+          <input id="c_a_previous_activity_txt" name="c_a_previous_activity_txt" value="{{work.c_a_previous_activity_txt}}" />
+        </td>
+        <td>
+          <label for="c_a_previous_cost">Previous cost</label>
+          <input id="c_a_previous_cost" name="c_a_previous_cost" value="{{work.c_a_previous_cost}}" />
+        </td>
+        <td>
+          <label for="c_a_current_activity">Current activity num</label>
+          <input id="c_a_current_activity" name="c_a_current_activity" value="{{work.c_a_current_activity}}" />
+          <label for="c_a_current_activity_txt">Current activity txt</label>
+          <input id="c_a_current_activity_txt" name="c_a_current_activity_txt" value="{{work.c_a_current_activity_txt}}" />
+        </td>
+        <td>
+          <label for="c_a_multiplier">Multiplier</label>
+          <input readonly id="c_a_multiplier" name="c_a_multiplier" value="{{work.c_a_multiplier}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt.
+        </td>
+      </tr>
+    </table>
+    <table class="additionalTable" id="c_3">
+      <tr>
+        <td>
+          <label for="c_3_optimistic_cost">Optimistic cost</label>
+          <input id="c_3_optimistic_cost" name="c_3_optimistic_cost" value="{{work.c_3_optimistic_cost}}" />
+        </td>
+        <td>
+          <label for="c_3_mostlikely_cost">Most likely cost</label>
+          <input id="c_3_mostlikely_cost" name="c_3_mostlikely_cost" value="{{work.c_3_mostlikely_cost}}" />
+        </td>
+        <td>
+          <label for="c_3_pessimistic_cost">Pessimistic cost</label>
+          <input id="c_3_pessimistic_cost" name="c_3_pessimistic_cost" value="{{work.c_3_pessimistic_cost}}" />
+        </td>
+        <td>
+          <label for="c_3_wheighting_equation">Wheighting equations</label>
+          <input id="c_3_wheighting_equation" name="c_3_wheighting_equation" value="{{work.c_3_wheighting_equation}}" />
+        </td>
+      </tr>
+      <tr>
+        <td colspan="3">
+          El separador de decimals és 1 punt. </br>
+          Per 'Wheighting equations' les variables son o, m, p. Explicitar totes les operacions, pe. 4m no va, fer servir 4*m.
+        </td>
+      </tr>
+    </table>
 
-  <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
-  <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
+    <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
+    <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
+  </div>
 
-  <h2>Activity cost estimation</h2>
-  <label for="a_e"></label>
-  <table class="additionalTable" id="a_e">
-    <tr>
-      <td>
-        <label for="a_e_confidence_level">Confidence level</label>
-        <select id="a_e_confidence_level" name="a_e_confidence_level">
-          <option value="A"{{{isSelected work.a_e_confidence_level 'A'}}}>A</option>
-          <option value="B"{{{isSelected work.a_e_confidence_level 'B'}}}>B</option>
-          <option value="C"{{{isSelected work.a_e_confidence_level 'C'}}}>C</option>
-        </select>
-      </td>
-      <td>
-        <label for="a_e_indirect_costs">Indirect costs</label>
-        <input id="a_e_indirect_costs" name="a_e_indirect_costs" value="{{work.a_e_indirect_costs}}" />
-      </td>
-      <td>
-        <label for="a_e_reserve" style="display: block;">Reserve</label>
-        <input readonly id="a_e_reserve" name="a_e_reserve" value="{{work.a_e_reserve}}"  style="display: inline; width: initial;"/>
-        %
-      </td>
-      <td>
-        <label for="a_e_estimate">Estimate</label>
-        <input readonly id="a_e_estimate" name="a_e_estimate" value="{{work.a_e_estimate}}" />
-      </td>
-    </tr>
-  </table>
+  <div id="activity_container">
+    <hr/>
+    <h2>Activity cost estimation</h2>
+    <label for="a_e"></label>
+    <table class="additionalTable" id="a_e">
+      <tr>
+        <td>
+          <label for="a_e_confidence_level">Confidence level</label>
+          <select id="a_e_confidence_level" name="a_e_confidence_level">
+            <option value="A"{{{isSelected work.a_e_confidence_level 'A'}}}>A</option>
+            <option value="B"{{{isSelected work.a_e_confidence_level 'B'}}}>B</option>
+            <option value="C"{{{isSelected work.a_e_confidence_level 'C'}}}>C</option>
+          </select>
+        </td>
+        <td>
+          <label for="a_e_indirect_costs">Indirect costs</label>
+          <input id="a_e_indirect_costs" name="a_e_indirect_costs" value="{{work.a_e_indirect_costs}}" />
+        </td>
+        <td>
+          <label for="a_e_reserve" style="display: block;">Reserve</label>
+          <input readonly id="a_e_reserve" name="a_e_reserve" value="{{work.a_e_reserve}}"  style="display: inline; width: initial;"/>
+          %
+        </td>
+        <td>
+          <label for="a_e_estimate">Estimate</label>
+          <input readonly id="a_e_estimate" name="a_e_estimate" value="{{work.a_e_estimate}}" />
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <input type="submit" value="Guardar tot" />
 </form>
