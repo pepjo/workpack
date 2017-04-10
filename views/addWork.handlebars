@@ -297,18 +297,35 @@
   </select>
 
   <table class="additionalTable" id="c_p">
+    {{#each work.paramCosts}}
+    <tr class="c_p_item">
+      <td>
+        <label for="c_p_variable_cost_{{this.id}}">Variable cost</label>
+        <input id="c_p_variable_cost_{{this.id}}" name="c_p_variable_cost_{{this.id}}" value="{{this.variable_cost}}" />
+      </td>
+      <td>
+        <label for="c_p_cost_per_unit_{{this.id}}">Cost per unit</label>
+        <input id="c_p_cost_per_unit_{{this.id}}" name="c_p_cost_per_unit_{{this.id}}" value="{{this.cost_per_unit}}" />
+      </td>
+      <td>
+        <label for="c_p_number_of_units_{{this.id}}">Number of units</label>
+        <input id="c_p_number_of_units_{{this.id}}" name="c_p_number_of_units_{{this.id}}" value="{{this.number_of_units}}" />
+        <input type="hidden" id="c_p_estimate_{{this.id}}" name="c_p_estimate_{{this.id}}" value="{{this.estimate}}" />
+      </td>
+    </tr>
+    {{/each}}
     <tr>
       <td>
-        <label for="c_p_variable_cost">Variable cost</label>
-        <input id="c_p_variable_cost" name="c_p_variable_cost" value="{{work.c_p_variable_cost}}" />
+        <label for="c_p_variable_cost_new">New variable cost</label>
+        <input id="c_p_variable_cost_new" />
       </td>
       <td>
-        <label for="c_p_cost_per_unit">Cost per unit</label>
-        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" value="{{work.c_p_cost_per_unit}}" />
+        <label for="c_p_cost_per_unit_new">New cost per unit</label>
+        <input id="c_p_cost_per_unit_new" />
       </td>
       <td>
-        <label for="c_p_number_of_units">Number of units</label>
-        <input id="c_p_number_of_units" name="c_p_number_of_units" value="{{work.c_p_number_of_units}}" />
+        <label for="c_p_number_of_units_new">New number of units</label>
+        <input id="c_p_number_of_units_new" />
       </td>
     </tr>
     <tr>
