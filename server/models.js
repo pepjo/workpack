@@ -51,6 +51,9 @@ module.exports = function (bookshelf) {
   const Workpacks = bookshelf.Collection.extend({
     model: Workpack
   })
+  const ParamCosts = bookshelf.Collection.extend({
+    model: ParamCost
+  })
 
-  global.models = { Group, Resource, Workpack, Workpacks, ParamCost }
+  global.models = { Group, Resource, Workpack, Workpacks, ParamCost, ParamCosts }
 }

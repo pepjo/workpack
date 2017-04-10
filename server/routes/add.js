@@ -191,6 +191,7 @@ router.post('/work(*)', function (req, res, next) {
   const pass = req.pass
   const oldparent = req.body.oldparent === 'null' ? null : (req.body.oldparent === '' ? undefined : req.body.oldparent)
   const oldgroup = req.body.oldgroup
+  const newWork = req.originalUrl.includes('/work?') || req.originalUrl.includes('/work/?')
 
   if (req.query.pass === pass) {
     let work = Object.assign({}, req.body)
@@ -201,7 +202,42 @@ router.post('/work(*)', function (req, res, next) {
     const selResources = work.resources = (work.resources && !_.isArray(work.resources) ?
       [work.resources] : work.resources) || []
 
-    const render = (grp, works, resources, error) => {
+    const render = (grp, works, resources, error, paramCosts) => {
+      if (paramCosts) {
+        work.paramCosts = paramCosts
+      } else {
+        work.paramCosts = []
+        function paramOfCP (id, key, value) {
+          const ind = work.paramCosts.findIndex((item) => (item.id === id))
+
+          if (ind === -1) {
+            const obj = { id }
+            obj[key] = value
+            work.paramCosts.push(obj)
+          } else {
+            work.paramCosts[ind][key] = value
+          }
+        }
+        const regexParametricCostVarC = /^c_p_variable_cost_(.+)$/
+        const regexParametricCostCpU = /^c_p_cost_per_unit_(.+)$/
+        const regexParametricCostNoU = /^c_p_number_of_units_(.+)$/
+        const regexParametricCostEst = /^c_p_estimate_(.+)$/
+        Object.keys(req.body).forEach((key) => {
+          if (regexParametricCostVarC.test(key)) {
+            const id = regexParametricCostVarC.exec(key)[1]
+            paramOfCP(id, 'variable_cost', req.body[key])
+          } else if (regexParametricCostCpU.test(key)) {
+            const id = regexParametricCostCpU.exec(key)[1]
+            paramOfCP(id, 'cost_per_unit', parseFloat(req.body[key]))
+          } else if (regexParametricCostNoU.test(key)) {
+            const id = regexParametricCostNoU.exec(key)[1]
+            paramOfCP(id, 'number_of_units', parseFloat(req.body[key]))
+          } else if (regexParametricCostEst.test(key)) {
+            const id = regexParametricCostEst.exec(key)[1]
+            paramOfCP(id, 'estimate', parseFloat(req.body[key]))
+          }
+        })
+      }
       work.resources = selResources.map((id) => {
         const reso = resources.find((item) => (item.id === parseInt(id, 10)))
 
@@ -275,17 +311,23 @@ router.post('/work(*)', function (req, res, next) {
       }
 
       addWork(work)
-      .then(() => {
+      .then((data) => {
         if (oldparent || oldgroup !== '') {
-          return recaluclateWBSids({ parent: oldparent, group: oldgroup })
+          return recaluclateWBSids({ parent: oldparent, group: oldgroup }).then(() => (data))
         }
-        return false
+        return data
       })
-      .then(() => {
-        return recaluclateWBSids({ parent: work.parent, group: work.groups_id })
+      .then((data) => {
+        return recaluclateWBSids({ parent: work.parent, group: work.groups_id }).then(() => (data))
       })
-      .then(() => {
-        render(grp, works, resources, false)
+      .then((data) => {
+        if (newWork) {
+          res.redirect(`/add/work/${data[0].id}?pass=${req.query.pass}`)
+        } else {
+          const arr1 = data[1].map((item) => (item.attributes))
+          const arr2 = data[2].map((item) => (item.attributes))
+          render(grp, works, resources, false, arr1.concat(arr2))
+        }
       })
       .catch((error) => {
         console.error(error)

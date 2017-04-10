@@ -1,4 +1,88 @@
 
+function addCP (field, value) {
+  const id = ($('.c_p_item').toArray()
+    .map((item) => (parseInt($(item).attr('newid'), 10)))
+    .filter((item) => (item))
+    .sort((first, second) => (second - first))
+    [0] || 0) + 1
+
+  const variable_cost = field === 'variable' ? value : ''
+  const cost_per_unit = field === 'costUnit' ? value : 0
+  const number_of_units = field === 'numUnits' ? value : 0
+
+  const element = $(`<tr class="c_p_item" newid="${id}">`)
+  .append(
+    $('<td>')
+    .append(
+      $(`<label for="c_p_variable_cost_n${id}">Variable cost</label>`)
+    )
+    .append(
+      $(`<input class="c_p_variable_cost" id="c_p_variable_cost_n${id}" name="c_p_variable_cost_n${id}"
+        value="${variable_cost}" />`)
+      .on('change', () => { calculateCP() })
+    )
+  )
+  .append(
+    $('<td>')
+    .append(
+      $(`<label for="c_p_cost_per_unit_n${id}">Cost per unit</label>`)
+    )
+    .append(
+      $(`<input class="c_p_cost_per_unit" id="c_p_cost_per_unit_n${id}" name="c_p_cost_per_unit_n${id}"
+        value="${cost_per_unit}" />`)
+      .on('change', () => { calculateCP() })
+    )
+  )
+  .append(
+    $('<td>')
+    .append(
+      $(`<label for="c_p_number_of_units_n${id}">Number of units</label>`)
+    )
+    .append(
+      $(`<input class="c_p_number_of_units" id="c_p_number_of_units_n${id}" name="c_p_number_of_units_n${id}"
+        value="${number_of_units}" />`)
+      .on('change', () => { calculateCP() })
+    )
+  )
+  .append(
+    $('<td>')
+    .append(
+      $(`<label for="c_p_estimate_n${id}">Estimate</label>`)
+    )
+    .append(
+      $(`<input readonly class="c_cost_estimate" id="c_p_estimate_n${id}" name="c_p_estimate_n${id}" value="0" />`)
+    )
+  )
+  .append(
+    $('<td>')
+    .append(
+      $(`<a new ident="${id}" class="c_p_item__remove">Remove</a>`)
+      .on('click', removeCP)
+    )
+  )
+
+  $('#c_p').prepend(element)
+  $('#c_p_variable_cost_new').val('')
+  $('#c_p_cost_per_unit_new').val('')
+  $('#c_p_number_of_units_new').val('')
+}
+function removeCP (event) {
+  const id = $(event.target).attr('ident')
+  const isNew = $(event.target).attr('new')
+  if (isNew) {
+    $(event.target).parents('.c_p_item').remove()
+    calculateCP()
+  } else {
+    $.ajax({
+      url:`/del/paramcost/${id}?pass=smartlink`, // TODO: dont hardcode it
+      method: 'delete',
+    })
+    .done((data) => {
+      $(event.target).parents('.c_p_item').remove()
+      calculateCP()
+    })
+  }
+}
 function renderPredecesorsUI () {
   const current = $('#predecessors_relation_container li select')
   .toArray()
@@ -255,10 +339,21 @@ function calculateT3 () {
   $('#t_duration_estimate').val(eval(eq))
 }
 function calculateCP () {
-  const variable = $('#c_p_variable_cost').val()
-  const perUnit = parseFloat($('#c_p_cost_per_unit').val())
-  const numUnits = parseFloat($('#c_p_number_of_units').val())
-  $('#c_cost_estimate').val(perUnit*numUnits)
+  const elements = $('.c_p_item').toArray()
+
+  const individualValues = elements.map((element) => {
+    const jqe = $(element)
+
+    const variable = jqe.find('.c_p_variable_cost').val()
+    const perUnit = parseFloat(jqe.find('.c_p_cost_per_unit').val())
+    const numUnits = parseFloat(jqe.find('.c_p_number_of_units').val())
+    const total = perUnit*numUnits || 0
+    jqe.find('.c_cost_estimate').val(total)
+
+    return total
+  })
+
+  $('#c_cost_estimate').val(individualValues.reduce((all, val) => (val + all), 0))
   recalculateEstimate()
 }
 function calculateCA () {
@@ -370,3 +465,9 @@ $('#a_e_indirect_costs').on('change', () => { recalculateEstimate() })
 
 $('#resources').on('change', () => { renderResourcesUI() })
 $('#predecessors').on('change', () => { renderPredecesorsUI() })
+
+$('#c_p_variable_cost_new').on('change', (e) => { addCP('variable', e.target.value) })
+$('#c_p_cost_per_unit_new').on('change', (e) => { addCP('costUnit', e.target.value) })
+$('#c_p_number_of_units_new').on('change', (e) => { addCP('numUnits', e.target.value) })
+
+$('.c_p_item__remove').on('click', removeCP)

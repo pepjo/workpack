@@ -219,7 +219,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="3">
+      <td colspan="4">
         El separador de decimals és 1 punt
       </td>
     </tr>
@@ -301,16 +301,22 @@
     <tr class="c_p_item">
       <td>
         <label for="c_p_variable_cost_{{this.id}}">Variable cost</label>
-        <input id="c_p_variable_cost_{{this.id}}" name="c_p_variable_cost_{{this.id}}" value="{{this.variable_cost}}" />
+        <input class="c_p_variable_cost" id="c_p_variable_cost_{{this.id}}" name="c_p_variable_cost_{{this.id}}" value="{{this.variable_cost}}" />
       </td>
       <td>
         <label for="c_p_cost_per_unit_{{this.id}}">Cost per unit</label>
-        <input id="c_p_cost_per_unit_{{this.id}}" name="c_p_cost_per_unit_{{this.id}}" value="{{this.cost_per_unit}}" />
+        <input class="c_p_cost_per_unit" id="c_p_cost_per_unit_{{this.id}}" name="c_p_cost_per_unit_{{this.id}}" value="{{this.cost_per_unit}}" />
       </td>
       <td>
         <label for="c_p_number_of_units_{{this.id}}">Number of units</label>
-        <input id="c_p_number_of_units_{{this.id}}" name="c_p_number_of_units_{{this.id}}" value="{{this.number_of_units}}" />
-        <input type="hidden" id="c_p_estimate_{{this.id}}" name="c_p_estimate_{{this.id}}" value="{{this.estimate}}" />
+        <input class="c_p_number_of_units" id="c_p_number_of_units_{{this.id}}" name="c_p_number_of_units_{{this.id}}" value="{{this.number_of_units}}" />
+      </td>
+      <td>
+        <label for="c_p_estimate_{{this.id}}">Estimate</label>
+        <input readonly class="c_cost_estimate" id="c_p_estimate_{{this.id}}" name="c_p_estimate_{{this.id}}" value="{{this.estimate}}" />
+      </td>
+      <td>
+        <a ident="{{this.id}}" class="c_p_item__remove">Remove</a>
       </td>
     </tr>
     {{/each}}
@@ -327,9 +333,11 @@
         <label for="c_p_number_of_units_new">New number of units</label>
         <input id="c_p_number_of_units_new" />
       </td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
-      <td colspan="3">
+      <td colspan="5">
         El separador de decimals és 1 punt
       </td>
     </tr>
