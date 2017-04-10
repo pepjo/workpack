@@ -190,14 +190,15 @@
     </tr>
   </table>
 
-  <hr/>
-  <h2>Time calculations</h2>
-  <label for="t_type"></label>
-  <select id="t_type" name="t_type">
-    <option value="t_p" {{{isSelected work.t_type 't_p'}}}>Parametric</option>
-    <option value="t_a" {{{isSelected work.t_type 't_a'}}}>Analogus</option>
-    <option value="t_3" {{{isSelected work.t_type 't_3'}}}>Line of three points</option>
-  </select>
+  <div id="time_container">
+    <hr/>
+    <h2>Time calculations</h2>
+    <label for="t_type"></label>
+    <select id="t_type" name="t_type">
+      <option value="t_p" {{{isSelected work.t_type 't_p'}}}>Parametric</option>
+      <option value="t_a" {{{isSelected work.t_type 't_a'}}}>Analogus</option>
+      <option value="t_3" {{{isSelected work.t_type 't_3'}}}>Line of three points</option>
+    </select>
 
   <table class="additionalTable" id="t_p">
     <tr>
@@ -284,17 +285,19 @@
     </tr>
   </table>
 
-  <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
-  <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
+    <label class="lbl_total" for="t_duration_estimate">Duration Estimate</label>
+    <input class="inp_total" readonly id="t_duration_estimate" name="t_duration_estimate" value="{{work.t_duration_estimate}}" />
+  </div>
 
-  <hr/>
-  <h2>Cost calculations</h2>
-  <label for="c_type"></label>
-  <select id="c_type" name="c_type">
-    <option value="c_p" {{{isSelected work.c_type 'c_p'}}}>Parametric</option>
-    <option value="c_a" {{{isSelected work.c_type 'c_a'}}}>Analogus</option>
-    <option value="c_3" {{{isSelected work.c_type 'c_3'}}}>Line of three points</option>
-  </select>
+  <div id="cost_container">
+    <hr/>
+    <h2>Cost calculations</h2>
+    <label for="c_type"></label>
+    <select id="c_type" name="c_type">
+      <option value="c_p" {{{isSelected work.c_type 'c_p'}}}>Parametric</option>
+      <option value="c_a" {{{isSelected work.c_type 'c_a'}}}>Analogus</option>
+      <option value="c_3" {{{isSelected work.c_type 'c_3'}}}>Line of three points</option>
+    </select>
 
   <table class="additionalTable" id="c_p">
     {{#each work.paramCosts}}
@@ -398,36 +401,40 @@
     </tr>
   </table>
 
-  <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
-  <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
+    <label class="lbl_total" for="c_cost_estimate">Cost estimate</label>
+    <input class="inp_total" readonly id="c_cost_estimate" name="c_cost_estimate" value="{{work.c_cost_estimate}}" />
+  </div>
 
-  <h2>Activity cost estimation</h2>
-  <label for="a_e"></label>
-  <table class="additionalTable" id="a_e">
-    <tr>
-      <td>
-        <label for="a_e_confidence_level">Confidence level</label>
-        <select id="a_e_confidence_level" name="a_e_confidence_level">
-          <option value="A"{{{isSelected work.a_e_confidence_level 'A'}}}>A</option>
-          <option value="B"{{{isSelected work.a_e_confidence_level 'B'}}}>B</option>
-          <option value="C"{{{isSelected work.a_e_confidence_level 'C'}}}>C</option>
-        </select>
-      </td>
-      <td>
-        <label for="a_e_indirect_costs">Indirect costs</label>
-        <input id="a_e_indirect_costs" name="a_e_indirect_costs" value="{{work.a_e_indirect_costs}}" />
-      </td>
-      <td>
-        <label for="a_e_reserve" style="display: block;">Reserve</label>
-        <input readonly id="a_e_reserve" name="a_e_reserve" value="{{work.a_e_reserve}}"  style="display: inline; width: initial;"/>
-        %
-      </td>
-      <td>
-        <label for="a_e_estimate">Estimate</label>
-        <input readonly id="a_e_estimate" name="a_e_estimate" value="{{work.a_e_estimate}}" />
-      </td>
-    </tr>
-  </table>
+  <div id="activity_container">
+    <hr/>
+    <h2>Activity cost estimation</h2>
+    <label for="a_e"></label>
+    <table class="additionalTable" id="a_e">
+      <tr>
+        <td>
+          <label for="a_e_confidence_level">Confidence level</label>
+          <select id="a_e_confidence_level" name="a_e_confidence_level">
+            <option value="A"{{{isSelected work.a_e_confidence_level 'A'}}}>A</option>
+            <option value="B"{{{isSelected work.a_e_confidence_level 'B'}}}>B</option>
+            <option value="C"{{{isSelected work.a_e_confidence_level 'C'}}}>C</option>
+          </select>
+        </td>
+        <td>
+          <label for="a_e_indirect_costs">Indirect costs</label>
+          <input id="a_e_indirect_costs" name="a_e_indirect_costs" value="{{work.a_e_indirect_costs}}" />
+        </td>
+        <td>
+          <label for="a_e_reserve" style="display: block;">Reserve</label>
+          <input readonly id="a_e_reserve" name="a_e_reserve" value="{{work.a_e_reserve}}"  style="display: inline; width: initial;"/>
+          %
+        </td>
+        <td>
+          <label for="a_e_estimate">Estimate</label>
+          <input readonly id="a_e_estimate" name="a_e_estimate" value="{{work.a_e_estimate}}" />
+        </td>
+      </tr>
+    </table>
+  </div>
 
   <input type="submit" value="Guardar tot" />
 </form>
