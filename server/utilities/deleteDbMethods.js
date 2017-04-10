@@ -7,6 +7,10 @@ function deleteByResourceId (id) {
   return new models.Resource({ id }).destroy()
 }
 
+function deleteByParamCostId (id) {
+  return new models.ParamCost({ id }).destroy()
+}
+
 function deleteByWorkpackId (id) {
   const workpack = new models.Workpack({ id }).fetch()
 
@@ -23,4 +27,5 @@ module.exports = {
   deleteByGroupId,
   deleteByResourceId,
   deleteByWorkpackId,
+  deleteByParamCostId,
 }

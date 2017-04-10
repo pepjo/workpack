@@ -14,6 +14,13 @@ module.exports = function (bookshelf) {
     },
   })
 
+  const ParamCost = bookshelf.Model.extend({
+    tableName: 'parametric_costs',
+    workpacks () {
+      return this.belongsTo(Workpack)
+    },
+  })
+
   const Workpack = bookshelf.Model.extend({
     tableName: 'workpacks',
     group () {
@@ -36,11 +43,17 @@ module.exports = function (bookshelf) {
     resources () {
       return this.belongsToMany(Resource, 'workpacks_resources', 'workpack_id', 'resource_id').withPivot(['amount'])
     },
+    paramCosts () {
+      return this.hasMany(ParamCost)
+    },
   })
 
   const Workpacks = bookshelf.Collection.extend({
     model: Workpack
   })
+  const ParamCosts = bookshelf.Collection.extend({
+    model: ParamCost
+  })
 
-  global.models = { Group, Resource, Workpack, Workpacks }
+  global.models = { Group, Resource, Workpack, Workpacks, ParamCost, ParamCosts }
 }

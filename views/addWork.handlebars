@@ -219,7 +219,7 @@
       </td>
     </tr>
     <tr>
-      <td colspan="3">
+      <td colspan="4">
         El separador de decimals és 1 punt
       </td>
     </tr>
@@ -297,22 +297,47 @@
   </select>
 
   <table class="additionalTable" id="c_p">
-    <tr>
+    {{#each work.paramCosts}}
+    <tr class="c_p_item">
       <td>
-        <label for="c_p_variable_cost">Variable cost</label>
-        <input id="c_p_variable_cost" name="c_p_variable_cost" value="{{work.c_p_variable_cost}}" />
+        <label for="c_p_variable_cost_{{this.id}}">Variable cost</label>
+        <input class="c_p_variable_cost" id="c_p_variable_cost_{{this.id}}" name="c_p_variable_cost_{{this.id}}" value="{{this.variable_cost}}" />
       </td>
       <td>
-        <label for="c_p_cost_per_unit">Cost per unit</label>
-        <input id="c_p_cost_per_unit" name="c_p_cost_per_unit" value="{{work.c_p_cost_per_unit}}" />
+        <label for="c_p_cost_per_unit_{{this.id}}">Cost per unit</label>
+        <input class="c_p_cost_per_unit" id="c_p_cost_per_unit_{{this.id}}" name="c_p_cost_per_unit_{{this.id}}" value="{{this.cost_per_unit}}" />
       </td>
       <td>
-        <label for="c_p_number_of_units">Number of units</label>
-        <input id="c_p_number_of_units" name="c_p_number_of_units" value="{{work.c_p_number_of_units}}" />
+        <label for="c_p_number_of_units_{{this.id}}">Number of units</label>
+        <input class="c_p_number_of_units" id="c_p_number_of_units_{{this.id}}" name="c_p_number_of_units_{{this.id}}" value="{{this.number_of_units}}" />
+      </td>
+      <td>
+        <label for="c_p_estimate_{{this.id}}">Estimate</label>
+        <input readonly class="c_cost_estimate" id="c_p_estimate_{{this.id}}" name="c_p_estimate_{{this.id}}" value="{{this.estimate}}" />
+      </td>
+      <td>
+        <a ident="{{this.id}}" class="c_p_item__remove">Remove</a>
       </td>
     </tr>
+    {{/each}}
     <tr>
-      <td colspan="3">
+      <td>
+        <label for="c_p_variable_cost_new">New variable cost</label>
+        <input id="c_p_variable_cost_new" />
+      </td>
+      <td>
+        <label for="c_p_cost_per_unit_new">New cost per unit</label>
+        <input id="c_p_cost_per_unit_new" />
+      </td>
+      <td>
+        <label for="c_p_number_of_units_new">New number of units</label>
+        <input id="c_p_number_of_units_new" />
+      </td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td colspan="5">
         El separador de decimals és 1 punt
       </td>
     </tr>
