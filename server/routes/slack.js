@@ -172,4 +172,74 @@ router.post('/group', function (req, res, next) {
   }
 })
 
+router.post('/rlist', function (req, res, next) {
+  if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
+    searchByResourceWSBID(req.body.text)
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.send({
+        response_type: 'in_channel',
+        text: 'Aquests son els primers 20 recursos que compleixen:',
+        attachments: data.map((item) => ({
+          title: item.r_id,
+          title_link: `https://workpack.click/add/resource/${item.id}?pass=smartlink`,
+          fields: [
+            {
+              title: 'Name',
+              value: item.name,
+              short: false
+            }
+          ]
+        }))
+      })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.status(500).send('error')
+    })
+  } else {
+    res.status(400).send('VERIFICATION ERROR')
+  }
+})
+
+router.post('/resource', function (req, res, next) {
+  if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
+    searchByResourcesWSBID(req.body.text)
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.send({
+        response_type: 'in_channel',
+        text: 'Aquí tens el recurs que has demanat:',
+        attachments: [
+          {
+            title: data.r_id,
+            title_link: `https://workpack.click/add/resource/${data.id}?pass=smartlink`,
+            fields: [
+              {
+                title: 'Name',
+                value: data.name,
+                short: false
+              }, {
+                title: 'Type',
+                value: data.type,
+                short: true
+              }, {
+                title: 'Competency',
+                value: data.comp,
+                short: true
+              }
+            ]
+          }
+        ]
+      })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.status(500).send('error')
+    })
+  } else {
+    res.status(400).send('VERIFICATION ERROR')
+  }
+})
+
 module.exports = router
