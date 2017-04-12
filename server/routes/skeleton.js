@@ -41,7 +41,11 @@ router.get('/', function (req, res, next) {
       const data = groups.map((group) => {
         const childs = group.childs || []
         const newChilds = workpacks
-        .filter((wrk) => (wrk.groups_id === group.id && ((wrk.parent || {}).id === null || typeof((wrk.parent || {}).id) === 'undefined')))
+        .filter((wrk) => (
+          wrk.groups_id === group.id
+            && ((wrk.parent || {}).id === null
+            || typeof((wrk.parent || {}).id) === 'undefined')
+        ))
         .map((wrk) => {
           const wchilds = getChilds(workpacks, wrk.id)
           if (wchilds.length > 0) {
