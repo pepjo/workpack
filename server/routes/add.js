@@ -312,15 +312,19 @@ router.post('/work(*)', function (req, res, next) {
 
       addWork(work)
       .then((data) => {
+        console.log('--------DEBUG: lets recalculate 1!')
         if (oldparent || oldgroup !== '') {
+          console.log('--------DEBUG: doing: lets recalculate 1!')
           return recaluclateWBSids({ parent: oldparent, group: oldgroup }).then(() => (data))
         }
         return data
       })
       .then((data) => {
+        console.log('--------DEBUG: lets recalculate 2!')
         return recaluclateWBSids({ parent: work.parent, group: work.groups_id }).then(() => (data))
       })
       .then((data) => {
+        console.log('--------DEBUG: save alright!')
         if (newWork) {
           res.redirect(`/add/work/${data[0].id}?pass=${req.query.pass}`)
         } else {
