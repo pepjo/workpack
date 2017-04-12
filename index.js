@@ -29,6 +29,7 @@ const delRouter = require('./server/routes/del')
 const listRouter = require('./server/routes/list')
 const skeletonRouter = require('./server/routes/skeleton')
 const tableRouter = require('./server/routes/table')
+const slackRouter = require('./server/routes/slack')
 
 // Define the pass on all routers
 app.use((req, res, next) => {
@@ -63,6 +64,7 @@ app.use('/del', delRouter)
 app.use('/list', listRouter)
 app.use('/skeleton', skeletonRouter)
 app.use('/table', tableRouter)
+app.use('/slack', slackRouter)
 
 app.use(express.static('public'))
 
