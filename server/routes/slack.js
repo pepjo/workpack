@@ -19,7 +19,7 @@ router.post('/wlist', function (req, res, next) {
     .then((data) => {
       res.send({
         response_type: 'in_channel',
-        text: 'Aquests son els primers 20 workpacks que compleixen això:',
+        text: 'Aquests son els primers 20 workpacks que compleixen:',
         attachments: [
           data.map((item) => ({
             title: item.wsb_id,
@@ -63,7 +63,7 @@ router.post('/work', function (req, res, next) {
     .then((data) => {
       res.send({
         response_type: 'in_channel',
-        text: 'Aquesta és la llista completa de workpacks:',
+        text: 'Aquí tens el workpack que has demanat:',
         attachments: [
           {
             title: data.wsb_id,
@@ -97,6 +97,70 @@ router.post('/work', function (req, res, next) {
                 title: 'Time',
                 value: data.t_duration_estimate,
                 short: true
+              }
+            ]
+          }
+        ]
+      })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.status(500).send('error')
+    })
+  } else {
+    res.status(400).send('VERIFICATION ERROR')
+  }
+})
+
+router.post('/glist', function (req, res, next) {
+  if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
+    searchByGroupsWSBID(req.body.text)
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.send({
+        response_type: 'in_channel',
+        text: 'Aquests son els primers 20 grups que compleixen:',
+        attachments: [
+          data.map((item) => ({
+            title: item.code,
+            title_link: `https://workpack.click/add/group/${item.id}?pass=smartlink`,
+            fields: [
+              {
+                title: 'Name',
+                value: item.name,
+                short: true
+              }
+            ]
+          }))
+        ]
+      })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      res.status(500).send('error')
+    })
+  } else {
+    res.status(400).send('VERIFICATION ERROR')
+  }
+})
+
+router.post('/group', function (req, res, next) {
+  if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
+    searchByGroupWSBID(req.body.text)
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.send({
+        response_type: 'in_channel',
+        text: 'Aquí tens el grup que has demanat:',
+        attachments: [
+          {
+            title: data.code,
+            title_link: `https://workpack.click/add/group/${data.id}?pass=smartlink`,
+            fields: [
+              {
+                title: 'Name',
+                value: data.name,
+                short: false
               }
             ]
           }
