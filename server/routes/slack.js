@@ -174,7 +174,7 @@ router.post('/group', function (req, res, next) {
 
 router.post('/rlist', function (req, res, next) {
   if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
-    searchByResourceWSBID(req.body.text)
+    searchByResourcesWSBID(req.body.text)
     .then(bookshelfToJSON)
     .then((data) => {
       res.send({
@@ -204,7 +204,7 @@ router.post('/rlist', function (req, res, next) {
 
 router.post('/resource', function (req, res, next) {
   if (req.body.token === process.env.SLACK_VERIFICATION_TOKEN) {
-    searchByResourcesWSBID(req.body.text)
+    searchByResourceWSBID(req.body.text)
     .then(bookshelfToJSON)
     .then((data) => {
       res.send({
