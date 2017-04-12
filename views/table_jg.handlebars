@@ -1,0 +1,53 @@
+
+<main style="margin:auto;width:800px;">
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Activity
+      </th>
+      <th style="width: 19%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Duration
+      </th>
+      <th style="width: 19%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Predecessors
+      </th>
+      <th style="width: 13%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Relation
+      </th>
+      <th style="width: 13%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Lag
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{wsb_id}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+          {{activity}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+          {{t_duration_estimate}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+          {{#each predecessors}}{{wsb_id}};{{/each}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+          {{#each predecessors}}{{_pivot_relation}};{{/each}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+          {{#each predecessors}}{{_pivot_lag}};{{/each}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</main>
