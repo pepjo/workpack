@@ -37,7 +37,7 @@
         <label for="groups_id">Group</label>
         <select id="groups_id" name="groups_id">
           {{#each group}}
-          <option code="{{this.code}}" value="{{this.id}}"{{{isSelected work.groups_id this.id}}}>{{this.code}}: {{this.name}}</option>
+          <option code="{{this.code}}" value="{{this.id}}"{{{isSelected @root.work.groups_id this.id}}}>{{this.code}}: {{this.name}}</option>
           {{/each}}
         </select>
       </td>
