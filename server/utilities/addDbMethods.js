@@ -188,8 +188,8 @@ function addWork (data) {
     .then((data) => ([work, data[2], data[3]]))
   })
   .then((data) => {
-    console.log('--------DEBUG: update pivot data resources:', work)
     const work = data[0]
+    console.log('--------DEBUG: update pivot data resources:', work)
     return Promise.all(resourcesData.map((res) => (
       work.resources().updatePivot(
         { amount: res.amount },
@@ -199,8 +199,8 @@ function addWork (data) {
     .then(() => (data))
   })
   .then((data) => {
-    console.log('--------DEBUG: update pivot data predecessors:', work)
     const work = data[0]
+    console.log('--------DEBUG: update pivot data predecessors:', work)
     return Promise.all(predecessorsData.map((pre) => (
       work.predecessors().updatePivot(
         { relation: pre.relation, lag: pre.lag },
