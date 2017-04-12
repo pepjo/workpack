@@ -2,31 +2,28 @@
 function searchByGroupsWSBID (value) {
   return new models.Group()
   .query((qb) => {
-    qb.andWhere('code', 'ILIKE', `%${value}%`)
+    qb.andWhere('code', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('id', 'ASC')
-  .fetchPage({ limit: 20, offset: 0 })
+  .fetchAll()
 }
 
 function searchByResourcesWSBID (value) {
   return new models.Resource()
   .query((qb) => {
-    qb.andWhere('r_id', 'ILIKE', `%${value}%`)
+    qb.andWhere('r_id', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('id', 'ASC')
-  .fetchPage({ limit: 20, offset: 0 })
+  .fetchAll()
 }
 
 function searchByWorkpacksWSBID (value) {
   return new models.Workpack()
   .query((qb) => {
-    qb.andWhere('wsb_id', 'ILIKE', `%${value}%`)
+    qb.andWhere('wsb_id', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
-  .fetchPage({
-    limit: 20,
-    offset: 0,
-  })
+  .fetchAll()
 }
 
 function searchByGroupWSBID (value) {

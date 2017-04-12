@@ -22,7 +22,7 @@ router.post('/wlist', function (req, res, next) {
         text: 'Aquests son els primers 20 workpacks que compleixen això:',
         attachments: [
           data.map((item) => ({
-            title: 'WSB_ID',
+            title: item.wsb_id,
             title_link: `https://workpack.click/add/work/${item.id}?pass=smartlink`,
             fields: [
               {
@@ -66,7 +66,7 @@ router.post('/work', function (req, res, next) {
         text: 'Aquesta és la llista completa de workpacks:',
         attachments: [
           {
-            title: 'WSB_ID',
+            title: data.wsb_id,
             title_link: `https://workpack.click/add/work/${data.id}?pass=smartlink`,
             fields: [
               {
