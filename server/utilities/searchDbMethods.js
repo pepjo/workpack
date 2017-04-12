@@ -2,7 +2,7 @@
 function searchByGroupsWSBID (value) {
   return new models.Group()
   .query((qb) => {
-    qb.andWhere('code', 'ILIKE', `%${value}%`).limit(20)
+    qb.where('code', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('id', 'ASC')
   .fetchAll()
@@ -11,16 +11,17 @@ function searchByGroupsWSBID (value) {
 function searchByResourcesWSBID (value) {
   return new models.Resource()
   .query((qb) => {
-    qb.andWhere('r_id', 'ILIKE', `%${value}%`).limit(20)
+    qb.where('r_id', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('id', 'ASC')
   .fetchAll()
 }
 
 function searchByWorkpacksWSBID (value) {
+  console.log('serach by workpack', `%${value}%`)
   return new models.Workpack()
   .query((qb) => {
-    qb.andWhere('wsb_id', 'ILIKE', `%${value}%`).limit(20)
+    qb.where('wsb_id', 'ILIKE', `%${value}%`).limit(20)
   })
   .orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll()

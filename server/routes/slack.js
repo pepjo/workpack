@@ -17,6 +17,7 @@ router.post('/wlist', function (req, res, next) {
     searchByWorkpacksWSBID(req.body.text)
     .then(bookshelfToJSON)
     .then((data) => {
+      console.log('response slack data', data)
       res.send({
         response_type: 'in_channel',
         text: 'Aquests son els primers 20 workpacks que compleixen:',
@@ -117,6 +118,7 @@ router.post('/glist', function (req, res, next) {
     searchByGroupsWSBID(req.body.text)
     .then(bookshelfToJSON)
     .then((data) => {
+      console.log('response slack data', data)
       res.send({
         response_type: 'in_channel',
         text: 'Aquests son els primers 20 grups que compleixen:',
