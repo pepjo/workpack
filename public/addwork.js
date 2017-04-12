@@ -415,7 +415,7 @@ function setWPType (type) {
     $('label[for=successor], #successor').hide()
     $('label[for=successors_relation_container], #successors_relation_container').hide()
     $('label[for=successors_lag_container], #successors_lag_container').hide()
-    $('label[for=resources], #resources').hide()
+    $('label[for=resources], #resources').show()
     $('label[for=resources_amount_container], #resources_amount_container').hide()
     $('label[for=skill_requirements], #skill_requirements').show()
     $('label[for=other_required_ressources], #other_required_ressources').show()
