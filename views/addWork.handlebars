@@ -7,7 +7,7 @@
   <input id="id" type="hidden" name="id" value="{{work.id}}">
   <input id="subid" type="hidden" name="subid" value="{{work.subid}}">
 
-  <input id="oldparent" type="hidden" name="oldparent" value="{{work.parent}}">
+  <input id="oldparent" type="hidden" name="oldparent" value="{{work.parent.id}}">
   <input id="oldgroup" type="hidden" name="oldgroup" value="{{work.groups_id}}">
 
   <table class="workForm">
@@ -28,8 +28,8 @@
         <label for="parent">Parent</label>
         <select id="parent" name="parent">
           <option value="null">NONE</option>
-          {{#each parents}}
-          <option value="{{this.id}}"{{{this.selected}}}>{{this.wsb_id}}</option>
+          {{#each workpacks}}
+          <option value="{{this.id}}"{{{isSelected @root.work.parent.id this.id}}}>{{this.wsb_id}}</option>
           {{/each}}
         </select>
       </td>
@@ -37,7 +37,7 @@
         <label for="groups_id">Group</label>
         <select id="groups_id" name="groups_id">
           {{#each group}}
-          <option code="{{this.code}}" value="{{this.id}}"{{{this.selected}}}>{{this.code}}: {{this.name}}</option>
+          <option code="{{this.code}}" value="{{this.id}}"{{{isSelected work.groups_id this.id}}}>{{this.code}}: {{this.name}}</option>
           {{/each}}
         </select>
       </td>

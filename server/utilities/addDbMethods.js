@@ -159,11 +159,8 @@ function addWork (data) {
     }
   })
 
-  console.log('--------DEBUG: we will add this:', work)
-
   return new models.Workpack(work).save()
   .then((work) => {
-    console.log('--------DEBUG: deatach predecessors:', work)
     return Promise.all([
       work.predecessors().detach(),
       work.resources().detach(),
@@ -171,7 +168,6 @@ function addWork (data) {
     .then(() => (work))
   })
   .then((work) => {
-    console.log('--------DEBUG: attatch predecessors, resources and costs:', work)
     return Promise.all([
       work.predecessors().attach(predecessors),
       work.resources().attach(resources),
@@ -189,7 +185,6 @@ function addWork (data) {
   })
   .then((data) => {
     const work = data[0]
-    console.log('--------DEBUG: update pivot data resources:', work)
     return Promise.all(resourcesData.map((res) => (
       work.resources().updatePivot(
         { amount: res.amount },
@@ -200,7 +195,6 @@ function addWork (data) {
   })
   .then((data) => {
     const work = data[0]
-    console.log('--------DEBUG: update pivot data predecessors:', work)
     return Promise.all(predecessorsData.map((pre) => (
       work.predecessors().updatePivot(
         { relation: pre.relation, lag: pre.lag },

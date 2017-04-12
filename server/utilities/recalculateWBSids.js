@@ -19,6 +19,8 @@ module.exports = function reccalc (opts) {
     .fetchAll({
       withRelated: ['group', 'parent'],
     })
+  } else {
+    console.error('ERROR1: neither group nor parent', opts.parent, opts.group)
   }
 
   let recalculate = []
@@ -42,6 +44,8 @@ module.exports = function reccalc (opts) {
         }
         item.wsb_id = item.group.code + '-' + subid
         item.parent = null
+      } else {
+        console.error('ERROR2: neither group nor parent', opts.parent, opts.group)
       }
 
       delete item.group

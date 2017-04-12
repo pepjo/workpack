@@ -10,7 +10,7 @@ const  {
 } = require('../utilities/fetchDbMethods')
 const  { addWork, addGroup, addResource } = require('../utilities/addDbMethods')
 const bookshelfToJSON = require('../utilities/bookshelfToJSON')
-const recaluclateWBSids = require('../utilities/recalculateWBSids')
+const recalculateWBSids = require('../utilities/recalculateWBSids')
 
 router.get('/work', function (req, res, next) {
   const pass = req.pass
@@ -22,7 +22,7 @@ router.get('/work', function (req, res, next) {
     ])
     .then(([resources, group, works]) => {
       res.render('addWork', {
-        pass, group, resources, workpacks: works, parents: works, predecessors: works, successors: works
+        pass, group, resources, workpacks: works, predecessors: works, successors: works
       })
     })
     .catch((error) => {
@@ -87,13 +87,9 @@ router.get('/work/:id', function (req, res, next) {
     .then(([resources, group, work, works]) => {
       // console.log('data', works, predecessors, successor)
       let wrk = Object.assign({}, work)
-      // Render this correctly
-      const grp = group.map((item) => (Object.assign({}, item,
-        { selected: item.id === wrk.groups_id ? 'selected' : '' }
-      )))
 
       res.render('addWork', {
-        pass, group: grp, work: wrk, workpacks: works,
+        pass, group: group, work: wrk, workpacks: works,
         predecessors: works.map((item) => {
           const isPred = (work.predecessors || []).find((pred) => (item.id === pred.id))
           if (isPred) {
@@ -106,13 +102,6 @@ router.get('/work/:id', function (req, res, next) {
           const isSucc = (work.successors || []).find((succ) => (item.id === succ.id))
           if (isSucc) {
             return Object.assign({ selected: ' selected="selected"' }, item)
-          } else {
-            return item
-          }
-        }),
-        parents: works.map((item) => {
-          if (item.id === (work.parent || {}).id) {
-            return Object.assign({ selected: 'selected="selected"' }, item)
           } else {
             return item
           }
@@ -259,6 +248,7 @@ router.post('/work(*)', function (req, res, next) {
           _pivot_lag: req.body[`successors_lag_${id}`],
         })
       })
+      work.parent = { id: work.parent }
       res.render('addWork', {
         pass, group: grp, work: work, error: error ? 'ERROR GUARDANT' : undefined, workpacks: works,
         predecessors: works.map((item) => {
@@ -273,13 +263,6 @@ router.post('/work(*)', function (req, res, next) {
           const isSucc = selSuccessors.find((succ) => (item.id === parseInt(succ, 10)))
           if (isSucc) {
             return Object.assign({ selected: ' selected="selected"' }, item)
-          } else {
-            return item
-          }
-        }),
-        parents: works.map((item) => {
-          if (item.id === (work.parent || {}).id) {
-            return Object.assign({ selected: 'selected="selected"' }, item)
           } else {
             return item
           }
@@ -302,40 +285,32 @@ router.post('/work(*)', function (req, res, next) {
       fetchAllWorkpacks().then(bookshelfToJSON),
     ])
     .then(([resources, group, works]) => {
-      const grp = group.map((item) => (Object.assign({}, item,
-        { selected: item.id === parseInt(work.groups_id, 10) ? 'selected="selected"' : '' }
-      )))
-
       if (work.parent === 'null') {
         work.parent = null
       }
 
       addWork(work)
       .then((data) => {
-        console.log('--------DEBUG: lets recalculate 1!')
         if (oldparent || oldgroup !== '') {
-          console.log('--------DEBUG: doing: lets recalculate 1!')
-          return recaluclateWBSids({ parent: oldparent, group: oldgroup }).then(() => (data))
+          return recalculateWBSids({ parent: oldparent, group: oldgroup }).then(() => (data))
         }
         return data
       })
       .then((data) => {
-        console.log('--------DEBUG: lets recalculate 2!')
-        return recaluclateWBSids({ parent: work.parent, group: work.groups_id }).then(() => (data))
+        return recalculateWBSids({ parent: work.parent, group: work.groups_id }).then(() => (data))
       })
       .then((data) => {
-        console.log('--------DEBUG: save alright!')
         if (newWork) {
           res.redirect(`/add/work/${data[0].id}?pass=${req.query.pass}`)
         } else {
           const arr1 = data[1].map((item) => (item.attributes))
           const arr2 = data[2].map((item) => (item.attributes))
-          render(grp, works, resources, false, arr1.concat(arr2))
+          render(group, works, resources, false, arr1.concat(arr2))
         }
       })
       .catch((error) => {
         console.error(error)
-        render(grp, works, resources, true)
+        render(group, works, resources, true)
       })
     }, (error) => {
       console.log('500 - ERROR', error)
