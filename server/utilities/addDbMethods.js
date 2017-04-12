@@ -116,9 +116,9 @@ function addWork (data) {
       const ind = predecessorsData.findIndex((item) => (item.id === id))
 
       if (ind === -1) {
-        predecessorsData.push({ id, lag: parseFloat(work[key]) || 0 })
+        predecessorsData.push({ id, lag: work[key] || 0 })
       } else {
-        predecessorsData[ind].lag = parseFloat(work[key]) || 0
+        predecessorsData[ind].lag = work[key] || 0
       }
 
       delete work[key]
