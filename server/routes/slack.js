@@ -20,31 +20,29 @@ router.post('/wlist', function (req, res, next) {
       res.send({
         response_type: 'in_channel',
         text: 'Aquests son els primers 20 workpacks que compleixen:',
-        attachments: [
-          data.map((item) => ({
-            title: item.wsb_id,
-            title_link: `https://workpack.click/add/work/${item.id}?pass=smartlink`,
-            fields: [
-              {
-                title: 'Activity',
-                value: item.activity,
-                short: true
-              }, {
-                title: 'Type',
-                value: item.wsb_type,
-                short: true
-              }, {
-                title: 'Cost',
-                value: item.c_cost_estimate,
-                short: true
-              }, {
-                title: 'Time',
-                value: item.t_duration_estimate,
-                short: true
-              }
-            ]
-          }))
-        ]
+        attachments: data.map((item) => ({
+          title: item.wsb_id,
+          title_link: `https://workpack.click/add/work/${item.id}?pass=smartlink`,
+          fields: [
+            {
+              title: 'Activity',
+              value: item.activity,
+              short: true
+            }, {
+              title: 'Type',
+              value: item.wsb_type,
+              short: true
+            }, {
+              title: 'Cost',
+              value: item.c_cost_estimate,
+              short: true
+            }, {
+              title: 'Time',
+              value: item.t_duration_estimate,
+              short: true
+            }
+          ]
+        }))
       })
     })
     .catch((error) => {
@@ -117,39 +115,20 @@ router.post('/glist', function (req, res, next) {
     searchByGroupsWSBID(req.body.text)
     .then(bookshelfToJSON)
     .then((data) => {
-      console.log('send', {
-        response_type: 'in_channel',
-        text: 'Aquests son els primers 20 grups que compleixen:',
-        attachments: [
-          data.map((item) => ({
-            title: item.code,
-            title_link: `https://workpack.click/add/group/${item.id}?pass=smartlink`,
-            fields: [
-              {
-                title: 'Name',
-                value: item.name,
-                short: true
-              }
-            ]
-          }))
-        ]
-      })
       res.send({
         response_type: 'in_channel',
         text: 'Aquests son els primers 20 grups que compleixen:',
-        attachments: [
-          data.map((item) => ({
-            title: item.code,
-            title_link: `https://workpack.click/add/group/${item.id}?pass=smartlink`,
-            fields: [
-              {
-                title: 'Name',
-                value: item.name,
-                short: true
-              }
-            ]
-          }))
-        ]
+        attachments: data.map((item) => ({
+          title: item.code,
+          title_link: `https://workpack.click/add/group/${item.id}?pass=smartlink`,
+          fields: [
+            {
+              title: 'Name',
+              value: item.name,
+              short: true
+            }
+          ]
+        }))
       })
     })
     .catch((error) => {
