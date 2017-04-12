@@ -16,6 +16,23 @@ router.get('/', function (req, res, next) {
   }
 })
 
+router.get('/jg', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    fetchAllWorkpacks()
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.render('table_jg', { pass, data })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      next()
+    })
+  } else {
+    next()
+  }
+})
+
 router.get('/2_1', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
