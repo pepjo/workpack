@@ -21,7 +21,9 @@
   {{#each works}}
     <tr key="{{this.id}}" class="row">
       <td class="del">x</td>
-      <td><div class="list__content">{{this.wsb_id}}</div></td>
+      <td><div class="list__content">
+        <a href="/add/work/{{this.id}}?pass=smartlink">{{this.wsb_id}}</a>
+      </div></td>
       <td><div class="list__content">{{this.activity}}</div></td>
       <td>
         <div class="list__tooltip">{{this.description_of_work}}</div>
