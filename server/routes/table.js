@@ -50,7 +50,21 @@ router.get('/3_1', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((wks) => {res.render('table_3_1', { pass, works: wks })})
+    .then((wks) => {
+      const data = wks.reduce((all, work) => {
+        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
+        if (gindex === -1) {
+          all.push({
+            group: work.group,
+            workpacks: [work]
+          })
+        } else {
+          all[gindex].workpacks.push(work)
+        }
+        return all
+      }, [])
+      res.render('table_3_1', { pass, data })
+    })
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()
