@@ -6,7 +6,8 @@
     <th>Type</th>
     <th>Grade competency</th>
     <th>Amount</th>
-    <th>Max. amaount in tasks</th>
+    <th>Max. amount in tasks</th>
+    <th>Total amount in tasks</th>
   </tr>
   {{#each resource}}
     <tr key="{{this.id}}" class="row">
@@ -17,6 +18,7 @@
       <td>{{this.comp}}</td>
       <td>{{this.amount}}</td>
       <td>{{this.maxAmountinTasks}}</td>
+      <td>{{this.totalAmountinTasks}}</td>
     </tr>
   {{/each}}
 </table>

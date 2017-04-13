@@ -8,7 +8,7 @@ function fetchAllResources () {
     withRelated: ['workpacks'],
   })
   .then((data) => {
-    data.forEach((item) => { item.calculateMaxAmountinTasks() })
+    data.forEach((item) => { item.calculateAmountsinTasks() })
     return data
   })
 }
@@ -30,7 +30,7 @@ function fetchByResourceId (id) {
     withRelated: ['workpacks'],
   })
   .then((item) => {
-    item.calculateMaxAmountinTasks()
+    item.calculateAmountsinTasks()
     return item
   })
 }
