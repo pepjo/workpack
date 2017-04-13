@@ -144,7 +144,30 @@ router.get('/5', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((wks) => {res.render('table_5', { pass, works: wks })})
+    .then((wks) => {
+      const data = wks
+      .map((item) => (
+        Object.assign(item, {
+          isTask: item.wsb_type === 'Task',
+          isTp: item.t_type === 't_p',
+          isTa: item.t_type === 't_a',
+          isT3: item.t_type === 't_3',
+        })
+      ))
+      .reduce((all, work) => {
+        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
+        if (gindex === -1) {
+          all.push({
+            group: work.group,
+            workpacks: [work]
+          })
+        } else {
+          all[gindex].workpacks.push(work)
+        }
+        return all
+      }, [])
+      res.render('table_5', { pass, data })
+    })
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()

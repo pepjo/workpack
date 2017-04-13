@@ -1,1 +1,237 @@
-Per fer!
+
+<main style="margin:auto;width:800px;">
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        Parametric Estimates
+      </th>
+    </tr>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        WBS-ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Effort Hours
+      </th>
+      <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Resource quantity
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        % Available
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Performance Factor
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Duration Estimate (h)
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <!--Group-->
+      <tr style="font-weight: bold;">
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{group.code}}
+        </td>
+        <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+      </tr>
+      {{#each workpacks}}
+        {{#if isTask}}
+          {{#if isTp}}
+          <!-- Task -->
+          <tr>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+              {{wsb_id}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_p_effort_hours}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_p_resource_quantity}}%
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_p_percentage_avaiable}}%
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_p_performance_factor}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_duration_estimate}}
+            </td>
+          </tr>
+          {{/if}}
+        {{else}}
+        <!-- WP -->
+        <tr>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+            {{wsb_id}}
+          </td>
+          <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+        </tr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+
+  </tbody>
+</table>
+
+<div style="padding: 10px;"></div>
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        Analogous Estimates
+      </th>
+    </tr>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        WBS-ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Previous Activity
+      </th>
+      <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Previous Duration
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Current Activity
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Multiplier
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Duration Estimate
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <!--Group-->
+      <tr style="font-weight: bold;">
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{group.code}}
+        </td>
+        <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+      </tr>
+      {{#each workpacks}}
+        {{#if isTask}}
+          {{#if isTa}}
+          <!-- Task -->
+          <tr>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+              {{wsb_id}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_a_previous_activity}}{{t_a_previous_activity_txt}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_a_previous_duration}}{{t_a_previous_duration_txt}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_a_current_activity}}{{t_a_current_activity_txt}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_a_multiplier}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_duration_estimate}}
+            </td>
+          </tr>
+          {{/if}}
+        {{else}}
+        <!-- WP -->
+        <tr>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+            {{wsb_id}}
+          </td>
+          <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+        </tr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+  </tbody>
+</table>
+
+<div style="padding: 10px;"></div>
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        Three Point Estimates
+      </th>
+    </tr>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        WBS-ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Optimistic Duration
+      </th>
+      <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Most Likely Duration
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Pessimistic Duration
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Weighting Equation
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Expected Duration Estimate
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <!--Group-->
+      <tr style="font-weight: bold;">
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{group.code}}
+        </td>
+        <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+      </tr>
+      {{#each workpacks}}
+        {{#if isTask}}
+          {{#if isTa}}
+          <!-- Task -->
+          <tr>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+              {{wsb_id}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_3_optimistic_duration}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_3_mostlikely_duration}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_3_pessimistic_duration}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_3_wheighting_equation}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{t_duration_estimate}}
+            </td>
+          </tr>
+          {{/if}}
+        {{else}}
+        <!-- WP -->
+        <tr>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+            {{wsb_id}}
+          </td>
+          <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+        </tr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+  </tbody>
+</table>
+
+</main>
