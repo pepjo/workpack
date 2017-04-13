@@ -14,7 +14,8 @@ function fetchAllResources () {
 }
 
 function fetchAllWorkpacks () {
-  return new models.Workpack().orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
+  return new models.Workpack()
+  .orderBy('sort_wsb_id', 'ASC').orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
     withRelated: ['group', 'parent', 'predecessors', 'successors', 'resources'],
   })

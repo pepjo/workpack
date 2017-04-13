@@ -23,7 +23,7 @@ function searchByWorkpacksWSBID (value) {
   .query((qb) => {
     qb.where('wsb_id', 'ILIKE', `%${value}%`).limit(20)
   })
-  .orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
+  .orderBy('sort_wsb_id', 'ASC').orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll()
 }
 
