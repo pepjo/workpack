@@ -91,6 +91,23 @@ router.get('/3_1', function (req, res, next) {
   }
 })
 
+router.get('/4_1', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    fetchAllResources()
+    .then(bookshelfToJSON)
+    .then((data) => {
+      res.render('table_4_1', { pass, data })
+    })
+    .catch((error) => {
+      console.log('500 - ERROR', error)
+      next()
+    })
+  } else {
+    next()
+  }
+})
+
 router.get('/4_2', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {

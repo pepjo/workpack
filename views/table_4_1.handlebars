@@ -1,0 +1,47 @@
+
+<main style="margin:auto;width:800px;">
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        Resource ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Resource Description
+      </th>
+      <th style="width: 10%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Quantity
+      </th>
+      <th style="width: 20%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Type of resource
+      </th>
+      <th style="width: 30%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Competence
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <tr>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{r_id}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+          {{name}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+          ??
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+          {{type}}
+        </td>
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+          {{comp}}
+        </td>
+      </tr>
+    {{/each}}
+  </tbody>
+</table>
+
+</main>
