@@ -182,7 +182,11 @@ router.get('/7', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((wks) => {res.render('table_7', { pass, works: wks })})
+    .then((wks) => {
+      const data = wks
+      .filter((item) => (item.wsb_type === 'WP with tasks'))
+      res.render('table_7', { pass, data })
+    })
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()
