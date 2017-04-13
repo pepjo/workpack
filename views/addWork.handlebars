@@ -141,10 +141,10 @@
       <td>
         <div id="automatic_resources_mode__container">
           <label for="automatic_resources_mode">Automatic Resources Calculation Mode</label>
-          <select id="automatic_resources_mode">
-            <option value="manual"{{{isSelected this._pivot_relation 'manual'}}}>Manual</option>
-            <option value="serial"{{{isSelected this._pivot_relation 'serial'}}}>Serial subtasks</option>
-            <option value="parallel"{{{isSelected this._pivot_relation 'parallel'}}}>Parallel subtasks</option>
+          <select id="automatic_resources_mode" name="automatic_resources_mode">
+            <option value="manual"{{{isSelected work.automatic_resources_mode 'manual'}}}>Manual</option>
+            <option value="serial"{{{isSelected work.automatic_resources_mode 'serial'}}}>Serial subtasks</option>
+            <option value="parallel"{{{isSelected work.automatic_resources_mode 'parallel'}}}>Parallel subtasks</option>
           </select>
           <p id="automatic_resources_mode_serial_expl">
             This option takes the maximum amount for each resource found in a subtask
