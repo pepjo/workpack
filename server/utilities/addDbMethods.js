@@ -9,6 +9,7 @@ function addGroup (data) {
 function addResource (data) {
   const resource = Object.assign({}, data)
   resource.id = isNaN(parseInt(resource.id, 10)) ? undefined : parseInt(resource.id, 10)
+  resource.amount = isNaN(parseFloat(resource.amount)) ? undefined : parseFloat(resource.amount)
 
   return new models.Resource(resource).save()
 }
