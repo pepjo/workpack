@@ -191,7 +191,7 @@ function renderResourcesUI () {
     if (cur) {
       return cur
     } else {
-      return { id, title: `Number ${jqe.text()}`, value: '' }
+      return { id, title: `Amount of ${jqe.text()}`, value: '' }
     }
   })
   .map((item) => (
@@ -375,7 +375,9 @@ function calculateC3 () {
   $('#c_cost_estimate').val(eval(eq))
   recalculateEstimate()
 }
-function setWPType (type) {
+function setWPType (t) {
+  const type = t || $('#wsb_type').val()
+
   if (type === 'Task') {
     $('label[for=order], #order').show()
     $('label[for=parent], #parent').show()
@@ -390,7 +392,8 @@ function setWPType (type) {
     $('label[for=successor], #successor').show()
     $('label[for=successors_relation_container], #successors_relation_container').show()
     $('label[for=successors_lag_container], #successors_lag_container').show()
-    $('label[for=resources], #resources').show()
+    $('#automatic_resources_mode__container').hide()
+    $('#resources__container').show()
     $('label[for=resources_amount_container], #resources_amount_container').show()
     $('label[for=skill_requirements], #skill_requirements').hide()
     $('label[for=other_required_ressources], #other_required_ressources').hide()
@@ -415,8 +418,26 @@ function setWPType (type) {
     $('label[for=successor], #successor').hide()
     $('label[for=successors_relation_container], #successors_relation_container').hide()
     $('label[for=successors_lag_container], #successors_lag_container').hide()
-    $('label[for=resources], #resources').show()
-    $('label[for=resources_amount_container], #resources_amount_container').hide()
+    $('#automatic_resources_mode__container').show()
+    const automatic_resources_mode = $('#automatic_resources_mode').val()
+    if (automatic_resources_mode === 'manual') {
+      $('#automatic_resources_mode_serial_expl').hide()
+      $('#automatic_resources_mode_parallel_expl').hide()
+      $('#resources__container').show()
+      $('label[for=resources], #resources').show()
+      $('label[for=resources_amount_container], #resources_amount_container').show()
+    } else {
+      if (automatic_resources_mode === 'serial') {
+        $('#automatic_resources_mode_serial_expl').show()
+        $('#automatic_resources_mode_parallel_expl').hide()
+      } else if (automatic_resources_mode === 'parallel') {
+        $('#automatic_resources_mode_serial_expl').hide()
+        $('#automatic_resources_mode_parallel_expl').show()
+      }
+      $('#resources__container').hide()
+      $('label[for=resources], #resources').hide()
+      $('label[for=resources_amount_container], #resources_amount_container').hide()
+    }
     $('label[for=skill_requirements], #skill_requirements').show()
     $('label[for=other_required_ressources], #other_required_ressources').show()
     $('label[for=type_of_effort], #type_of_effort').show()
@@ -504,6 +525,7 @@ function setCType (type, first) {
 
 // Attach events
 $('#wsb_type').on('change', (e) => { setWPType(e.target.value) })
+$('#automatic_resources_mode').on('change', () => { setWPType() })
 $('#t_type').on('change', (e) => { setTType(e.target.value) })
 $('#c_type').on('change', (e) => { setCType(e.target.value) })
 

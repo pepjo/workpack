@@ -65,7 +65,7 @@
       </td>
     </tr>
     <tr>
-      <td>
+      <td style="width: 16.6%;">
         <label for="predecessors">Predecessors</label>
         <select multiple id="predecessors" name="predecessors" size="8">
           {{#each predecessors}}
@@ -73,7 +73,7 @@
           {{/each}}
         </select>
       </td>
-      <td>
+      <td style="width: 16.6%;">
         <ul class="no_list" id="predecessors_relation_container">
           {{#each work.predecessors}}
           <li>
@@ -88,7 +88,7 @@
           {{/each}}
         <ul>
       </td>
-      <td>
+      <td style="width: 16.6%;">
         <ul class="no_list" id="predecessors_lag_container">
           {{#each work.predecessors}}
           <li>
@@ -98,7 +98,7 @@
           {{/each}}
         <ul>
       </td>
-      <td>
+      <td style="width: 16.6%;">
         <label for="successor">Successor</label>
         <select disabled multiple id="successor" size="8">
           {{#each successors}}
@@ -109,7 +109,7 @@
         <input type="hidden" name="successors" value="{{this.id}}" />
         {{/each}}
       </td>
-      <td>
+      <td style="width: 16.6%;">
         <ul class="no_list" id="successors_relation_container">
           {{#each work.successors}}
           <li>
@@ -137,19 +137,35 @@
       </td>
     </tr>
     <tr>
-      <td colspan="1">
-        <label for="resources">Resources</label>
-        <select multiple id="resources" name="resources" size="6">
-          {{#each resources}}
-          <option value="{{this.id}}"{{{this.selected}}}>{{this.name}}</option>
-          {{/each}}
-        </select>
+      <td>
+        <div id="automatic_resources_mode__container">
+          <label for="automatic_resources_mode">Automatic Resources Calculation Mode</label>
+          <select id="automatic_resources_mode">
+            <option value="manual"{{{isSelected this._pivot_relation 'manual'}}}>Manual</option>
+            <option value="serial"{{{isSelected this._pivot_relation 'serial'}}}>Serial subtasks</option>
+            <option value="parallel"{{{isSelected this._pivot_relation 'parallel'}}}>Parallel subtasks</option>
+          </select>
+          <p id="automatic_resources_mode_serial_expl">
+            This option takes the maximum amount for each resource found in a subtask
+          </p>
+          <p id="automatic_resources_mode_parallel_expl">
+            This option adds all the amounts for each resource fount in a subtask
+          </p>
+        </div>
+        <div id="resources__container">
+          <label for="resources">Resources</label>
+          <select multiple id="resources" name="resources" size="6">
+            {{#each resources}}
+            <option value="{{this.id}}"{{{this.selected}}}>{{this.name}}</option>
+            {{/each}}
+          </select>
+        </div>
       </td>
-      <td colspan="1">
+      <td>
         <ul class="no_list" id="resources_amount_container">
           {{#each work.resources}}
           <li>
-            <label for="resources_amount_{{this.id}}">Number {{this.name}}</label>
+            <label for="resources_amount_{{this.id}}">Amount of {{this.name}}</label>
             <input id="resources_amount_{{this.id}}" name="resources_amount_{{this.id}}" value="{{this._pivot_amount}}" />
           </li>
           {{/each}}
