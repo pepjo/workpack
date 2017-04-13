@@ -113,7 +113,23 @@ router.get('/4_2', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((wks) => {res.render('table_4_2', { pass, works: wks })})
+    .then((wks) => {
+      const data = wks
+      .map((item) => Object.assign(item, { isTask: item.wsb_type === 'Task' }))
+      .reduce((all, work) => {
+        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
+        if (gindex === -1) {
+          all.push({
+            group: work.group,
+            workpacks: [work]
+          })
+        } else {
+          all[gindex].workpacks.push(work)
+        }
+        return all
+      }, [])
+      res.render('table_4_2', { pass, data })}
+    )
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()

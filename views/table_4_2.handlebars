@@ -1,1 +1,66 @@
-Per fer!
+
+<main style="margin:auto;width:800px;">
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        WBS-ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Resource Id
+      </th>
+      <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Amount
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Assumptions
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <!--Group-->
+      <tr style="font-weight: bold;">
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{group.code}}
+        </td>
+        <td  colspan="3" style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+          {{group.name}}
+        </td>
+      </tr>
+      {{#each workpacks}}
+        {{#if isTask}}
+        <!-- Task -->
+        <tr>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+            {{wsb_id}}
+          </td>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+            {{#each resources}}{{r_id}};{{/each}}
+          </td>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+            {{#each resources}}{{_pivot_amount}};{{/each}}
+          </td>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+            {{assumptions}}
+          </td>
+        </tr>
+        {{else}}
+        <!-- WP -->
+        <tr>
+          <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+            {{wsb_id}}
+          </td>
+          <td colspan="3" style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
+            {{activity}}
+          </td>
+        </tr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+
+  </tbody>
+</table>
+
+</main>
