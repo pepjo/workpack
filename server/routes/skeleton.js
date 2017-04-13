@@ -9,7 +9,7 @@ function parseChilds (obj) {
   if (obj.childs) {
     return '<li style="list-style-type:none"><ul>' + (obj.childs.map((child) => {
       return `<li key=${child.id} style="cursor:pointer">
-        <a href="/add/work/${child.id}?pass=smartlink">${child.wsb_id}</a>
+        <a href="/add/work/${child.id}?pass=smartlink">${child.wsb_id}</a>  (${child.wsb_type})
       </li>${parseChilds(child)}`
     })
     .join('')) + '</ul></li>'
