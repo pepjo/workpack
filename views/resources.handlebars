@@ -5,6 +5,8 @@
     <th>Name</th>
     <th>Type</th>
     <th>Grade competency</th>
+    <th>Amount</th>
+    <th>Max. amaount in tasks</th>
   </tr>
   {{#each resource}}
     <tr key="{{this.id}}" class="row">
@@ -13,6 +15,8 @@
       <td>{{this.name}}</td>
       <td>{{this.type}}</td>
       <td>{{this.comp}}</td>
+      <td>{{this.amount}}</td>
+      <td>{{this.maxAmountinTasks}}</td>
     </tr>
   {{/each}}
 </table>

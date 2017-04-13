@@ -9,6 +9,12 @@ module.exports = function (bookshelf) {
 
   const Resource = bookshelf.Model.extend({
     tableName: 'resources',
+    calculateMaxAmountinTasks () {
+      (this.attributes || {}).maxAmountinTasks = this.relations.workpacks.toJSON()
+      .reduce((max, item) => (
+        item._pivot_amount > max ? item._pivot_amount : max
+      ), 0)
+    },
     workpacks () {
       return this.belongsToMany(Workpack, 'workpacks_resources', 'resource_id', 'workpack_id').withPivot(['amount'])
     },

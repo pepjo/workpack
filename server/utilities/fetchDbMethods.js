@@ -4,7 +4,13 @@ function fetchAllGroups () {
 }
 
 function fetchAllResources () {
-  return new models.Resource().orderBy('id', 'ASC').fetchAll()
+  return new models.Resource().orderBy('id', 'ASC').fetchAll({
+    withRelated: ['workpacks'],
+  })
+  .then((data) => {
+    data.forEach((item) => { item.calculateMaxAmountinTasks() })
+    return data
+  })
 }
 
 function fetchAllWorkpacks () {
@@ -19,7 +25,13 @@ function fetchByGroupId (id) {
 }
 
 function fetchByResourceId (id) {
-  return new models.Resource({ id }).orderBy('id', 'ASC').fetch()
+  return new models.Resource({ id }).orderBy('id', 'ASC').fetch({
+    withRelated: ['workpacks'],
+  })
+  .then((item) => {
+    item.calculateMaxAmountinTasks()
+    return item
+  })
 }
 
 function fetchByWorkpackId (id) {
