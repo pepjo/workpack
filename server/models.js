@@ -57,6 +57,46 @@ module.exports = function (bookshelf) {
     paramCosts () {
       return this.hasMany(ParamCost)
     },
+    calculateWPPredecessors () {
+      if (this.attributes.wsb_type === 'WP with tasks') {
+        const childs = this.relations.childs.toJSON()
+        const childIds = childs.map((item) => (item.id))
+        const predecessors = []
+
+        ;(this.attributes || {}).computedPredecessors = childs.reduce((predecessors, child) => {
+          child.predecessors.forEach((predecessor) => {
+            const predecessorIndex = predecessors.findIndex((item) => (
+              item.id === predecessor.id && item._pivot_relation === predecessor._pivot_relation
+              && item._pivot_lag === predecessor._pivot_lag
+            ))
+            if (predecessorIndex === -1 && !childIds.includes(predecessor.id)) {
+              predecessors.push(predecessor)
+            }
+          })
+          return predecessors
+        }, [])
+      }
+    },
+    calculateWPSuccessors () {
+      if (this.attributes.wsb_type === 'WP with tasks') {
+        const childs = this.relations.childs.toJSON()
+        const childIds = childs.map((item) => (item.id))
+        const successors = []
+
+        ;(this.attributes || {}).computedSuccessors = childs.reduce((successors, child) => {
+          child.successors.forEach((successor) => {
+            const successorIndex = successors.findIndex((item) => (
+              item.id === successor.id && item._pivot_relation === successor._pivot_relation
+              && item._pivot_lag === successor._pivot_lag
+            ))
+            if (successorIndex === -1 && !childIds.includes(successor.id)) {
+              successors.push(successor)
+            }
+          })
+          return successors
+        }, [])
+      }
+    },
     calculateWPResources () {
       if (this.attributes.wsb_type === 'WP with tasks') {
         const childs = this.relations.childs.toJSON()

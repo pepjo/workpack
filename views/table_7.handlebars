@@ -51,32 +51,32 @@
   </tr>
   <tr>
     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-      {{#each predecessors}}
-        {{wbs_id}}<br/>
+      {{#each computedPredecessors}}
+        {{wsb_id}}<br/>
       {{/each}}
     </td>
     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-      {{#each predecessors}}
+      {{#each computedPredecessors}}
         {{_pivot_relation}}<br/>
       {{/each}}
     </td>
     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-      {{#each predecessors}}
+      {{#each computedPredecessors}}
         {{_pivot_lag}}<br/>
       {{/each}}
     </td>
     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-      {{#each successors}}
-        {{wbs_id}}<br/>
+      {{#each computedSuccessors}}
+        {{wsb_id}}<br/>
       {{/each}}
     </td>
     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-      {{#each successors}}
+      {{#each computedSuccessors}}
         {{_pivot_relation}}<br/>
       {{/each}}
     </td>
     <td style="padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-      {{#each successors}}
+      {{#each computedSuccessors}}
         {{_pivot_lag}}<br/>
       {{/each}}
     </td>

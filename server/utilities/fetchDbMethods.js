@@ -17,12 +17,18 @@ function fetchAllWorkpacks () {
   return new models.Workpack()
   .orderBy('sort_wsb_id', 'ASC').orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
+    // NOTE: this should be a function parameter... XD
     withRelated: [
-      'group', 'parent', 'predecessors', 'successors', 'resources', 'paramCosts', 'childs', 'childs.resources'
+      'group', 'parent', 'predecessors', 'successors', 'resources', 'paramCosts', 'childs',
+      'childs.resources', 'childs.predecessors', 'childs.successors'
     ],
   })
   .then((data) => {
-    data.forEach((item) => { item.calculateWPResources() })
+    data.forEach((item) => {
+      item.calculateWPResources()
+      item.calculateWPPredecessors()
+      item.calculateWPSuccessors()
+    })
     return data
   })
 }
