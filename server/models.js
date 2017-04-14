@@ -57,6 +57,30 @@ module.exports = function (bookshelf) {
     paramCosts () {
       return this.hasMany(ParamCost)
     },
+    calculateWPResources () {
+      if (this.attributes.wsb_type === 'WP with tasks') {
+        const childs = this.relations.childs.toJSON()
+        const isSerial = this.attributes.automatic_resources_mode === 'serial'
+        const isParallel = this.attributes.automatic_resources_mode === 'parallel'
+        if (isSerial || isParallel) {
+          (this.attributes || {}).computedResources = childs.reduce((resources, child) => {
+            child.resources.forEach((resource) => {
+              const resourceIndex = resources.findIndex((item) => (item.id === resource.id))
+              if (resourceIndex === -1) {
+                resources.push(resource)
+              } else if (isSerial && resource._pivot_amount > resources[resourceIndex]._pivot_amount) {
+                resources[resourceIndex]._pivot_amount = resource._pivot_amount
+              } else if (isParallel) {
+                resources[resourceIndex]._pivot_amount += resource._pivot_amount
+              }
+            })
+            return resources
+          }, [])
+        } else { // manual
+          (this.attributes || {}).computedResources = (this.attributes || {}).resources
+        }
+      }
+    }
   })
 
   const Workpacks = bookshelf.Collection.extend({

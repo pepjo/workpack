@@ -17,7 +17,13 @@ function fetchAllWorkpacks () {
   return new models.Workpack()
   .orderBy('sort_wsb_id', 'ASC').orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
-    withRelated: ['group', 'parent', 'predecessors', 'successors', 'resources', 'paramCosts'],
+    withRelated: [
+      'group', 'parent', 'predecessors', 'successors', 'resources', 'paramCosts', 'childs', 'childs.resources'
+    ],
+  })
+  .then((data) => {
+    data.forEach((item) => { item.calculateWPResources() })
+    return data
   })
 }
 
