@@ -1,1 +1,77 @@
-Per fer!
+<main style="margin:auto;width:800px;">
+
+<table class="word__table" cellspacing="0">
+  <thead>
+    <tr>
+      <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+        WBS-ID
+      </th>
+      <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Resource
+      </th>
+      <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Direct costs
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Method
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        C.L.
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Reserve
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Indirect Costs
+      </th>
+      <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+        Estimate
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+    {{#each data}}
+      <!--Group-->
+      <tr style="font-weight: bold;">
+        <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+          {{group.code}}
+        </td>
+        <td  colspan="7" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+      </tr>
+      {{#each workpacks}}
+        {{#if isTask}}
+          <!-- Task -->
+          <tr>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+              {{wsb_id}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{#each resources}}{{r_id}}; {{/each}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{c_cost_estimate}}€
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{c_type}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{a_e_confidence_level}}
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{a_e_reserve}}€
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{a_e_indirect_costs}}€
+            </td>
+            <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+              {{a_e_estimate}}€
+            </td>
+          </tr>
+        {{/if}}
+      {{/each}}
+    {{/each}}
+
+  </tbody>
+</table>
+
+</main>

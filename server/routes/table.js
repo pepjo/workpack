@@ -203,14 +203,7 @@ router.get('/8_2', function (req, res, next) {
     .then(bookshelfToJSON)
     .then((wks) => {
       const data = wks
-      .map((item) => (
-        Object.assign(item, {
-          isTask: item.wsb_type === 'Task',
-          isCp: item.c_type === 'c_p',
-          isCa: item.c_type === 'c_a',
-          isC3: item.c_type === 'c_3',
-        })
-      ))
+      .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
       .reduce((all, work) => {
         const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
         if (gindex === -1) {
@@ -239,7 +232,37 @@ router.get('/8_3', function (req, res, next) {
   if (req.query.pass === pass) {
     fetchAllWorkpacks()
     .then(bookshelfToJSON)
-    .then((wks) => {res.render('table_8_3', { pass, works: wks })})
+    .then((wks) => {
+      const data = wks
+      .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
+      .map((item) => {
+        let cType
+        switch (item.c_type) {
+          case 'c_p':
+            cType = 'Parametric'; break
+          case 'c_a':
+            cType = 'Analogous'; break
+          case 'c_3':
+            cType = 'Three-point method'; break
+          default:
+            cType = 'NONE'
+        }
+        return Object.assign(item, { c_type: cType })
+      })
+      .reduce((all, work) => {
+        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
+        if (gindex === -1) {
+          all.push({
+            group: work.group,
+            workpacks: [work]
+          })
+        } else {
+          all[gindex].workpacks.push(work)
+        }
+        return all
+      }, [])
+      res.render('table_8_3', { pass, data })
+    })
     .catch((error) => {
       console.log('500 - ERROR', error)
       next()
