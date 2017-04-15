@@ -13,10 +13,23 @@ const {
   table_8_3,
 } = require('../utilities/tablesData')
 
+const generateTexZip = require('../utilities/generateTexZip')
+
 router.get('/', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
     res.render('tables', { pass })
+  } else {
+    next()
+  }
+})
+
+router.get('/zip', function (req, res, next) {
+  const pass = req.pass
+  if (req.query.pass === pass) {
+    generateTexZip().then((data) => {
+      res.send(data)
+    })
   } else {
     next()
   }

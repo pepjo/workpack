@@ -1,0 +1,235 @@
+
+TABLE 8.2
+
+% <main style="margin:auto;width:800px;">
+% 
+% <table class="word__table" cellspacing="0">
+%   <thead>
+%     <tr>
+%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         Parametric Estimates
+%       </th>
+%     </tr>
+%     <tr>
+%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         WBS-ID
+%       </th>
+%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Variable Cost
+%       </th>
+%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Cost per unit
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Number of units
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Cost estimate
+%       </th>
+%     </tr>
+%   </thead>
+%   <tbody>
+%     {{#each data}}
+%       <!--Group-->
+%       <tr style="font-weight: bold;">
+%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%           {{group.code}}
+%         </td>
+%         <td  colspan="4" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%       </tr>
+%       {{#each workpacks}}
+%         {{#if isTask}}
+%           {{#if isCp}}
+%           {{#each paramCosts}}
+%             <!-- Task -->
+%             <tr>
+%               <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%                 {{../wsb_id}}
+%               </td>
+%               <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%                 {{variable_cost}}
+%               </td>
+%               <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%                 {{cost_per_unit}}%
+%               </td>
+%               <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%                 {{number_of_units}}%
+%               </td>
+%               <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%                 {{estimate}}
+%               </td>
+%             </tr>
+%           {{/each}}
+%           {{/if}}
+%         {{else}}
+%         <!-- WP -->
+%         <!-- <tr>
+%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%             {{wsb_id}}
+%           </td>
+%           <td colspan="4" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%         </tr> -->
+%         {{/if}}
+%       {{/each}}
+%     {{/each}}
+% 
+%   </tbody>
+% </table>
+% 
+% <div style="padding: 10px;"></div>
+% 
+% <table class="word__table" cellspacing="0">
+%   <thead>
+%     <tr>
+%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         Analogous Estimates
+%       </th>
+%     </tr>
+%     <tr>
+%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         WBS-ID
+%       </th>
+%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Previous Activity
+%       </th>
+%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Previous Cost
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Current Activity
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Multiplier
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Cost Estimate
+%       </th>
+%     </tr>
+%   </thead>
+%   <tbody>
+%     {{#each data}}
+%       <!--Group-->
+%       <tr style="font-weight: bold;">
+%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%           {{group.code}}
+%         </td>
+%         <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%       </tr>
+%       {{#each workpacks}}
+%         {{#if isTask}}
+%           {{#if isCa}}
+%           <!-- Task -->
+%           <tr>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%               {{wsb_id}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_a_previous_activity}}{{c_a_previous_activity_txt}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_a_previous_cost}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_a_current_activity}}{{c_a_current_activity_txt}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_a_multiplier}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_cost_estimate}}
+%             </td>
+%           </tr>
+%           {{/if}}
+%         {{else}}
+%         <!-- WP -->
+%         <!-- <tr>
+%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%             {{wsb_id}}
+%           </td>
+%           <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%         </tr> -->
+%         {{/if}}
+%       {{/each}}
+%     {{/each}}
+%   </tbody>
+% </table>
+% 
+% <div style="padding: 10px;"></div>
+% 
+% <table class="word__table" cellspacing="0">
+%   <thead>
+%     <tr>
+%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         Three Point Estimates
+%       </th>
+%     </tr>
+%     <tr>
+%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
+%         WBS-ID
+%       </th>
+%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Optimistic Cost
+%       </th>
+%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Most Likely Cost
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Pessimistic Cost
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Weighting Equation
+%       </th>
+%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
+%         Expected Cost Estimate
+%       </th>
+%     </tr>
+%   </thead>
+%   <tbody>
+%     {{#each data}}
+%       <!--Group-->
+%       <tr style="font-weight: bold;">
+%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%           {{group.code}}
+%         </td>
+%         <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%       </tr>
+%       {{#each workpacks}}
+%         {{#if isTask}}
+%           {{#if isC3}}
+%           <!-- Task -->
+%           <tr>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%               {{wsb_id}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_3_optimistic_cost}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_3_mostlikely_cost}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_3_pessimistic_cost}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_3_wheighting_equation}}
+%             </td>
+%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
+%               {{c_cost_estimate}}
+%             </td>
+%           </tr>
+%           {{/if}}
+%         {{else}}
+%         <!-- WP -->
+%         <!-- <tr>
+%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
+%             {{wsb_id}}
+%           </td>
+%           <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
+%         </tr> -->
+%         {{/if}}
+%       {{/each}}
+%     {{/each}}
+%   </tbody>
+% </table>
+% 
+% </main>

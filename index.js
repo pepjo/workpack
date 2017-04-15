@@ -45,7 +45,7 @@ app.get('*', (req, res, next) => {
     next()
 })
 
-app.engine('handlebars', exphbs({
+global.hbs = exphbs.create({
   viewsDir: path.join(__dirname, '/views/'),
   layoutsDir: path.join(__dirname, '/views/layouts'),
   defaultLayout: 'web',
@@ -54,7 +54,9 @@ app.engine('handlebars', exphbs({
   helpers: {
     isSelected: function (value1, value2) { return `${value1}` === `${value2}` ? ' selected="selected"' : '' }
   },
-}))
+})
+
+app.engine('handlebars', hbs.engine)
 app.set('view engine', 'handlebars')
 
 app.use(bodyParser.urlencoded({ extended: false }))
