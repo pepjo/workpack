@@ -2,10 +2,16 @@
 const express = require('express')
 const router = express.Router()
 
-const  {
-  fetchAllGroups, fetchAllResources, fetchAllWorkpacks, fetchByGroupId, fetchByWorkpackId
-} = require('../utilities/fetchDbMethods')
-const bookshelfToJSON = require('../utilities/bookshelfToJSON')
+const {
+  table_2_1,
+  table_3_1,
+  table_4_1,
+  table_4_2,
+  table_5,
+  table_7,
+  table_8_2,
+  table_8_3,
+} = require('../utilities/tablesData')
 
 router.get('/', function (req, res, next) {
   const pass = req.pass
@@ -36,21 +42,8 @@ router.get('/jg', function (req, res, next) {
 router.get('/2_1', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks.reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_2_1()
+    .then((data) => {
       res.render('table_2_1', { pass, data })
     })
     .catch((error) => {
@@ -65,21 +58,8 @@ router.get('/2_1', function (req, res, next) {
 router.get('/3_1', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks.reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_3_1()
+    .then((data) => {
       res.render('table_3_1', { pass, data })
     })
     .catch((error) => {
@@ -94,8 +74,7 @@ router.get('/3_1', function (req, res, next) {
 router.get('/4_1', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllResources()
-    .then(bookshelfToJSON)
+    table_4_1()
     .then((data) => {
       res.render('table_4_1', { pass, data })
     })
@@ -111,23 +90,8 @@ router.get('/4_1', function (req, res, next) {
 router.get('/4_2', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks
-      .map((item) => Object.assign(item, { isTask: item.wsb_type === 'Task' }))
-      .reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_4_2()
+    .then((data) => {
       res.render('table_4_2', { pass, data })}
     )
     .catch((error) => {
@@ -142,30 +106,8 @@ router.get('/4_2', function (req, res, next) {
 router.get('/5', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks
-      .map((item) => (
-        Object.assign(item, {
-          isTask: item.wsb_type === 'Task',
-          isTp: item.t_type === 't_p',
-          isTa: item.t_type === 't_a',
-          isT3: item.t_type === 't_3',
-        })
-      ))
-      .reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_5()
+    .then((data) => {
       res.render('table_5', { pass, data })
     })
     .catch((error) => {
@@ -180,11 +122,8 @@ router.get('/5', function (req, res, next) {
 router.get('/7', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks
-      .filter((item) => (item.wsb_type === 'WP with tasks'))
+    table_7()
+    .then((data) => {
       res.render('table_7', { pass, data })
     })
     .catch((error) => {
@@ -199,23 +138,8 @@ router.get('/7', function (req, res, next) {
 router.get('/8_2', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks
-      .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
-      .reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_8_2()
+    .then((data) => {
       res.render('table_8_2', { pass, data })
     })
     .catch((error) => {
@@ -230,37 +154,8 @@ router.get('/8_2', function (req, res, next) {
 router.get('/8_3', function (req, res, next) {
   const pass = req.pass
   if (req.query.pass === pass) {
-    fetchAllWorkpacks()
-    .then(bookshelfToJSON)
-    .then((wks) => {
-      const data = wks
-      .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
-      .map((item) => {
-        let cType
-        switch (item.c_type) {
-          case 'c_p':
-            cType = 'Parametric'; break
-          case 'c_a':
-            cType = 'Analogous'; break
-          case 'c_3':
-            cType = 'Three-point method'; break
-          default:
-            cType = 'NONE'
-        }
-        return Object.assign(item, { c_type: cType })
-      })
-      .reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
+    table_8_3()
+    .then((data) => {
       res.render('table_8_3', { pass, data })
     })
     .catch((error) => {
