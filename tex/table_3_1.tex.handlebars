@@ -5,14 +5,14 @@
   ID & Activity & Predecessors & Relation & Lag \\\hline
   {{#each data}}
     % -- Group:
-    {{group.code}} & \multicolumn{4}{|c|}{group.name} \\\hline
+    {{{group.code}}} & \multicolumn{4}{|c|}{{{group.name}}} \\\hline
     % -- Tasks:
     {{#each workpacks}}
-      {{wsb_id}} & \
-      {{activity}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{wsb_id}}\\\end{tabular}{{/each}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{_pivot_relation}}\\\end{tabular}{{/each}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{_pivot_lag}}\\\end{tabular}{{/each}} \\\hline
+      {{{wsb_id}}} & \
+      {{{activity}}} & \
+      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{wsb_id}}}\\\end{tabular}{{/each}} & \
+      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{_pivot_relation}}}\\\end{tabular}{{/each}} & \
+      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{_pivot_lag}}}\\\end{tabular}{{/each}} \\\hline
     {{/each}}
   {{/each}}
   \caption{List of activities and dependencies or logical relationship between activities}\label{table3_1}
