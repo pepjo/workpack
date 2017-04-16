@@ -1,68 +1,23 @@
 
-TABLE 4.2
+\begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.12\textwidth}|p{.38\textwidth}|}
+  \hline
+  WBS-ID & Resource Id & Amount & Assumptions \\\hline
+  {{#each data}}
+    % -- Group:
+    {{{group.code}}} & \multicolumn{3}{|c|}{ {{{group.name}}} } \\\hline
+    {{#each workpacks}}
+    {{#if isTask}}
+    % -- Task:
+      {{{wsb_id}}} & \
+      {{#each resources}}{{{r_id}}};{{/each}} & \
+      {{#each resources}}{{{_pivot_amount}}};{{/each}} & \
+      {{{assumptions}}} \\\hline
+    {{else}}
+    % -- WP:
+      {{{wsb_id}}} & \multicolumn{3}{|c|}{ {{{activity}}} } \\\hline
+    {{/if}}
+    {{/each}}
+  {{/each}}
+  \caption{List of resource requirement}\label{table4_2}
+\end{longtable}
 
-% <main style="margin:auto;width:800px;">
-% 
-% <table class="word__table" cellspacing="0">
-%   <thead>
-%     <tr>
-%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         WBS-ID
-%       </th>
-%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Resource Id
-%       </th>
-%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Amount
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Assumptions
-%       </th>
-%     </tr>
-%   </thead>
-%   <tbody>
-%     {{#each data}}
-%       <!--Group-->
-%       <tr style="font-weight: bold;">
-%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%           {{group.code}}
-%         </td>
-%         <td  colspan="3" style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
-%           {{group.name}}
-%         </td>
-%       </tr>
-%       {{#each workpacks}}
-%         {{#if isTask}}
-%         <!-- Task -->
-%         <tr>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%             {{wsb_id}}
-%           </td>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%             {{#each resources}}{{r_id}};{{/each}}
-%           </td>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%             {{#each resources}}{{_pivot_amount}};{{/each}}
-%           </td>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
-%             {{assumptions}}
-%           </td>
-%         </tr>
-%         {{else}}
-%         <!-- WP -->
-%         <tr>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%             {{wsb_id}}
-%           </td>
-%           <td colspan="3" style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: left;vertical-align: middle;">
-%             {{activity}}
-%           </td>
-%         </tr>
-%         {{/if}}
-%       {{/each}}
-%     {{/each}}
-% 
-%   </tbody>
-% </table>
-% 
-% </main>
