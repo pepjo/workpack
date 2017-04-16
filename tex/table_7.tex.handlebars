@@ -1,158 +1,46 @@
 % !TEX root = ../../DOCUMENT.tex
 
-TABLE 7
+{{#each data}}
 
-% <main style="margin:auto;width:800px;">
-% 
-% {{#each data}}
-% <table class="word__table" cellspacing="0">
-%   <tr>
-%     <td colspan="2" style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       WBS-ID
-%     </td>
-%     <td colspan="4" style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Activity
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="2" style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{wsb_id}}
-%     </td>
-%     <td colspan="4" style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{activity}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Description of work
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{description_of_work}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Predecessors
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Relationship
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Lag
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Sucessors
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Relationship
-%     </td>
-%     <td style="padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Lag
-%     </td>
-%   </tr>
-%   <tr>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{#each computedPredecessors}}
-%         {{wsb_id}}<br/>
-%       {{/each}}
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{#each computedPredecessors}}
-%         {{_pivot_relation}}<br/>
-%       {{/each}}
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{#each computedPredecessors}}
-%         {{_pivot_lag}}<br/>
-%       {{/each}}
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{#each computedSuccessors}}
-%         {{wsb_id}}<br/>
-%       {{/each}}
-%     </td>
-%     <td style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{#each computedSuccessors}}
-%         {{_pivot_relation}}<br/>
-%       {{/each}}
-%     </td>
-%     <td style="padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{#each computedSuccessors}}
-%         {{_pivot_lag}}<br/>
-%       {{/each}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Number and Type of Resources Required
-%     </td>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Skill Requirements
-%     </td>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 0;text-align: center;vertical-align: middle;">
-%       Other Required Resources
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{#each computedResources}}
-%         {{r_id}}({{_pivot_amount}})<br/>
-%       {{/each}}
-%     </td>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{skill_requirements}}
-%     </td>
-%     <td colspan="2" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%       {{other_required_ressources}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Type of Effort
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{type_of_effort}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Location of Performance
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{location_performance}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Constraints
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{constrains}}
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 0px 1px;text-align: center;vertical-align: middle;">
-%       Assumptions
-%     </td>
-%   </tr>
-%   <tr>
-%     <td colspan="6" style="width: 16.6%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%       {{assumptions}}
-%     </td>
-%   </tr>
-% </table>
-% 
-% <div style="padding:10px;"></div>
-% 
-% {{/each}}
-% 
-% </main>
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+  \hline
 
+  \multicolumn{2}{|p{.333\textwidth}|}{WBS-ID} & \multicolumn{4}{|p{.666\textwidth}|}{Activity} \\
+  \multicolumn{2}{|p{.333\textwidth}|}{ {{{wsb_id}}} } & \multicolumn{4}{|p{.666\textwidth}|}{ {{{activity}}} } \\\hline
+
+  \multicolumn{6}{|p{\textwidth}|}{Description of work} \\
+  \multicolumn{6}{|p{\textwidth}|}{ {{{description_of_work}}} } \\\hline
+
+  Predecessors & Relationship & Lag & Sucessors & Relationship & Lag \\\hline
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} \\\hline
+
+  \multicolumn{2}{|p{0.33\textwidth}|}{Number and Type of Resources Required} & \
+  \multicolumn{2}{|p{0.33\textwidth}|}{Skill Requirements} & \
+  \multicolumn{2}{|p{0.33\textwidth}|}{Other Required Resources}\\
+  \multicolumn{2}{|p{0.33\textwidth}|}{ \
+    \begin{tabular}{@{}c@{}}{{#each computedResources}}{{{r_id}}}({{{_pivot_amount}}}) {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} \
+  } & \
+  \multicolumn{2}{|p{0.33\textwidth}|}{ {{{skill_requirements}}} } & \
+  \multicolumn{2}{|p{0.33\textwidth}|}{ {{{other_required_ressources}}} } \\\hline
+
+  \multicolumn{6}{|p{\textwidth}|}{Type of Effort} \\
+  \multicolumn{6}{|p{\textwidth}|}{ {{{type_of_effort}}} } \\\hline
+
+  \multicolumn{6}{|p{\textwidth}|}{Location of Performance} \\
+  \multicolumn{6}{|p{\textwidth}|}{ {{{location_performance}}} } \\\hline
+
+  \multicolumn{6}{|p{\textwidth}|}{Constraints} \\
+  \multicolumn{6}{|p{\textwidth}|}{ {{{constrains}}} } \\\hline
+
+  \multicolumn{6}{|p{\textwidth}|}{Assumptions} \\
+  \multicolumn{6}{|p{\textwidth}|}{ {{{assumptions}}} } \\\hline
+  
+  \caption{Activity {{{wsb_id}}} attributes}\label{ table7_{{{wsb_id}}} }
+\end{longtable}
+
+{{/each}}

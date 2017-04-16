@@ -1,240 +1,82 @@
 % !TEX root = ../../DOCUMENT.tex
 
-TABLE 5
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+  \hline
+  \multicolumn{6}{|c|}{Parametric Estimates} \\\hline
+  WBS-ID & Effort Hours & Resource quantity & \% Available & Performance Factor & Duration Estimate (h) \\\hline
+  {{#each data}}
+    % -- Group:
+    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{#each workpacks}}
+    {{#if isTask}}
+      {{#if isTp}}
+    % -- Task:
+      {{{wsb_id}}} & \
+      {{{t_p_effort_hours}}} & \
+      {{{t_p_resource_quantity}}} & \
+      {{{t_p_percentage_avaiable}}} & \
+      {{{t_p_performance_factor}}} & \
+      {{{t_duration_estimate}}} \\\hline
+      {{/if}}
+    {{else}}
+    % -- WP:
+      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+    {{/if}}
+    {{/each}}
+  {{/each}}
+  \caption{List of parametric estimates}\label{table5_1}
+\end{longtable}
 
-% <main style="margin:auto;width:800px;">
-% 
-% <table class="word__table" cellspacing="0">
-%   <thead>
-%     <tr>
-%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         Parametric Estimates
-%       </th>
-%     </tr>
-%     <tr>
-%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         WBS-ID
-%       </th>
-%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Effort Hours
-%       </th>
-%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Resource quantity
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         % Available
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Performance Factor
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Duration Estimate (h)
-%       </th>
-%     </tr>
-%   </thead>
-%   <tbody>
-%     {{#each data}}
-%       <!--Group-->
-%       <tr style="font-weight: bold;">
-%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%           {{group.code}}
-%         </td>
-%         <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%       </tr>
-%       {{#each workpacks}}
-%         {{#if isTask}}
-%           {{#if isTp}}
-%           <!-- Task -->
-%           <tr>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%               {{wsb_id}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_p_effort_hours}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_p_resource_quantity}}%
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_p_percentage_avaiable}}%
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_p_performance_factor}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_duration_estimate}}
-%             </td>
-%           </tr>
-%           {{/if}}
-%         {{else}}
-%         <!-- WP -->
-%         <!-- <tr>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%             {{wsb_id}}
-%           </td>
-%           <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%         </tr> -->
-%         {{/if}}
-%       {{/each}}
-%     {{/each}}
-% 
-%   </tbody>
-% </table>
-% 
-% <div style="padding: 10px;"></div>
-% 
-% <table class="word__table" cellspacing="0">
-%   <thead>
-%     <tr>
-%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         Analogous Estimates
-%       </th>
-%     </tr>
-%     <tr>
-%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         WBS-ID
-%       </th>
-%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Previous Activity
-%       </th>
-%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Previous Duration
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Current Activity
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Multiplier
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Duration Estimate
-%       </th>
-%     </tr>
-%   </thead>
-%   <tbody>
-%     {{#each data}}
-%       <!--Group-->
-%       <tr style="font-weight: bold;">
-%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%           {{group.code}}
-%         </td>
-%         <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%       </tr>
-%       {{#each workpacks}}
-%         {{#if isTask}}
-%           {{#if isTa}}
-%           <!-- Task -->
-%           <tr>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%               {{wsb_id}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_a_previous_activity}}{{t_a_previous_activity_txt}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_a_previous_duration}}{{t_a_previous_duration_txt}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_a_current_activity}}{{t_a_current_activity_txt}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_a_multiplier}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_duration_estimate}}
-%             </td>
-%           </tr>
-%           {{/if}}
-%         {{else}}
-%         <!-- WP -->
-%         <!-- <tr>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%             {{wsb_id}}
-%           </td>
-%           <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%         </tr> -->
-%         {{/if}}
-%       {{/each}}
-%     {{/each}}
-%   </tbody>
-% </table>
-% 
-% <div style="padding: 10px;"></div>
-% 
-% <table class="word__table" cellspacing="0">
-%   <thead>
-%     <tr>
-%       <th colspan="6" style="padding: 2px 5px;border: 1px solid black;border-width: 1px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         Three Point Estimates
-%       </th>
-%     </tr>
-%     <tr>
-%       <th style="width: 15%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 1px;text-align: center;vertical-align: middle;">
-%         WBS-ID
-%       </th>
-%       <th style="width: 25%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Optimistic Duration
-%       </th>
-%       <th style="width: 12%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Most Likely Duration
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Pessimistic Duration
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Weighting Equation
-%       </th>
-%       <th style="width: 38%;padding: 2px 5px;border: 1px solid black;border-width: 0px 1px 1px 0;text-align: center;vertical-align: middle;">
-%         Expected Duration Estimate
-%       </th>
-%     </tr>
-%   </thead>
-%   <tbody>
-%     {{#each data}}
-%       <!--Group-->
-%       <tr style="font-weight: bold;">
-%         <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%           {{group.code}}
-%         </td>
-%         <td  colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%       </tr>
-%       {{#each workpacks}}
-%         {{#if isTask}}
-%           {{#if isT3}}
-%           <!-- Task -->
-%           <tr>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%               {{wsb_id}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_3_optimistic_duration}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_3_mostlikely_duration}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_3_pessimistic_duration}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_3_wheighting_equation}}
-%             </td>
-%             <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 0;text-align: center;vertical-align: middle;">
-%               {{t_duration_estimate}}
-%             </td>
-%           </tr>
-%           {{/if}}
-%         {{else}}
-%         <!-- WP -->
-%         <!-- <tr>
-%           <td style="padding: 2px 5px;border: 1px solid black;border-width: 0 1px 1px 1px;text-align: center;vertical-align: middle;">
-%             {{wsb_id}}
-%           </td>
-%           <td colspan="5" style="border: 1px solid black;border-width: 0px 1px 1px 0;"></td>
-%         </tr> -->
-%         {{/if}}
-%       {{/each}}
-%     {{/each}}
-%   </tbody>
-% </table>
-% 
-% </main>
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+  \hline
+  \multicolumn{6}{|c|}{Analogous Estimates} \\\hline
+  WBS-ID & Previous Activity & Previous Duration & Current Activity & Multiplier & Duration Estimate \\\hline
+  {{#each data}}
+    % -- Group:
+    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{#each workpacks}}
+    {{#if isTask}}
+      {{#if isTa}}
+    % -- Task:
+      {{{wsb_id}}} & \
+      {{{t_a_previous_activity}}}{{{t_a_previous_activity_txt}}} & \
+      {{{t_a_previous_duration}}}{{{t_a_previous_duration_txt}}} & \
+      {{{t_a_current_activity}}}{{{t_a_current_activity_txt}}} & \
+      {{{t_a_multiplier}}} & \
+      {{{t_duration_estimate}}} \\\hline
+      {{/if}}
+    {{else}}
+    % -- WP:
+      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+    {{/if}}
+    {{/each}}
+  {{/each}}
+  \caption{List of analogous estimates}\label{table5_2}
+\end{longtable}
+
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+  \hline
+  \multicolumn{6}{|c|}{Three Point Estimates} \\\hline
+  WBS-ID & Optimistic Duration & Most Likely Duration & Pessimistic Duration & Weighting Equation & Expected Duration Estimate \\\hline
+  {{#each data}}
+    % -- Group:
+    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{#each workpacks}}
+    {{#if isTask}}
+      {{#if isT3}}
+    % -- Task:
+      {{{wsb_id}}} & \
+      {{{t_3_optimistic_duration}}} & \
+      {{{t_3_mostlikely_duration}}} & \
+      {{{t_3_pessimistic_duration}}} & \
+      {{{t_3_wheighting_equation}}} & \
+      {{{t_duration_estimate}}} \\\hline
+      {{/if}}
+    {{else}}
+    % -- WP:
+      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+    {{/if}}
+    {{/each}}
+  {{/each}}
+  \caption{List of three point estimates}\label{table5_3}
+\end{longtable}
