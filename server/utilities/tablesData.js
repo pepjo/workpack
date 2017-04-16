@@ -42,7 +42,7 @@ module.exports = {
     ))
   },
   table_4_1 () {
-    return fetchAllWorkpacks()
+    return fetchAllResources()
     .then(bookshelfToJSON)
   },
   table_4_2 () {
