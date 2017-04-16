@@ -10,9 +10,9 @@
     {{#each workpacks}}
       {{{wsb_id}}} & \
       {{{activity}}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{wsb_id}}}\\\end{tabular}{{/each}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{_pivot_relation}}}\\\end{tabular}{{/each}} & \
-      {{#each predecessors}}\begin{tabular}{@{}c@{}}{{{_pivot_lag}}}\\\end{tabular}{{/each}} \\\hline
+      \begin{tabular}{@{}c@{}}{{#each predecessors}}{{{wsb_id}}}\\{{/each}}\end{tabular} & \
+      \begin{tabular}{@{}c@{}}{{#each predecessors}}{{{_pivot_relation}}}\\{{/each}}\end{tabular} & \
+      \begin{tabular}{@{}c@{}}{{#each predecessors}}{{{_pivot_lag}}}\\{{/each}}\end{tabular} \\\hline
     {{/each}}
   {{/each}}
   \caption{List of activities and dependencies or logical relationship between activities}\label{table3_1}
