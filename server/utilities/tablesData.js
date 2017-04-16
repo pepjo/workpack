@@ -151,4 +151,64 @@ module.exports = {
       }, [])
     ))
   },
+  skeleton () {
+    return Promise.all([
+      fetchAllGroups().then(bookshelfToJSON),
+      fetchAllWorkpacks().then(bookshelfToJSON),
+    ])
+    .then(([groups, workpacks]) => {
+      // console.log('workpacks', workpacks)
+      const data = groups.map((group) => {
+        const childs = group.childs || []
+        const newChilds = workpacks
+        .filter((wrk) => (
+          wrk.groups_id === group.id
+            && ((wrk.parent || {}).id === null
+            || typeof((wrk.parent || {}).id) === 'undefined')
+        ))
+        .map((wrk) => {
+          const wchilds = getChilds(workpacks, wrk.id)
+          if (wchilds.length > 0) {
+            return Object.assign({}, wrk, { childs: wchilds })
+          } else {
+            return wrk
+          }
+        })
+
+        // console.log('childs of ', group.id, newChilds)
+        return Object.assign({}, group, { childs: [...childs, ...newChilds] })
+      })
+
+      const content = data.map((group) => {
+        return `  \\item{\\textbf{${group.code}} ${group.name}}\n${parseChilds(group)}`
+      })
+      .join('')
+
+      return content
+    })
+  }
+}
+
+function parseChilds (obj) {
+  if (obj.childs && obj.childs.length !== 0) {
+    return '  \\begin{itemize}\n' + (obj.childs.map((child) => {
+      return `    \\item{\\textbf{${child.wsb_id}} ${child.activity}}\n${parseChilds(child)}`
+    })
+    .join('')) + '  \\end{itemize}\n'
+  } else {
+    return ''
+  }
+}
+
+function getChilds (workpacks, id) {
+  return workpacks
+  .filter((wrk) => ((wrk.parent || {}).id === id))
+  .map((wrk) => {
+    const wchilds = getChilds(workpacks, wrk.id)
+    if (wchilds.length > 0) {
+      return Object.assign({}, wrk, { childs: wchilds })
+    } else {
+      return wrk
+    }
+  })
 }

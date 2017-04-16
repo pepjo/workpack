@@ -10,6 +10,7 @@ const {
   table_7,
   table_8_2,
   table_8_3,
+  skeleton,
 } = require('./tablesData')
 
 module.exports = function generateTexZip () {
@@ -26,13 +27,14 @@ module.exports = function generateTexZip () {
       table_7(),
       table_8_2(),
       table_8_3(),
+      skeleton(),
     ])
     .then((data) => {
       return [templates, data]
     })
   })
   .then(([templates, data]) => {
-    
+
     zip.addFile('table_2_1.tex', new Buffer(templates['table_2_1.tex.handlebars']({ data: data[0] })), '', 0644)
     zip.addFile('table_3_1.tex', new Buffer(templates['table_3_1.tex.handlebars']({ data: data[1] })), '', 0644)
     zip.addFile('table_4_1.tex', new Buffer(templates['table_4_1.tex.handlebars']({ data: data[2] })), '', 0644)
@@ -41,6 +43,7 @@ module.exports = function generateTexZip () {
     zip.addFile('table_7.tex', new Buffer(templates['table_7.tex.handlebars']({ data: data[5] })), '', 0644)
     zip.addFile('table_8_2.tex', new Buffer(templates['table_8_2.tex.handlebars']({ data: data[6] })), '', 0644)
     zip.addFile('table_8_3.tex', new Buffer(templates['table_8_3.tex.handlebars']({ data: data[7] })), '', 0644)
+    zip.addFile('skeleton.tex', new Buffer(templates['skeleton.tex.handlebars']({ body: data[8] })), '', 0644)
     
     return zip.toBuffer()
   })
