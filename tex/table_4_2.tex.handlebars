@@ -1,3 +1,4 @@
+% !TEX root = ../../DOCUMENT.tex
 
 \begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.12\textwidth}|p{.38\textwidth}|}
   \hline
@@ -9,8 +10,8 @@
     {{#if isTask}}
     % -- Task:
       {{{wsb_id}}} & \
-      {{#each resources}}{{{r_id}}};{{/each}} & \
-      {{#each resources}}{{{_pivot_amount}}};{{/each}} & \
+      {{#each resources}}{{{r_id}}}; {{/each}} & \
+      {{#each resources}}{{{_pivot_amount}}}; {{/each}} & \
       {{{assumptions}}} \\\hline
     {{else}}
     % -- WP:
