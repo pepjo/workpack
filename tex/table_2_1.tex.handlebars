@@ -5,12 +5,11 @@
   ID & Activity & Description of Work \\\hline
   {{#each data}}
     % -- Group:
-    {{group.code}} & \multicolumn{2}{|c|}{group.name}} \\\hline
+    {{group.code}} & \multicolumn{2}{|c|}{group.name} \\\hline
     % -- Tasks:
     {{#each workpacks}}
       {{wsb_id}} & {{activity}} & {{description_short}} \\\hline
     {{/each}}
   {{/each}}
-  \caption{List of project activities}
-  \label{table2_1}
+  \caption{List of project activities}\label{table2_1}
 \end{longtable}
