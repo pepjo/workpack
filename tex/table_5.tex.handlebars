@@ -54,13 +54,13 @@
   \caption{List of analogous estimates}\label{table5_2}
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
   \hline
   \multicolumn{6}{|c|}{Three Point Estimates} \\\hline
   WBS-ID & Optimistic Duration & Most Likely Duration & Pessimistic Duration & Weighting Equation & Expected Duration Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isT3}}
@@ -74,7 +74,7 @@
       {{/if}}
     {{else}}
     % -- WP:
-      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+      {{{wsb_id}}} & \multicolumn{5}{c|}{} \\\hline
     {{/if}}
     {{/each}}
   {{/each}}

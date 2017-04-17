@@ -5,7 +5,7 @@
   WBS-ID & Resource Id & Amount & Assumptions \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{3}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{{group.code}}} & \multicolumn{3}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
     % -- Task:
@@ -15,7 +15,7 @@
       {{{assumptions}}} \\\hline
     {{else}}
     % -- WP:
-      {{{wsb_id}}} & \multicolumn{3}{|p{.75\textwidth}|}{ {{{activity}}} } \\\hline
+      {{{wsb_id}}} & \multicolumn{3}{p{.75\textwidth}|}{ {{{activity}}} } \\\hline
     {{/if}}
     {{/each}}
   {{/each}}

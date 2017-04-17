@@ -2,29 +2,29 @@
 
 {{#each data}}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
   \hline
 
-  \multicolumn{2}{|p{.333\textwidth}|}{WBS-ID} & \multicolumn{4}{|p{.666\textwidth}|}{Activity} \\
-  \multicolumn{2}{|p{.333\textwidth}|}{ {{{wsb_id}}} } & \multicolumn{4}{|p{.666\textwidth}|}{ {{{activity}}} } \\\hline
+  \multicolumn{2}{|p{.333\textwidth}|}{WBS-ID} & \multicolumn{4}{p{.666\textwidth}|}{Activity} \\
+  \multicolumn{2}{|p{.333\textwidth}|}{ {{{wsb_id}}} } & \multicolumn{4}{p{.666\textwidth}|}{ {{{activity}}} } \\\hline
 
   \multicolumn{6}{|p{\textwidth}|}{Description of work} \\
   \multicolumn{6}{|p{\textwidth}|}{ {{{description_of_work}}} } \\\hline
 
   Predecessors & Relationship & Lag & Sucessors & Relationship & Lag \\\hline
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & 
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & 
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & 
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & 
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & 
   \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} \\\hline
 
   \multicolumn{2}{|p{0.33\textwidth}|}{Number and Type of Resources Required} & 
-  \multicolumn{2}{|p{0.33\textwidth}|}{Skill Requirements} & 
-  \multicolumn{2}{|p{0.33\textwidth}|}{Other Required Resources} \\
+  \multicolumn{2}{p{0.33\textwidth}|}{Skill Requirements} & 
+  \multicolumn{2}{p{0.33\textwidth}|}{Other Required Resources} \\
   \multicolumn{2}{|p{0.33\textwidth}|}{\begin{tabular}{@{}c@{}}{{#each computedResources}}{{{r_id}}} ({{{_pivot_amount}}}) {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular}} & 
-  \multicolumn{2}{|p{0.33\textwidth}|}{ {{{skill_requirements}}} } & 
-  \multicolumn{2}{|p{0.33\textwidth}|}{ {{{other_required_ressources}}} } \\\hline
+  \multicolumn{2}{p{0.33\textwidth}|}{ {{{skill_requirements}}} } & 
+  \multicolumn{2}{p{0.33\textwidth}|}{ {{{other_required_ressources}}} } \\\hline
 
   \multicolumn{6}{|p{\textwidth}|}{Type of Effort} \\
   \multicolumn{6}{|p{\textwidth}|}{ {{{type_of_effort}}} } \\\hline
