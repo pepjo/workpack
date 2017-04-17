@@ -1,12 +1,12 @@
 % !TEX root = ../../DOCUMENT.tex
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
   \hline
   \multicolumn{6}{|c|}{Parametric Estimates} \\\hline
   WBS-ID & Effort Hours & Resource quantity & \% Available & Performance Factor & Duration Estimate (h) \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isTp}}
@@ -20,20 +20,20 @@
       {{/if}}
     {{else}}
     % -- WP:
-      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+      {{{wsb_id}}} & \multicolumn{5}{c|}{} \\\hline
     {{/if}}
     {{/each}}
   {{/each}}
   \caption{List of parametric estimates}\label{table5_1}
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}||p{.166\textwidth}|p{.166\textwidth}}
+\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
   \hline
   \multicolumn{6}{|c|}{Analogous Estimates} \\\hline
   WBS-ID & Previous Activity & Previous Duration & Current Activity & Multiplier & Duration Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{|p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isTa}}
@@ -47,7 +47,7 @@
       {{/if}}
     {{else}}
     % -- WP:
-      {{{wsb_id}}} & \multicolumn{5}{|c|}{} \\\hline
+      {{{wsb_id}}} & \multicolumn{5}{c|}{} \\\hline
     {{/if}}
     {{/each}}
   {{/each}}
