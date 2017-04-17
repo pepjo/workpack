@@ -2,6 +2,10 @@
 
 {{#each data}}
 
+\begingroup
+\setlength{\LTleft}{-20cm plus -1fill}
+\setlength{\LTright}{\LTleft}
+
 \begin{longtable}{|p{.22\textwidth}|p{.155\textwidth}|p{.123\textwidth}|p{.22\textwidth}|p{.155\textwidth}|p{.123\textwidth}|}
   \hline
 
@@ -42,5 +46,8 @@
 \end{longtable}
 
 {{#unless @last}} \newpage {{/unless}}
+
+
+\endgroup
 
 {{/each}}
