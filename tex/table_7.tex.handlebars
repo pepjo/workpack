@@ -12,12 +12,12 @@
   \multicolumn{6}{|p{\textwidth}|}{ {{{description_of_work}}} } \\\hline
 
   Predecessors & Relationship & Lag & Sucessors & Relationship & Lag \\\hline
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{wsb_id}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_relation}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_lag}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{wsb_id}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_relation}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} & \
-  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_lag}}}{{#unless @last}} \\ {{/unless}}{{/each}}\end{tabular} \\\hline
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedPredecessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{wsb_id}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_relation}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} & \
+  \begin{tabular}{@{}c@{}}{{#each computedSuccessors}}{{{_pivot_lag}}} {{#unless @last}} \\ {{/unless}} {{/each}}\end{tabular} \\\hline
 
   \multicolumn{2}{|p{0.33\textwidth}|}{Number and Type of Resources Required} & \
   \multicolumn{2}{|p{0.33\textwidth}|}{Skill Requirements} & \
