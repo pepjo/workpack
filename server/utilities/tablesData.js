@@ -75,6 +75,7 @@ module.exports = {
           isTp: item.t_type === 't_p',
           isTa: item.t_type === 't_a',
           isT3: item.t_type === 't_3',
+          t_duration_estimate: Math.round(item.t_duration_estimate*100)/100,
         })
       ))
       .reduce((all, work) => {
@@ -102,7 +103,12 @@ module.exports = {
     return fetchAllWorkpacks()
     .then(bookshelfToJSON)
     .then((wks) => (
-      wks.map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
+      wks.map((item) => (
+        Object.assign(item, {
+          isTask: item.wsb_type === 'Task',
+          c_cost_estimate: Math.round(item.c_cost_estimate*100)/100
+        })
+      ))
       .reduce((all, work) => {
         const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
         if (gindex === -1) {
