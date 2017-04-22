@@ -4,11 +4,11 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.10\textwidth}|p{.20\textwidth}|p{.30\textwidth}|}
+\begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.10\textwidth}|p{.10\textwidth}|p{.20\textwidth}|p{.20\textwidth}|}
   \hline
-  Resource ID & Resource Description & Amount & Type of resource & Competence \\\hline
+  Resource ID & Resource Description & Amount & Type of resource & Competence & Comment \\\hline
   {{#each data}}
-    {{{r_id}}} & {{{name}}} & {{{amount}}} & {{{type}}} & {{{comp}}} \\\hline
+    {{{r_id}}} & {{{name}}} & {{{amount}}} & {{{type}}} & {{{comp}}} & {{{comment}}} \\\hline
   {{/each}}
   \caption{List of resources}\label{table4_1}
 \end{longtable}

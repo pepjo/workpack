@@ -8,6 +8,7 @@
     <th>Amount</th>
     <th>Max. amount in tasks</th>
     <th>Total amount in tasks</th>
+    <th>Comment</th>
   </tr>
   {{#each resource}}
     <tr key="{{this.id}}" class="row">
@@ -19,6 +20,7 @@
       <td>{{this.amount}}</td>
       <td>{{this.maxAmountinTasks}}</td>
       <td>{{this.totalAmountinTasks}}</td>
+      <td>{{this.comment}}</td>
     </tr>
   {{/each}}
 </table>
