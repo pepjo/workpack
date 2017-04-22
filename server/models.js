@@ -1,4 +1,6 @@
 
+const _ = require('lodash')
+
 module.exports = function (bookshelf) {
   const Group = bookshelf.Model.extend({
     tableName: 'groups',
@@ -63,7 +65,7 @@ module.exports = function (bookshelf) {
         const childIds = childs.map((item) => (item.id))
         const predecessors = []
 
-        ;(this.attributes || {}).computedPredecessors = childs.reduce((predecessors, child) => {
+        ;(this.attributes || {}).computedPredecessors = _.sortBy(childs.reduce((predecessors, child) => {
           child.predecessors.forEach((predecessor) => {
             const predecessorIndex = predecessors.findIndex((item) => (
               item.id === predecessor.id && item._pivot_relation === predecessor._pivot_relation
@@ -74,7 +76,10 @@ module.exports = function (bookshelf) {
             }
           })
           return predecessors
-        }, [])
+        }, []),
+        function (predecessor) {
+          return predecessor.sort_wsb_id
+        })
       }
     },
     calculateWPSuccessors () {
@@ -83,7 +88,7 @@ module.exports = function (bookshelf) {
         const childIds = childs.map((item) => (item.id))
         const successors = []
 
-        ;(this.attributes || {}).computedSuccessors = childs.reduce((successors, child) => {
+        ;(this.attributes || {}).computedSuccessors = _.sortBy(childs.reduce((successors, child) => {
           child.successors.forEach((successor) => {
             const successorIndex = successors.findIndex((item) => (
               item.id === successor.id && item._pivot_relation === successor._pivot_relation
@@ -94,7 +99,10 @@ module.exports = function (bookshelf) {
             }
           })
           return successors
-        }, [])
+        }, []),
+        function (predecessor) {
+          return predecessor.sort_wsb_id
+        })
       }
     },
     calculateWPResources () {
@@ -103,7 +111,7 @@ module.exports = function (bookshelf) {
         const isSerial = this.attributes.automatic_resources_mode === 'serial'
         const isParallel = this.attributes.automatic_resources_mode === 'parallel'
         if (isSerial || isParallel) {
-          (this.attributes || {}).computedResources = childs.reduce((resources, child) => {
+          (this.attributes || {}).computedResources = _.sortBy(_.sortBy(childs.reduce((resources, child) => {
             child.resources.forEach((resource) => {
               const resourceIndex = resources.findIndex((item) => (item.id === resource.id))
               if (resourceIndex === -1) {
@@ -115,7 +123,13 @@ module.exports = function (bookshelf) {
               }
             })
             return resources
-          }, [])
+          }, []),
+          function (resource) {
+            return resource.name
+          }),
+          function (resource) {
+            return resource.type
+          })
         } else { // manual
           (this.attributes || {}).computedResources = (this.attributes || {}).resources
         }

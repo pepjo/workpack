@@ -18,10 +18,24 @@ function fetchAllWorkpacks () {
   .orderBy('sort_wsb_id', 'ASC').orderBy('wsb_id', 'ASC').orderBy('order', 'ASC').orderBy('id', 'ASC')
   .fetchAll({
     // NOTE: this should be a function parameter... XD
-    withRelated: [
-      'group', 'parent', 'predecessors', 'successors', 'resources', 'paramCosts', 'childs',
-      'childs.resources', 'childs.predecessors', 'childs.successors'
-    ],
+    withRelated: [{
+      group: () => {},
+      parent: () => {},
+      predecessors: (qb) => {
+        qb.orderBy('sort_wsb_id')
+      },
+      successors: (qb) => {
+        qb.orderBy('sort_wsb_id')
+      },
+      resources: (qb) => {
+        qb.orderBy('type', 'ASC').orderBy('name', 'ASC').orderBy('id', 'ASC')
+      },
+      paramCosts: () => {},
+      childs: () => {},
+      'childs.resources': () => {},
+      'childs.predecessors': () => {},
+      'childs.successors': () => {}
+    }],
   })
   .then((data) => {
     data.forEach((item) => {
@@ -38,7 +52,7 @@ function fetchByGroupId (id) {
 }
 
 function fetchByResourceId (id) {
-  return new models.Resource({ id }).orderBy('id', 'ASC').fetch({
+  return new models.Resource({ id }).orderBy('type', 'ASC').orderBy('name', 'ASC').orderBy('id', 'ASC').fetch({
     withRelated: ['workpacks'],
   })
   .then((item) => {
