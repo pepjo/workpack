@@ -106,21 +106,12 @@ module.exports = {
       wks.map((item) => (
         Object.assign(item, {
           isTask: item.wsb_type === 'Task',
+          isCp: item.t_type === 'c_p',
+          isCa: item.t_type === 'c_a',
+          isC3: item.t_type === 'c_3',
           c_cost_estimate: Math.round(item.c_cost_estimate*100)/100
         })
       ))
-      .reduce((all, work) => {
-        const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
-        if (gindex === -1) {
-          all.push({
-            group: work.group,
-            workpacks: [work]
-          })
-        } else {
-          all[gindex].workpacks.push(work)
-        }
-        return all
-      }, [])
     ))
   },
   table_8_3 () {
