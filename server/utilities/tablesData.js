@@ -192,6 +192,34 @@ module.exports = {
 
       return content
     })
+  },
+  skeletonResources () {
+    return fetchAllResources().then(bookshelfToJSON)
+    .then((resources) => {
+      return resources.reduce((all, resource) => {
+        const index = all.findIndex((group) => (group.type === resource.type))
+        if (index !== -1) {
+          all[index].data.push(resource)
+        } else {
+          all.push({
+            type: resource.type,
+            data: [resource]
+          })
+        }
+        return all
+      }, [])
+    })
+    .then((data) => {
+      return data.reduce((latex, group) => {
+        return latex +
+          `  \\item{\\textbf{${group.type}}}\n` +
+          `  \\begin{itemize}\n` +
+            group.data.map((item) => (
+              `    \\item{${item.name}}\n`
+            )).join('') +
+          '  \\end{itemize}\n'
+      }, '')
+    })
   }
 }
 
