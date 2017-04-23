@@ -4,12 +4,42 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.12\textwidth}|p{.38\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.28\textwidth}|p{.15\textwidth}|p{.4\textwidth}|}
+  \caption{List of resource requirement}\label{table4_2}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{WBS-ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Resource ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Amount}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Assumptions}} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{4}{c} %
+    {\tablename\ \thetable{}: List of resource requirement (continued from previous page)} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{WBS-ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Resource ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Amount}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Assumptions}} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{4}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+    
   \hline
-  WBS-ID & Resource Id & Amount & Assumptions \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{3}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{3}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
     % -- Task:
@@ -23,7 +53,7 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of resource requirement}\label{table4_2}
+
 \end{longtable}
 
 \endgroup
