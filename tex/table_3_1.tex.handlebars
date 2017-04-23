@@ -4,12 +4,44 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.15\textwidth}|p{.40\textwidth}|p{.19\textwidth}|p{.13\textwidth}|p{.13\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.5\textwidth}|p{.14\textwidth}|p{.1\textwidth}|p{.9cm}|}
+  \caption{List of activities and dependencies or logical relationship between activities}\label{table3_1}\\
+
+  % Long table first page header
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Activity}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Predecessors}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Relation}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Lag}} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{5}{c} %
+    {\tablename\ \thetable{}: List of activities and dependencies or logical relationship between activities (continued from previous page)} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Activity}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Predecessors}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Relation}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Lag}} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{5}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+
+
   \hline
-  ID & Activity & Predecessors & Relation & Lag \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{4}{c|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{4}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     % -- Tasks:
     {{#each workpacks}}
       {{{wsb_id}}} & 
@@ -19,7 +51,7 @@
       \begin{tabular}{@{}l@{}}{{#each predecessors}}{{{_pivot_lag}}} {{#unless @last}} \\[-10pt] {{/unless}} {{/each}}\end{tabular} \\\hline
     {{/each}}
   {{/each}}
-  \caption{List of activities and dependencies or logical relationship between activities}\label{table3_1}
+
 \end{longtable}
 
 \endgroup
