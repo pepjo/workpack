@@ -4,12 +4,50 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|p{.125\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.1\textwidth}|p{.11\textwidth}|p{.11\textwidth}|p{.04\textwidth}|p{.1\textwidth}|p{.11\textwidth}|p{.11\textwidth}|}
+  \caption{List of activity cost estimation}\label{table8_3}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Resource ID}
+      & \color[HTML]{FFFFFF}\textbf{Direct costs}
+      & \color[HTML]{FFFFFF}\textbf{Method}
+      & \color[HTML]{FFFFFF}\textbf{C.L.}
+      & \color[HTML]{FFFFFF}\textbf{Reserve}
+      & \color[HTML]{FFFFFF}\textbf{Indirect Costs}
+      & \color[HTML]{FFFFFF}\textbf{Estimate} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{8}{c} %
+    {\tablename\ \thetable{}: List of activity cost estimation (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Resource ID}
+      & \color[HTML]{FFFFFF}\textbf{Direct costs}
+      & \color[HTML]{FFFFFF}\textbf{Method}
+      & \color[HTML]{FFFFFF}\textbf{C.L.}
+      & \color[HTML]{FFFFFF}\textbf{Reserve}
+      & \color[HTML]{FFFFFF}\textbf{Indirect Costs}
+      & \color[HTML]{FFFFFF}\textbf{Estimate} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{8}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+
+
   \hline
-  WBS-ID & Resource & Direct costs & Method & C.L. & Reserve & Indirect Costs & Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{7}{p{.87\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{5B9BD5} 
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{7}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
     % -- Task:
@@ -23,11 +61,12 @@
       {{{a_e_estimate}}}€ \\\hline
     {{else}}
     % -- WP:
-      {{{wsb_id}}} & \multicolumn{7}{p{.87\textwidth}|}{ {{{activity}}} } \\\hline
+      \rowcolor[HTML]{9ac1e5}
+      \color[HTML]{FFFFFF}\textbf{ {{{wsb_id}}} } & \multicolumn{7}{l|}{ \color[HTML]{FFFFFF}\textbf{ {{{activity}}} } } \\\hline
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of activity cost estimation}\label{table8_3}
+
 \end{longtable}
 
 \endgroup
