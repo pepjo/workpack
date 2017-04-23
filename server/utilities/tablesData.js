@@ -218,7 +218,7 @@ module.exports = {
           `  \\item{\\textbf{${group.type}}}\n` +
           `  \\begin{itemize}\n` +
             group.data.map((item) => (
-              `    \\item{${item.name}}\n`
+              `    \\item{\\textbf{${item.r_id}}${item.name}}\n`
             )).join('') +
           '  \\end{itemize}\n'
       }, '')
