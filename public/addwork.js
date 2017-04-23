@@ -573,3 +573,6 @@ $('#c_p_cost_per_unit_new').on('change', (e) => { addCP('costUnit', e.target.val
 $('#c_p_number_of_units_new').on('change', (e) => { addCP('numUnits', e.target.value) })
 
 $('.c_p_item__remove').on('click', removeCP)
+
+$('.c_p_variable_cost').on('change', () => { calculateCP() })
+
