@@ -147,7 +147,7 @@ module.exports = {
       .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
       .map((item) => {
         const dc = item.c_cost_estimate
-        const ic = a_e_indirect_costs
+        const ic = item.a_e_indirect_costs
         const re = item.a_e_reserve
 
         let cType
