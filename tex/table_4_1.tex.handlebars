@@ -4,13 +4,46 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.15\textwidth}|p{.25\textwidth}|p{.10\textwidth}|p{.10\textwidth}|p{.20\textwidth}|p{.20\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.2\textwidth}|p{.09\textwidth}|p{.09\textwidth}|p{.09\textwidth}|p{.25\textwidth}|}
+  \caption{List of resources}\label{table4_1}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{Resource ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Resource Description}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Amount}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Type}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Competence}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Comments}} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of resources (continued from previous page)} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \multicolumn{1}{|c|}{\color[HTML]{FFFFFF}\textbf{Resource ID}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Resource Description}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Amount}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Type}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Competence}}
+      & \multicolumn{1}{c|}{\color[HTML]{FFFFFF}\textbf{Comments}} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+    
   \hline
-  Resource ID & Resource Description & Amount & Type of resource & Competence & Comment \\\hline
   {{#each data}}
     {{{r_id}}} & {{{name}}} & {{{amount}}} & {{{type}}} & {{{comp}}} & {{{comment}}} \\\hline
   {{/each}}
-  \caption{List of resources}\label{table4_1}
+
 \end{longtable}
 
 \endgroup
