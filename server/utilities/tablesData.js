@@ -161,7 +161,7 @@ module.exports = {
           default:
             cType = 'NONE'
         }
-        return Object.assign(item, {
+        return Object.assign({}, item, {
           c_type: cType,
           c_cost_estimate: decimals(item.c_cost_estimate),
           a_e_reserve: decimals(dc * re * 0.01),
