@@ -33,11 +33,13 @@
 
     \hline \hline
     \endlastfoot
+    
 
   \hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{2}{c|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{2}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     % -- Tasks:
     {{#each workpacks}}
       {{{wsb_id}}} & {{{activity}}} & {{{description_short}}} \\\hline
