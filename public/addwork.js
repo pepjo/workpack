@@ -231,7 +231,7 @@ function recalculateEstimate () {
       re = 0
   }
 
-  const es = dc + ic * (1 + re*0.01)
+  const es = ic + dc * (1 + re*0.01)
 
   $('#a_e_reserve').val(re)
   $('#a_e_estimate').val(es)
