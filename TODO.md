@@ -10,4 +10,3 @@ NOT YET:
 [ ] Carregar correctament els valors actualment sel·lecionats
 [ ] Fer que es calculin els successors
 
-// Math.floor(10.1) + '.' + Math.round(10.1%1*100)

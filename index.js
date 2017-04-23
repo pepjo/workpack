@@ -52,7 +52,9 @@ global.hbs = exphbs.create({
   extension: 'handlebars',
   cache: process.env.NODE_ENV !== 'development',
   helpers: {
-    isSelected: function (value1, value2) { return `${value1}` === `${value2}` ? ' selected="selected"' : '' }
+    isSelected: function (value1, value2) { return `${value1}` === `${value2}` ? ' selected="selected"' : '' },
+    decimals: function (value) { const num = parseFloat(value); return Math.floor(num) + '.' + Math.round(num%1*100) },
+    enters: function (value) { return value.replace('\n', '\\\\') },
   },
 })
 

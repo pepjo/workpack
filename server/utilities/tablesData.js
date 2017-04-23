@@ -109,7 +109,22 @@ module.exports = {
           isCp: item.c_type === 'c_p',
           isCa: item.c_type === 'c_a',
           isC3: item.c_type === 'c_3',
-          c_cost_estimate: Math.round(item.c_cost_estimate*100)/100
+          cost_per_unit: decimals(item.cost_per_unit),
+          estimate: decimals(item.estimate),
+          c_a_previous_activity: decimals(item.c_a_previous_activity),
+          c_a_previous_cost: decimals(item.c_a_previous_cost),
+          c_a_current_activity: decimals(item.c_a_current_activity),
+          c_cost_estimate: decimals(item.c_cost_estimate),
+          c_3_optimistic_cost: decimals(item.c_3_optimistic_cost),
+          c_3_mostlikely_cost: decimals(item.c_3_mostlikely_cost),
+          c_3_pessimistic_cost: decimals(item.c_3_pessimistic_cost),
+          c_cost_estimate: decimals(item.c_cost_estimate),
+          paramCosts: item.paramCosts.map((item2) => (
+            Object.assign(item2, {
+              cost_per_unit: decimals(item2.cost_per_unit),
+              estimate: decimals(item2.estimate),
+            })
+          ))
         })
       ))
       .reduce((all, work) => {
@@ -144,7 +159,13 @@ module.exports = {
           default:
             cType = 'NONE'
         }
-        return Object.assign(item, { c_type: cType })
+        return Object.assign(item, {
+          c_type: cType,
+          c_cost_estimate: decimals(item.c_cost_estimate),
+          a_e_reserve: decimals(item.a_e_reserve),
+          a_e_indirect_costs: decimals(item.a_e_indirect_costs),
+          a_e_estimate: decimals(item.a_e_estimate),
+        })
       })
       .reduce((all, work) => {
         const gindex = all.findIndex((group) => (group.group.id === work.groups_id))
@@ -248,4 +269,13 @@ function getChilds (workpacks, id) {
       return wrk
     }
   })
+}
+
+function decimals (num) {
+  const decimals = Math.round(num%1*100)
+  if (decimals === 0) {
+    return Math.floor(num) + '.00'
+  } else {
+    return Math.floor(num) + '.' + Math.round(num%1*100)
+  }
 }
