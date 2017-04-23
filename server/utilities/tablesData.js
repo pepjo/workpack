@@ -146,9 +146,9 @@ module.exports = {
       wks
       .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
       .map((item) => {
-        const dc = item.c_cost_estimate
-        const ic = item.a_e_indirect_costs
-        const re = item.a_e_reserve
+        const dc = item.c_cost_estimate || 0
+        const ic = item.a_e_indirect_costs || 0
+        const re = item.a_e_reserve || 0
 
         let cType
         switch (item.c_type) {
