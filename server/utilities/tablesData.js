@@ -228,7 +228,7 @@ module.exports = {
 
 function parseChilds (obj) {
   if (obj.childs && obj.childs.length !== 0) {
-    return '  \\begin{itemize}\n' + (obj.childs.map((child) => {
+    return '  \\begin{itemize}[label={}]\n' + (obj.childs.map((child) => {
       return `    \\item{\\textbf{${child.wsb_id}} ${child.activity}}\n${parseChilds(child)}`
     })
     .join('')) + '  \\end{itemize}\n'
