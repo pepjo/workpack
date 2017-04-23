@@ -13,7 +13,7 @@
     {{{group.code}}} & \multicolumn{4}{p{.8\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
-      {{#if isTp}}
+      {{#if isCp}}
       {{#each paramCosts}}
     % -- Task:
       {{{../wsb_id}}} & 
@@ -41,7 +41,7 @@
     {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
-      {{#if isTa}}
+      {{#if isCa}}
     % -- Task:
       {{{wsb_id}}} & 
       {{{c_a_previous_activity}}} {{{c_a_previous_activity_txt}}} & 
@@ -68,7 +68,7 @@
     {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
-      {{#if isT3}}
+      {{#if isC3}}
     % -- Task:
       {{{wsb_id}}} & 
       {{{c_3_optimistic_cost}}} & 
