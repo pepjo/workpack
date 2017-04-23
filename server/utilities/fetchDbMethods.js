@@ -1,6 +1,6 @@
 
 function fetchAllGroups () {
-  return new models.Group().orderBy('id', 'ASC').fetchAll()
+  return new models.Group().orderBy('order', 'ASC').orderBy('id', 'ASC').fetchAll()
 }
 
 function fetchAllResources () {
