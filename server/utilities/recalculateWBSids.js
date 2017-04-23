@@ -41,11 +41,11 @@ module.exports = function reccalc (opts) {
         item.sort_wsb_id = item.parent.sort_wsb_id + '.' + paddedsubid
         item.parent = item.parent.ids
       } else if (opts.group) {
-        if (item.sort_wsb_id !== item.group.id*100 + item.group.code + '-' + paddedsubid) {
+        if (item.sort_wsb_id !== item.group.id.pad(4) + item.group.code + '-' + paddedsubid) {
           recalculate.push(item)
         }
         item.wsb_id = item.group.code + '-' + subid
-        item.sort_wsb_id = item.group.id*100 + item.group.code + '-' + paddedsubid
+        item.sort_wsb_id = item.group.id.pad(4) + item.group.code + '-' + paddedsubid
         item.parent = null
       } else {
         console.error('ERROR2: neither group nor parent', opts.parent, opts.group)
