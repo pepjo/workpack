@@ -4,13 +4,48 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|}
+  \caption{List of parametric estimates}\label{table5_1}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Parametric Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Effort Hours}
+      & \color[HTML]{FFFFFF}\textbf{Resource Quantity}
+      & \color[HTML]{FFFFFF}\textbf{\% Available}
+      & \color[HTML]{FFFFFF}\textbf{Performance Factor}
+      & \color[HTML]{FFFFFF}\textbf{Duration Estimate (h)} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of parametric estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Parametric Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Effort Hours}
+      & \color[HTML]{FFFFFF}\textbf{Resource Quantity}
+      & \color[HTML]{FFFFFF}\textbf{\% Available}
+      & \color[HTML]{FFFFFF}\textbf{Performance Factor}
+      & \color[HTML]{FFFFFF}\textbf{Duration Estimate (h)} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+
+
   \hline
-  \multicolumn{6}{|c|}{\textbf{Parametric Estimates}} \\\hline
-  WBS-ID & Effort Hours & Resource quantity & \% Available & Performance Factor & Duration Estimate (h) \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{5}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isTp}}
@@ -28,16 +63,57 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of parametric estimates}\label{table5_1}
+  
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
+
+
+
+
+
+
+\begin{longtable}{|p{.13\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|}
+  \caption{List of analogous estimates}\label{table5_2}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Previous Activity}
+      & \color[HTML]{FFFFFF}\textbf{Previous Duration}
+      & \color[HTML]{FFFFFF}\textbf{Current Activity}
+      & \color[HTML]{FFFFFF}\textbf{Multiplier}
+      & \color[HTML]{FFFFFF}\textbf{Duration Estimate (h)} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of analogous estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Previous Activity}
+      & \color[HTML]{FFFFFF}\textbf{Previous Duration}
+      & \color[HTML]{FFFFFF}\textbf{Current Activity}
+      & \color[HTML]{FFFFFF}\textbf{Multiplier}
+      & \color[HTML]{FFFFFF}\textbf{Duration Estimate (h)} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+    
   \hline
-  \multicolumn{6}{|c|}{\textbf{Analogous Estimates}} \\\hline
-  WBS-ID & Previous Activity & Previous Duration & Current Activity & Multiplier & Duration Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{5}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isTa}}
@@ -55,16 +131,57 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of analogous estimates}\label{table5_2}
+
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.156\textwidth}|p{.186\textwidth}|p{.156\textwidth}|}
+
+
+
+
+
+
+\begin{longtable}{|p{.13\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|p{.15\textwidth}|}
+    \caption{List of three point estimates}\label{table5_3}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Three Point Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Optimistic Duration}
+      & \color[HTML]{FFFFFF}\textbf{Most Likely Duration}
+      & \color[HTML]{FFFFFF}\textbf{Pessimistic Duration}
+      & \color[HTML]{FFFFFF}\textbf{Weighting Equation}
+      & \color[HTML]{FFFFFF}\textbf{Expected Duration Estimate (h)} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of three point estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Optimistic Duration}
+      & \color[HTML]{FFFFFF}\textbf{Most Likely Duration}
+      & \color[HTML]{FFFFFF}\textbf{Pessimistic Duration}
+      & \color[HTML]{FFFFFF}\textbf{Weighting Equation}
+      & \color[HTML]{FFFFFF}\textbf{Expected Duration Estimate (h)} \\
+      \hline\hline
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+    
   \hline
-  \multicolumn{6}{|c|}{\textbf{Three Point Estimates}} \\\hline
-  WBS-ID & Optimistic Duration & Most Likely Duration & Pessimistic Duration & Weighting Equation & Expected Duration Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{5}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isT3}}
@@ -82,7 +199,7 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of three point estimates}\label{table5_3}
+
 \end{longtable}
 
 \endgroup
