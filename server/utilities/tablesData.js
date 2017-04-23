@@ -111,8 +111,6 @@ module.exports = {
           isC3: item.c_type === 'c_3',
           cost_per_unit: decimals(item.cost_per_unit),
           estimate: decimals(item.estimate),
-          c_a_previous_activity: decimals(item.c_a_previous_activity),
-          c_a_previous_cost: decimals(item.c_a_previous_cost),
           c_a_current_activity: decimals(item.c_a_current_activity),
           c_cost_estimate: decimals(item.c_cost_estimate),
           c_3_optimistic_cost: decimals(item.c_3_optimistic_cost),
