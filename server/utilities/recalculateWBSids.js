@@ -34,14 +34,14 @@ module.exports = function reccalc (opts) {
       const paddedsubid = subid.pad(4)
 
       if (opts.parent) {
-        if (item.wsb_id !== item.parent.wsb_id + '.' + subid) {
+        if (item.sort_wsb_id !== item.parent.sort_wsb_id + '.' + paddedsubid) {
           recalculate.push(item)
         }
         item.wsb_id = item.parent.wsb_id + '.' + subid
         item.sort_wsb_id = item.parent.sort_wsb_id + '.' + paddedsubid
         item.parent = item.parent.ids
       } else if (opts.group) {
-        if (item.wsb_id !== item.group.code + '-' + subid) {
+        if (item.sort_wsb_id !== item.group.id + item.group.code + '-' + paddedsubid) {
           recalculate.push(item)
         }
         item.wsb_id = item.group.code + '-' + subid
