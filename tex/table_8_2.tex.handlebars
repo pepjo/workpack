@@ -4,13 +4,46 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.2\textwidth}|p{.2\textwidth}|p{.2\textwidth}|p{.2\textwidth}|p{.2\textwidth}|}
+\begin{longtable}{|p{.13\textwidth}|p{.2\textwidth}|M{.2\textwidth}|M{.17\textwidth}|R{.2\textwidth}|}
+  \caption{List of parametric estimates}\label{table8_2_1}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{5}{|c|}{\color[HTML]{FFFFFF}\textbf{Parametric Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Variable Cost}
+      & \color[HTML]{FFFFFF}\textbf{Cost per unit}
+      & \color[HTML]{FFFFFF}\textbf{Number of units}
+      & \color[HTML]{FFFFFF}\textbf{Cost estimate} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{5}{c} %
+    {\tablename\ \thetable{}: List of parametric estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{5}{|c|}{\color[HTML]{FFFFFF}\textbf{Parametric Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Variable Cost}
+      & \color[HTML]{FFFFFF}\textbf{Cost per unit}
+      & \color[HTML]{FFFFFF}\textbf{Number of units}
+      & \color[HTML]{FFFFFF}\textbf{Cost estimate} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{5}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+
+
   \hline
-  \multicolumn{5}{|c|}{\textbf{Parametric Estimates}} \\\hline
-  WBS-ID & Variable Cost & Cost per unit & Number of units & Cost estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{4}{p{.8\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{4}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isCp}}
@@ -29,24 +62,65 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of parametric estimates}\label{table8_2_1}
+
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|}
+
+
+
+
+
+
+\begin{longtable}{|p{.13\textwidth}|M{.15\textwidth}|M{.15\textwidth}|M{.15\textwidth}|M{.1\textwidth}|R{.2\textwidth}|}
+  \caption{List of analogous estimates}\label{table8_2_2}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Previous Activity}
+      & \color[HTML]{FFFFFF}\textbf{Previous Cost}
+      & \color[HTML]{FFFFFF}\textbf{Current Activity}
+      & \color[HTML]{FFFFFF}\textbf{Multiplier}
+      & \color[HTML]{FFFFFF}\textbf{Cost Estimate} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of analogous estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Previous Activity}
+      & \color[HTML]{FFFFFF}\textbf{Previous Cost}
+      & \color[HTML]{FFFFFF}\textbf{Current Activity}
+      & \color[HTML]{FFFFFF}\textbf{Multiplier}
+      & \color[HTML]{FFFFFF}\textbf{Cost Estimate} \\
+      \hline\hline 
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+    
   \hline
-  \multicolumn{6}{|c|}{\textbf{Analogous Estimates}} \\\hline
-  WBS-ID & Previous Activity & Previous Cost & Current Activity & Multiplier & Cost Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{5}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isCa}}
     % -- Task:
       {{{wsb_id}}} & 
-      {{{c_a_previous_activity}}} \EUR {{{c_a_previous_activity_txt}}} & 
+      {{{c_a_previous_activity}}} {{{c_a_previous_activity_txt}}} & 
       {{{c_a_previous_cost}}} \EUR & 
-      {{{c_a_current_activity}}} \EUR {{{c_a_current_activity_txt}}} & 
+      {{{c_a_current_activity}}} {{{c_a_current_activity_txt}}} & 
       {{{c_a_multiplier}}} & 
       {{{c_cost_estimate}}} \EUR \\\hline
       {{/if}}
@@ -56,16 +130,58 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of analogous estimates}\label{table8_2_2}
+
 \end{longtable}
 
-\begin{longtable}{|p{.166\textwidth}|p{.166\textwidth}|p{.166\textwidth}|p{.156\textwidth}|p{.186\textwidth}|p{.156\textwidth}|}
+
+
+
+
+
+
+
+\begin{longtable}{|p{.13\textwidth}|R{.125\textwidth}|R{.125\textwidth}|R{.125\textwidth}|M{.175\textwidth}|R{.2\textwidth}|}
+  \caption{List of three point estimates}\label{table8_2_3}\\
+
+    % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Three Point Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Optimistic Cost}
+      & \color[HTML]{FFFFFF}\textbf{Most Likely Cost}
+      & \color[HTML]{FFFFFF}\textbf{Pessimistic Cost}
+      & \color[HTML]{FFFFFF}\textbf{Weighting Equation}
+      & \color[HTML]{FFFFFF}\textbf{Cost Estimate} \\
+      \hline\hline
+    \endfirsthead
+
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: List of three point estimates (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}\multicolumn{6}{|c|}{\color[HTML]{FFFFFF}\textbf{Analogous Estimates}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+      \color[HTML]{FFFFFF}\textbf{WBS-ID}
+      & \color[HTML]{FFFFFF}\textbf{Optimistic Cost}
+      & \color[HTML]{FFFFFF}\textbf{Most Likely Cost}
+      & \color[HTML]{FFFFFF}\textbf{Pessimistic Cost}
+      & \color[HTML]{FFFFFF}\textbf{Weighting Equation}
+      & \color[HTML]{FFFFFF}\textbf{Cost Estimate} \\
+      \hline\hline
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+    
+
   \hline
-  \multicolumn{6}{|c|}{\textbf{Three Point Estimates}} \\\hline
-  WBS-ID & Optimistic Cost & Most Likely Cost & Pessimistic Cost & Weighting Equation & Expected Cost Estimate \\\hline
   {{#each data}}
     % -- Group:
-    {{{group.code}}} & \multicolumn{5}{p{.75\textwidth}|}{ {{{group.name}}} } \\\hline
+    \rowcolor[HTML]{9ac1e5}
+    \color[HTML]{FFFFFF}\textbf{ {{{group.code}}} } & \multicolumn{5}{c|}{ \color[HTML]{FFFFFF}\textbf{ {{{group.name}}} } } \\\hline
     {{#each workpacks}}
     {{#if isTask}}
       {{#if isC3}}
@@ -83,7 +199,7 @@
     {{/if}}
     {{/each}}
   {{/each}}
-  \caption{List of three point estimates}\label{table8_2_3}
+
 \end{longtable}
 
 \endgroup
