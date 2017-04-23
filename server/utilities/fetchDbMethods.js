@@ -4,7 +4,7 @@ function fetchAllGroups () {
 }
 
 function fetchAllResources () {
-  return new models.Resource().orderBy('id', 'ASC').fetchAll({
+  return new models.Resource().orderBy('type', 'ASC').orderBy('id', 'ASC').fetchAll({
     withRelated: ['workpacks'],
   })
   .then((data) => {
