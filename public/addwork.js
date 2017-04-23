@@ -578,3 +578,5 @@ $('.c_p_variable_cost').on('change', () => { calculateCP() })
 $('.c_p_cost_per_unit').on('change', () => { calculateCP() })
 $('.c_p_number_of_units').on('change', () => { calculateCP() })
 
+$('#recalulate').on('click', () => { calculateCP() })
+
