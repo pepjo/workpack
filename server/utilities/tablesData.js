@@ -146,6 +146,10 @@ module.exports = {
       wks
       .map((item) => ( Object.assign(item, { isTask: item.wsb_type === 'Task' }) ))
       .map((item) => {
+        const dc = item.c_cost_estimate
+        const ic = a_e_indirect_costs
+        const re = item.a_e_reserve
+
         let cType
         switch (item.c_type) {
           case 'c_p':
@@ -160,9 +164,9 @@ module.exports = {
         return Object.assign(item, {
           c_type: cType,
           c_cost_estimate: decimals(item.c_cost_estimate),
-          a_e_reserve: decimals(item.a_e_reserve),
+          a_e_reserve: decimals(ic * re * 0.01),
           a_e_indirect_costs: decimals(item.a_e_indirect_costs),
-          a_e_estimate: decimals(item.a_e_estimate),
+          a_e_estimate: decimals(dc + ic * (1 + re*0.01)),
         })
       })
       .reduce((all, work) => {
