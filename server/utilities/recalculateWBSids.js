@@ -45,7 +45,7 @@ module.exports = function reccalc (opts) {
           recalculate.push(item)
         }
         item.wsb_id = item.group.code + '-' + subid
-        item.sort_wsb_id = item.group.code + '-' + paddedsubid
+        item.sort_wsb_id = item.group.id + item.group.code + '-' + paddedsubid
         item.parent = null
       } else {
         console.error('ERROR2: neither group nor parent', opts.parent, opts.group)
