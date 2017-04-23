@@ -6,11 +6,36 @@
 \setlength{\LTleft}{-20cm plus -1fill}
 \setlength{\LTright}{\LTleft}
 
-\begin{longtable}{|p{.22\textwidth}|p{.19\textwidth}|p{.10\textwidth}|p{.22\textwidth}|p{.19\textwidth}|p{.10\textwidth}|}
-  \hline
+\begin{longtable}{|p{.16\textwidth}|p{.14\textwidth}|p{.12\textwidth}||p{.16\textwidth}|p{.14\textwidth}|p{.12\textwidth}|}
+  \caption{Activity {{{wsb_id}}} attributes}\label{ table7_{{{wsb_id}}} }
+  
+  % Long table first page header
+    \hline\rowcolor[HTML]{2a68a2}
+    \color[HTML]{FFFFFF}\textbf{WBS-ID} & \multicolumn{5}{l|}{\color[HTML]{FFFFFF}\textbf{Activity}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+    \color[HTML]{FFFFFF} {{{wsb_id}}} & \multicolumn{5}{p{.82\textwidth}|}{ \color[HTML]{FFFFFF} {{{activity}}} } \\
+    \hline\hline
+    \endfirsthead
 
-  \multicolumn{2}{|p{.3\textwidth}|}{\textbf{WBS-ID}} & \multicolumn{4}{p{.666\textwidth}|}{\textbf{Activity}} \\*
-  \multicolumn{2}{|p{.3\textwidth}|}{ {{{wsb_id}}} } & \multicolumn{4}{p{.666\textwidth}|}{ {{{activity}}} } \\\hline
+    % Long table header on continued pages
+    \multicolumn{6}{c} %
+    {\tablename\ \thetable{}: Activity {{{wsb_id}}} attributes (continued from previous page)} \\
+    \hline\rowcolor[HTML]{2a68a2}
+    \color[HTML]{FFFFFF}\textbf{WBS-ID} & \multicolumn{5}{l|}{\color[HTML]{FFFFFF}\textbf{Activity}} \\
+    \hline\rowcolor[HTML]{5B9BD5}
+    \color[HTML]{FFFFFF} {{{wsb_id}}} & \multicolumn{5}{p{.82\textwidth}|}{ \color[HTML]{FFFFFF} {{{activity}}} } \\
+    \hline\hline
+    \endhead
+
+    % Botom if pagebreak
+    \multicolumn{6}{c}{(continues on next page)} \\
+    \endfoot
+
+    \hline \hline
+    \endlastfoot
+
+
+  \hline
 
   \multicolumn{6}{|p{\textwidth}|}{\textbf{Description of work}} \\*
   \multicolumn{6}{|p{1.15\textwidth}|}{ {{{description_of_work}}} } \\\hline
@@ -42,7 +67,6 @@
   \multicolumn{6}{|p{\textwidth}|}{\textbf{Assumptions}} \\*
   \multicolumn{6}{|p{\textwidth}|}{ {{{assumptions}}} } \\*\hline
   
-  \caption{Activity {{{wsb_id}}} attributes}\label{ table7_{{{wsb_id}}} }
 \end{longtable}
 
 {{#unless @last}} \newpage {{/unless}}
