@@ -274,5 +274,5 @@ function getChilds (workpacks, id) {
 }
 
 function decimals (num) {
-  return (num || 0).toFixed(2)
+  return parseFloat(num || 0).toFixed(2)
 }
