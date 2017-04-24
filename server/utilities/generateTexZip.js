@@ -25,7 +25,13 @@ module.exports = function generateTexZip () {
       table_4_1(),
       table_4_2(),
       table_5(),
-      table_7(),
+      table_7().then((data) => (
+        data.map((item) => (Object.assign(item, {
+          description_of_work: item.description_of_work.split('\n'),
+          constrains: item.constrains.split('\n'),
+          assumptions: item.assumptions.split('\n'),
+        })))
+      )),
       table_8_2(),
       table_8_3(),
       skeleton(),

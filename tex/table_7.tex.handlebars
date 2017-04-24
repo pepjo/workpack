@@ -38,7 +38,7 @@
   \hline
 
   \multicolumn{6}{|p{\textwidth}|}{\textbf{Description of work}} \\*
-  \multicolumn{6}{|p{\textwidth}|}{ {{{description_of_work}}} } \\\hline
+  \multicolumn{6}{|p{\textwidth}|}{ \begin{tabular}[t]{@{}l@{}} {{{#each description_of_work}}}{{{this}}} {{#unless @last}} \\[-10pt] {{/unless}} {{/each}}\end{tabular}} \\\hline
 
   \textbf{Predecessors} & \textbf{Relationship} & \textbf{Lag} & \textbf{Sucessors} & \textbf{Relationship} & \textbf{Lag} \\*\hline
   \begin{tabular}{@{}l@{}}{{#each computedPredecessors}}{{{wsb_id}}} {{#unless @last}} \\[-10pt] {{/unless}} {{/each}}\end{tabular} & 
@@ -62,10 +62,10 @@
   \multicolumn{6}{|p{\textwidth}|}{ {{{location_performance}}} } \\\hline
 
   \multicolumn{6}{|p{\textwidth}|}{\textbf{Constraints}} \\*
-  \multicolumn{6}{|p{\textwidth}|}{ {{{constrains}}} } \\\hline
+  \multicolumn{6}{|p{\textwidth}|}{ \begin{tabular}[t]{@{}l@{}} {{{#each constrains}}}{{{this}}} {{#unless @last}} \\[-10pt] {{/unless}} {{/each}}\end{tabular}} \\\hline
 
   \multicolumn{6}{|p{\textwidth}|}{\textbf{Assumptions}} \\*
-  \multicolumn{6}{|p{\textwidth}|}{ {{{assumptions}}} } \\*\hline
+  \multicolumn{6}{|p{\textwidth}|}{ \begin{tabular}[t]{@{}l@{}} {{{#each assumptions}}}{{{this}}} {{#unless @last}} \\[-10pt] {{/unless}} {{/each}}\end{tabular}} \\*\hline
   
 \end{longtable}
 
