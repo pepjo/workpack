@@ -87,7 +87,7 @@ module.exports = function (bookshelf) {
         const childs = this.relations.childs.toJSON()
         const childIds = childs.map((item) => (item.id))
         const successors = this.relations.successors.toJSON()
-        console.log('start successors, wsb', this.attributes.wsb_id, this.relations.successors.toJSON())
+        if (this.attributes.wsb_id === 'PM-1.1') console.log('start successors, wsb', this.attributes.wsb_id, this.relations.successors.toJSON())
 
         ;(this.attributes || {}).computedSuccessors = _.sortBy(childs.reduce((successors, child) => {
           child.successors.forEach((successor) => {
