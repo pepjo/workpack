@@ -274,10 +274,5 @@ function getChilds (workpacks, id) {
 }
 
 function decimals (num) {
-  const decimals = Math.round(num%1*100)
-  if (decimals === 0) {
-    return Math.floor(num) + '.00'
-  } else {
-    return Math.floor(num) + '.' + (num%1*100).pad(2)
-  }
+  return num.toFixed(2)
 }
