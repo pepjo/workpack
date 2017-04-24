@@ -63,7 +63,7 @@ module.exports = function (bookshelf) {
       if (this.attributes.wsb_type === 'WP with tasks') {
         const childs = this.relations.childs.toJSON()
         const childIds = childs.map((item) => (item.id))
-        const predecessors = this.relations.predecessors.toJSON()
+        const predecessors = []
 
         ;(this.attributes || {}).computedPredecessors = _.sortBy(childs.reduce((predecessors, child) => {
           child.predecessors.forEach((predecessor) => {
