@@ -63,7 +63,7 @@ module.exports = function (bookshelf) {
       if (this.attributes.wsb_type === 'WP with tasks') {
         const childs = this.relations.childs.toJSON()
         const childIds = childs.map((item) => (item.id))
-        const predecessors = []
+        const predecessors = this.relations.predecessors.toJSON()
 
         ;(this.attributes || {}).computedPredecessors = _.sortBy(childs.reduce((predecessors, child) => {
           child.predecessors.forEach((predecessor) => {
@@ -86,7 +86,7 @@ module.exports = function (bookshelf) {
       if (this.attributes.wsb_type === 'WP with tasks') {
         const childs = this.relations.childs.toJSON()
         const childIds = childs.map((item) => (item.id))
-        const successors = []
+        const successors = this.relations.successors.toJSON()
 
         ;(this.attributes || {}).computedSuccessors = _.sortBy(childs.reduce((successors, child) => {
           child.successors.forEach((successor) => {
