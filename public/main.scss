@@ -10,7 +10,14 @@ body, html {
   font-family: $family-sans-serif;
 }
 
+.nav--filler {
+  height: 50px;
+}
 .nav {
+  top: 0;
+  left: 0;
+  width: 100%;
+  position: fixed;
   background-color: #363636;
 }
 .nav-item a:hover, a.nav-item:hover {
