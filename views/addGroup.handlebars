@@ -1,21 +1,21 @@
-<form action="/add/group?pass=smartlink" method="POST">
+<form action="/add/group?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
 
   <input type="hidden" name="id" value="{{group.id}}">
-
-  <div style="margin: 10px;">
-    <label for="code">Code</label>
-    <input name="code" id="code" value="{{group.code}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="order">Order</label>
-    <input name="order" id="order" value="{{group.order}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="name">Name</label>
-    <input name="name" id="name" value="{{group.name}}" /></br>
-  </div>
+  
+  <table>
+    <tr>
+      <td><label for="code">Code</label></td>
+      <td><input name="code" id="code" value="{{group.code}}" /></td>
+    </tr>
+    <tr>
+      <td><label for="order">Order</label></td>
+      <td><input name="order" id="order" value="{{group.order}}" /></td>
+    </tr>
+    <tr>
+      <td><label for="name">Name</label></td>
+      <td><input name="name" id="name" value="{{group.name}}" /></td>
+    </tr>
+  </table>
 
   <input class="button is-primary" type="submit" value="Guardar" />
 </form>

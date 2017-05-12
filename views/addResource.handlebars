@@ -1,37 +1,39 @@
-<form action="/add/resource?pass=smartlink" method="POST">
+<form action="/add/resource?pass=smartlink" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
 
   <input type="hidden" name="id" value="{{resource.id}}">
 
-  <div style="margin: 10px;">
-    <label for="r_id">Resource ID</label>
-    <input name="r_id" id="r_id" value="{{resource.r_id}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="name">Name</label>
-    <input name="name" id="name" value="{{resource.name}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="type">Type</label>
-    <input name="type" id="type" value="{{resource.type}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="comp">Grade competency</label>
-    <input name="comp" id="comp" value="{{resource.comp}}" /></br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="amount">Amount</label>
-    <input name="amount" id="amount" value="{{resource.amount}}" />
-    (max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}})</br>
-  </div>
-
-  <div style="margin: 10px;">
-    <label for="comment">Comment</label>
-    <input name="comment" id="comment" value="{{resource.comment}}" /></br>
-  </div>
+  <table>
+    <tr>
+      <td><label for="r_id">Resource ID</label></td>
+      <td><input name="r_id" id="r_id" value="{{resource.r_id}}" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label for="name">Name</label></td>
+      <td><input name="name" id="name" value="{{resource.name}}" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label for="type">Type</label></td>
+      <td><input name="type" id="type" value="{{resource.type}}" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label for="comp">Grade competency</label></td>
+      <td><input name="comp" id="comp" value="{{resource.comp}}" /></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td><label for="amount">Amount</label></td>
+      <td><input name="amount" id="amount" value="{{resource.amount}}" /></td>
+      <td>(max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}})</td>
+    </tr>
+    <tr>
+      <td><label for="comment">Comment</label></td>
+      <td><input name="comment" id="comment" value="{{resource.comment}}" /></td>
+      <td></td>
+    </tr>
+  </table>
   
   <input class="button is-primary" type="submit" value="Guardar" />
 </form>
