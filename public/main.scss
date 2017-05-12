@@ -77,6 +77,13 @@ a:active {
 .workForm td {
   vertical-align: top;
 }
+
+input, select {
+  height: 21px;
+}
+select[multiple] {
+  height: 90px;
+}
 .workForm input, .workForm textarea, .workForm select,
 .additionalTable input, .additionalTable textarea, .additionalTable select {
   display: block;
