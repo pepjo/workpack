@@ -1,0 +1,140 @@
+@import "../node_modules/bulma/sass/utilities/_all";
+@import "../node_modules/bulma/sass/components/nav.sass";
+@import "../node_modules/bulma/sass/elements/table.sass";
+@import "../node_modules/bulma/sass/elements/button.sass";
+@import "../node_modules/bulma/sass/elements/form.sass";
+
+body, html {
+  padding: 0;
+  margin: 0;
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+.nav {
+  background-color: #363636;
+}
+.nav-item a:hover, a.nav-item:hover {
+  color: #00d1b2;
+}
+.nav-item a.is-tab, a.nav-item.is-tab {
+    border-bottom: 3px solid transparent;
+}
+a:link {
+  color: #00d1b2;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:visited {
+  color: #00d1b2;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:hover {
+  color: #00d1b2;
+  font-weight: bold;
+  text-decoration: none;
+}
+a:active {
+  color: #00d1b2;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.dataList th {
+  white-space: nowrap;
+  padding: 0 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 200px;
+}
+.dataList td {
+  position: relative;
+  max-width: 280px;
+}
+.dataList .list__content {
+  max-width: 100%;
+  white-space: nowrap;
+  overflow-x: hidden;
+  overflow-y: visible;
+  text-overflow: ellipsis;
+}
+// .del {
+//   text-align: center;
+// }
+
+.workForm {
+  width: 100%;
+  border: 1px solid #AAA;
+  padding: 5px;
+}
+.workForm td {
+  vertical-align: top;
+}
+.workForm input, .workForm textarea, .workForm select,
+.additionalTable input, .additionalTable textarea, .additionalTable select {
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+}
+
+.lbl_total {
+  font-weight: bold;
+  display: block;
+  width: 100%;
+}
+.inp_total {
+  display: block;
+  width: 100%;
+}
+
+input[type="submit"] {
+  margin: 15px;
+  font-size: 20px;
+}
+
+main {
+  padding: 10px 0;
+}
+
+.row {
+  cursor: pointer;
+}
+.row:hover {
+  background: #AAA !important;
+}
+
+.no_list {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+.no_list li {
+  padding: 0;
+  margin: 0;
+  display: block;
+}
+
+.list__tooltip {
+  position: absolute;
+  cursor: text;
+  padding: 10px;
+  display: none;
+  background-color: rgb(240, 235, 213);
+  border: 1px solid rgb(214, 211, 149);
+  border-radius: 2px;
+  max-width: 100%;
+  white-space: normal;
+  text-overflow: initial;
+  z-index: 100;
+}
+.list__tooltip ul {
+  padding: 0 0 0 10px;
+  margin: 0;
+}
+td:hover .list__tooltip {
+  display: block;
+}
+
+.c_p_item__remove {
+  cursor: pointer;
+}

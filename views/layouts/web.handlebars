@@ -3,163 +3,31 @@
 <head>
   <meta charset="utf-8">
   <title>Workpacks manager</title>
-  <style>
-    body, html {
-      padding: 0;
-      margin: 0;
-    }
-
-    nav {
-      border-bottom: 1px solid #AAA;
-    }
-    .navList {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-    .navList li {
-      padding: 10px;
-      margin: 0;
-      display: inline-block;
-    }
-    .navList li:hover {
-      background-color: #EFEFEF;
-    }
-
-    a:link {
-      color: black;
-      text-decoration: none;
-    }
-    a:visited {
-      color: black;
-      text-decoration: none;
-    }
-    a:hover {
-      color: black;
-      text-decoration: underline;
-    }
-    a:active {
-      color: black;
-      text-decoration: underline;
-    }
-
-    .dataList th {
-      border-bottom: 1px solid #AAA;
-      white-space: nowrap;
-      border-right: 1px solid #AAA;
-      padding: 0 5px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      max-width: 200px;
-    }
-    .dataList td {
-      position: relative;
-      max-width: 280px;
-    }
-    .dataList .list__content {
-      max-width: 100%;
-      white-space: nowrap;
-      overflow-x: hidden;
-      overflow-y: visible;
-      text-overflow: ellipsis;
-    }
-    .dataList tr:nth-child(2n+3) {
-      background: #DDD;
-    }
-    .del {
-      text-align: center;
-    }
-
-    .workForm {
-      width: 100%;
-      border: 1px solid #AAA;
-      padding: 5px;
-    }
-    .workForm td {
-      vertical-align: top;
-    }
-    .workForm input, .workForm textarea, .workForm select,
-    .additionalTable input, .additionalTable textarea, .additionalTable select {
-      display: block;
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    .lbl_total {
-      font-weight: bold;
-      display: block;
-      width: 100%;
-    }
-    .inp_total {
-      display: block;
-      width: 100%;
-    }
-
-    input[type="submit"] {
-      margin: 15px;
-      font-size: 20px;
-    }
-
-    main {
-      padding: 10px 0;
-    }
-
-    .row {
-      cursor: pointer;
-    }
-    .row:hover {
-      background: #AAA !important;
-    }
-
-    .no_list {
-      padding: 0;
-      margin: 0;
-      list-style: none;
-    }
-    .no_list li {
-      padding: 0;
-      margin: 0;
-      display: block;
-    }
-    
-    .list__tooltip {
-      position: absolute;
-      cursor: text;
-      padding: 10px;
-      display: none;
-      background-color: rgb(240, 235, 213);
-      border: 1px solid rgb(214, 211, 149);
-      border-radius: 2px;
-      max-width: 100%;
-      white-space: normal;
-      text-overflow: initial;
-      z-index: 100;
-    }
-    .list__tooltip ul {
-      padding: 0 0 0 10px;
-      margin: 0;
-    }
-    td:hover .list__tooltip {
-      display: block;
-    }
-    
-    .c_p_item__remove {
-      cursor: pointer;
-    }
-  </style>
+  <link rel="stylesheet" type="text/css" href="/table.scss">
 </head>
-<body>
-  <nav>
-    <ul class="navList">
-      <li><a href="/list/work?pass={{pass}}">List workpacks</a></li>
-      <li><a href="/list/groups?pass={{pass}}">List groups</a></li>
-      <li><a href="/list/resources?pass={{pass}}">List resources</a></li>
-      <li><a href="/add/work?pass={{pass}}">Add workpack</a></li>
-      <li><a href="/add/group?pass={{pass}}">Add group</a></li>
-      <li><a href="/add/resource?pass={{pass}}">Add resource</a></li>
-      <li><a href="/skeleton?pass={{pass}}">Skeleton</a></li>
-      <li><a href="/table?pass={{pass}}">Tables</a></li>
-    </ul>
+<body class="content">
+  <nav class="nav">
+    <div class="nav-left">
+      <a class="nav-item">
+        <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="#00d1b2" height="50" viewBox="0 0 24 24" width="50">
+          <defs>
+            <path d="M0 0h24v24H0V0z" id="a"/>
+          </defs>
+          <clipPath id="b">
+            <use overflow="visible" xlink:href="#a"/>
+          </clipPath>
+          <path clip-path="url(#b)" d="M21 5c-1.11-.35-2.33-.5-3.5-.5-1.95 0-4.05.4-5.5 1.5-1.45-1.1-3.55-1.5-5.5-1.5S2.45 4.9 1 6v14.65c0 .25.25.5.5.5.1 0 .15-.05.25-.05C3.1 20.45 5.05 20 6.5 20c1.95 0 4.05.4 5.5 1.5 1.35-.85 3.8-1.5 5.5-1.5 1.65 0 3.35.3 4.75 1.05.1.05.15.05.25.05.25 0 .5-.25.5-.5V6c-.6-.45-1.25-.75-2-1zm0 13.5c-1.1-.35-2.3-.5-3.5-.5-1.7 0-4.15.65-5.5 1.5V8c1.35-.85 3.8-1.5 5.5-1.5 1.2 0 2.4.15 3.5.5v11.5z"/>
+        </svg>
+      </a>
+      <a class="nav-item is-tab" href="/list/work?pass={{pass}}">List workpacks</a>
+      <a class="nav-item is-tab" href="/list/groups?pass={{pass}}">List groups</a>
+      <a class="nav-item is-tab" href="/list/resources?pass={{pass}}">List resources</a>
+      <a class="nav-item is-tab" href="/add/work?pass={{pass}}">Add workpack</a>
+      <a class="nav-item is-tab" href="/add/group?pass={{pass}}">Add group</a>
+      <a class="nav-item is-tab" href="/add/resource?pass={{pass}}">Add resource</a>
+      <a class="nav-item is-tab" href="/skeleton?pass={{pass}}">Skeleton</a>
+      <a class="nav-item is-tab" href="/table?pass={{pass}}">Tables</a>
+    </div>
   </nav>
 
   <script src="/jquery-3.2.0.min.js"></script>

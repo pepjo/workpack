@@ -2,24 +2,36 @@
 
   <input type="hidden" name="id" value="{{resource.id}}">
 
-  <label for="r_id">Resource ID</label>
-  <input name="r_id" id="r_id" value="{{resource.r_id}}" />
+  <div style="margin: 10px;">
+    <label for="r_id">Resource ID</label>
+    <input name="r_id" id="r_id" value="{{resource.r_id}}" /></br>
+  </div>
 
-  <label for="name">Name</label>
-  <input name="name" id="name" value="{{resource.name}}" />
+  <div style="margin: 10px;">
+    <label for="name">Name</label>
+    <input name="name" id="name" value="{{resource.name}}" /></br>
+  </div>
 
-  <label for="type">Type</label>
-  <input name="type" id="type" value="{{resource.type}}" />
+  <div style="margin: 10px;">
+    <label for="type">Type</label>
+    <input name="type" id="type" value="{{resource.type}}" /></br>
+  </div>
 
-  <label for="comp">Grade competency</label>
-  <input name="comp" id="comp" value="{{resource.comp}}" />
+  <div style="margin: 10px;">
+    <label for="comp">Grade competency</label>
+    <input name="comp" id="comp" value="{{resource.comp}}" /></br>
+  </div>
 
-  <label for="amount">Amount</label>
-  <input name="amount" id="amount" value="{{resource.amount}}" />
-  (max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}})
+  <div style="margin: 10px;">
+    <label for="amount">Amount</label>
+    <input name="amount" id="amount" value="{{resource.amount}}" />
+    (max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}})</br>
+  </div>
 
-  <label for="comment">Comment</label>
-  <input name="comment" id="comment" value="{{resource.comment}}" />
-
-  <input type="submit" value="Guardar" />
+  <div style="margin: 10px;">
+    <label for="comment">Comment</label>
+    <input name="comment" id="comment" value="{{resource.comment}}" /></br>
+  </div>
+  
+  <input class="button is-primary" type="submit" value="Guardar" />
 </form>

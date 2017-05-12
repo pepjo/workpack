@@ -1,9 +1,9 @@
 <form action="/add/work/{{work.id}}?pass={{pass}}" method="POST" style="display:block;max-width:1000px;margin:auto;position:relative;">
-  <input type="submit" value="Guardar tot" style="position: absolute; left: -200px;" />
 
   <h1 style="color: red;">{{error}}</h1>
 
-  <h2>Basic information</h2>
+  <h2 style="display: inline-block;">Basic information</h2>
+    <input class="button is-primary" type="submit" value="Guardar tot" />
   <input id="id" type="hidden" name="id" value="{{work.id}}">
   <input id="subid" type="hidden" name="subid" value="{{work.subid}}">
   <input id="sort_wsb_id" type="hidden" name="sort_wsb_id" value="{{work.sort_wsb_id}}">
@@ -455,7 +455,7 @@
     </table>
   </div>
 
-  <input type="submit" value="Guardar tot" />
+  <input class="button is-primary" type="submit" value="Guardar tot" />
 </form>
 
 

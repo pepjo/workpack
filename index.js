@@ -6,6 +6,7 @@ const express = require('express')
 const exphbs  = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
+const compileSass = require('express-compile-sass')
 
 Number.prototype.pad = function (size) {
   let s = String(this)
@@ -69,6 +70,14 @@ app.use('/list', listRouter)
 app.use('/skeleton', skeletonRouter)
 app.use('/table', tableRouter)
 app.use('/slack', slackRouter)
+
+app.use(compileSass({
+  root: `${process.cwd()}/public`,
+  sourceMap: true,
+  sourceComments: false,
+  watchFiles: true,
+  logToConsole: false
+}))
 
 app.use(express.static('public'))
 
