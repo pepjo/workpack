@@ -7,7 +7,7 @@
 body, html {
   padding: 0;
   margin: 0;
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: $family-sans-serif;
 }
 
 .nav {
@@ -98,9 +98,6 @@ main {
 
 .row {
   cursor: pointer;
-}
-.row:hover {
-  background: #AAA !important;
 }
 
 .no_list {
