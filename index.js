@@ -3,6 +3,7 @@ require('dotenv').config()
 
 const path = require('path')
 const express = require('express')
+const favicon = require('serve-favicon')
 const exphbs  = require('express-handlebars')
 const bodyParser = require('body-parser')
 const app = express()
@@ -84,6 +85,8 @@ app.use(express.static('public'))
 app.use((req, res, next) => {
   res.render('home', { layout: false })
 })
+
+app.use(favicon(path.join(__dirname, 'public', 'favicon.ico')))
 
 app.listen(process.env.PORT || 3000, function () {
   console.log('Example app listening on port 3000!')
