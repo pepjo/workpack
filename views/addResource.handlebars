@@ -26,7 +26,7 @@
     <tr>
       <td><label for="amount">Amount</label></td>
       <td><input name="amount" id="amount" value="{{resource.amount}}" /></td>
-      <td>(max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}})</td>
+      <td>{{#if resource.maxAmountinTasks}}(max in single task: {{resource.maxAmountinTasks}}, total in tasks: {{resource.totalAmountinTasks}}){{/if}}</td>
     </tr>
     <tr>
       <td><label for="comment">Comment</label></td>
