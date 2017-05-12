@@ -3,12 +3,63 @@
 <head>
   <meta charset="utf-8">
   <title>Workpacks manager</title>
+  
+  <style>
+    html, body {
+      font-family: sans-serif;
+      background-color: #FAFAFA;
+    }
+    .container {
+      display: block;
+      width: 400px;
+      height: 80px;
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      margin-left: -200px;
+      margin-top: -80px;
+    }
+    form {
+      border: 1px solid #DDD;
+      padding: 20px;
+      height: 80px;
+      background-color: white;
+    }
+    
+    label {
+      font-weight: bold;
+      font-size: 12px;
+      color: #444;
+    }
+    
+    #pass {
+      display:block;
+      border: 1px solid #888;
+      margin: 1px 0 8px;
+      height: 25px;
+      width: 100%;
+      font-size: 20px;
+    }
+    
+    input[type=submit] {
+      float: right;
+    }
+    
+    .msg {
+      font-weight: bold;
+      font-size: 11px;
+      color: #222;
+    }
+  </style>
 </head>
 <body>
-  <form action="/list/work" method="get">
-    <label for="pass">Contrasenya</label>
-    <input id="pass" name="pass" type="password" />
-    <input type="submit" label="Entrar" />
-  </form>
+  <div class="container">
+    <span class="msg">ACCESS IS RESTRICTED</span>
+    <form action="/list/work" method="get">
+      <label for="pass">PASSWORD</label>
+      <input id="pass" name="pass" type="password" />
+      <input type="submit" value="Access" />
+    </form>
+  </div>
 </body>
 </html>
