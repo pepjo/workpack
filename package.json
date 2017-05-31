@@ -8,6 +8,10 @@
     "start": "node index.js",
     "knex": "knex"
   },
+  "engines" : {
+    "node" : "<=6.9.5",
+    "npm" : "<=3.10.10"
+  },
   "keywords": [
     "some"
   ],
