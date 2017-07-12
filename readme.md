@@ -2,7 +2,7 @@
 Workpack
 --------
 
-This project was originaly developed to suit the needs of a collage subject. It manages the workpacks, tasks and resources of a project and outputs a latex document to be handed to the professor. As a webpage, it should be installed on a
+This project was originaly developed to suit the needs of a collage subject. It's a webpage that manages the workpacks, tasks and resources of a project and outputs a latex document to be handed to the professor. As a webpage, it should be installed on a server.
 
 The project is not being supported, you may open an issue for questions or open pull requests for changes but I will not make more changes to it.
 
