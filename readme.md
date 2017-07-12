@@ -1,4 +1,14 @@
-Hi developers,
+
+Workpack
+--------
+
+This project was originaly developed to suit the needs of a collage subject. It manages the workpacks, tasks and resources of a project and outputs a latex document to be handed to the professor. As a webpage, it should be installed on a
+
+The project is not being supported, you may open an issue for questions or open pull requests for changes but I will not make more changes to it.
+
+FOR DEVELOPERS
+--------------
+Hi developers, (follows in catalan, google translate it)
 
 després de fer `git clone` recorda fer `npm install`.
 
@@ -9,7 +19,7 @@ NODE_ENV=development
 DATABASE_URL=<databaseURL>
 ```
 
-RECORDA CANVIAR <databaseURL> per una direcció de postgres valida!!
+RECORDA CANVIAR <databaseURL> per una direcció de postgres vàlida!!
 
 Pots buscar un servei per internet o instalar postgres en local.
 
@@ -18,20 +28,11 @@ DATABASE_URL=postgres://postgres:postgres@localhost:5432/workpacks
 
 Un cop tingis aixo configurat has executar `npm run knex -- migrate:latest`
 
-Ja pots fer `npm start` !! Per executar el server a localhost:3000 !! :) 
+Ja pots fer `npm start` !! Per executar el server a localhost:3000 !! :)
+
+LICENSE
+-------
+
+You should not use, modify or distribute any contents of this repository without explicit premisson from the author. Please open an issue if you want to use this code.
 
 
-NOTA:
-He canviat 
-```
-"bookshelf": "^0.10.3",
-"bookshelf-cascade-delete": "^2.0.1",
-```
-
-per:
-```
-"bookshelf": "github:tgriesser/bookshelf#a01208bf651aff59843dff0811f72e7aec48c1e6",
-"bookshelf-cascade-delete": "github:seegno/bookshelf-cascade-delete#f1983f9eab5d6348e9941ed2354b12742ee7d1c4",
-```
-
-per poder tenir cascade delete amb mes relations
